@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.AreaDao">
+
+    <sql id="areaColumns">
+		a.id,
+		a.parent_id AS "parent.id",
+		a.parent_ids AS parentIds,
+		a.code,
+		a.name,
+		a.type,
+		p.name AS "parent.name"
+	</sql>
+	
+    <sql id="areaJoins">
+		LEFT JOIN t_area p ON p.id = a.parent_id
+    </sql>
+    
+	<!-- 1. 添加Area -->
+	<insert id="insert" parameterType="Area" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_area(id, parent_id, parent_ids, code, name, type) 
+		VALUES (#{id}, #{parent.id}, #{parentIds}, #{code}, #{name}, #{type})
+	</insert>
+
+	<!-- 2. 删除Area -->
+	<delete id="delete" parameterType="Area">
+		delete from t_area where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Area -->
+	<update id="update" parameterType="Area">
+		UPDATE t_area SET 
+			parent_id = #{parent.id}, 
+			parent_ids = #{parentIds}, 
+			code = #{code}, 
+			name = #{name}, 
+			sort = #{sort}, 
+			type = #{type}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 4. 根据Area查询一条记录 -->
+	<select id="selectOne" parameterType="Area" resultType="Area">
+		SELECT <include refid="areaColumns" />
+		FROM t_area a <include refid="areaJoins" />
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Area -->
+	<select id="selectPageList" parameterType="Area" resultType="Area">
+		SELECT
+		<include refid="areaColumns" />
+		FROM t_area a
+		<include refid="areaJoins" />
+		WHERE 1 = 1
+		order by parent_id, code
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Area -->
+	<select id="selectList" parameterType="Area" resultType="Area">
+		SELECT
+		<include refid="areaColumns" />
+		FROM t_area a
+		<include refid="areaJoins" />
+		WHERE 1 = 1
+		order by parent_id, code
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_area where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Area">
+		SELECT <include refid="areaColumns" />
+		FROM t_area a <include refid="areaJoins" />
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Area -->
+	<select id="selectPageCount" parameterType="Area" resultType="int">
+		select count(1) from t_area t where 1 = 1
+	</select>
+	
+	<!-- 10. 根据type获得Area列表 -->	
+	<select id="findByType" parameterType="string" resultType="Area">
+		SELECT <include refid="areaColumns" />
+		FROM t_area a <include refid="areaJoins" />
+		WHERE a.type = #{type}
+	</select>
+	
+	<!-- 11. 根据parentId获得Area列表 -->	
+	<select id="findByParentId" parameterType="long" resultType="Area">
+		SELECT <include refid="areaColumns" />
+		FROM t_area a <include refid="areaJoins" />
+		WHERE a.parent_id = #{parentId}
+	</select>
+	
+	<!-- 12. 根据code获得Area -->	
+	<select id="getByCode" parameterType="long" resultType="Area">
+		SELECT <include refid="areaColumns" />
+		FROM t_area a <include refid="areaJoins" />
+		WHERE a.code = #{code}
+	</select>
+
+</mapper>

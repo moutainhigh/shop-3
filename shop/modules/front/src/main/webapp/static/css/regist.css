@@ -1,0 +1,146 @@
+.loginWrap .verityWrap,.loginWrap .textbox_ui {
+	margin-bottom: 0
+}
+
+.sign .act,.sign .line {
+	margin: 0;
+	margin-bottom: 28px
+}
+
+
+
+.verityWrap a {
+	margin-right: 0
+}
+
+#change_verify_code {
+	cursor: pointer;
+	color: #ed145b
+}
+
+.verityWrap .phonecode {
+	background: #fcfcfc;
+	background: -webkit-gradient(linear,left top,left bottom,from(#fcfcfc),to(#f2f2f2));
+	background: -webkit-linear-gradient(top,#fcfcfc,#f2f2f2);
+	background: -moz-linear-gradient(top,#fcfcfc,#f2f2f2);
+	background: -o-linear-gradient(top,#fcfcfc,#f2f2f2);
+	background: linear-gradient(to bottom,#fcfcfc,#f2f2f2);
+	border: 1px solid #d9d9d9;
+	text-decoration: none;
+	cursor: pointer;
+	padding: 0 22px;
+	display: inline-block;
+	line-height: 41px;
+	height: 41px;
+	font-weight: 700;
+	color: #666;
+	text-align: center;
+	width:150px;
+}
+
+.verityWrap .phonecode:hover {
+	text-decoration: none;
+	background: #fcfcfc;
+	background: -webkit-gradient(linear,left top,left bottom,from(#fcfcfc),to(#f2f2f2));
+	background: -webkit-linear-gradient(top,#fcfcfc,#f2f2f2);
+	background: -moz-linear-gradient(top,#fcfcfc,#f2f2f2);
+	background: -o-linear-gradient(top,#fcfcfc,#f2f2f2);
+	background: linear-gradient(to bottom,#fcfcfc,#f2f2f2);
+	border: 1px solid #d9d9d9;
+}
+
+.submit_btn {
+	height: 42px;
+	_background: #e5406f;
+	_border: 1px solid #c81f52;
+	_color: #fff;
+	_font-weight: 700;
+	_cursor: pointer
+}
+
+.placeholder {
+	color: #aaa
+}
+
+.sign .line {
+	height: 44px
+}
+
+.textbox_ui .hint {
+	position: absolute;
+	line-height: 1.5;
+	display: none;
+	word-break: keep-all;
+	white-space: nowrap;
+	margin-top: 4px;
+	color: #999;
+	top: 100%;
+	left: 0
+}
+
+.hint_ui .focus_text {
+	display: none
+}
+
+.loginPic {
+	position: relative;
+	width: 960px;
+	height: 370px;
+	position: relative
+}
+
+.signup_link {
+	display: block;
+	position: absolute;
+	width: 420px;
+	height: 370px
+}
+
+.loginWrap .loginBord {
+	top: -80px
+}
+
+.loginWrap {
+	margin-top: 120px;
+	margin-bottom: 70px;
+	height: 460px
+}
+
+.sms_verify_wrapper {
+	margin-right: 12px
+}
+/*错误提示*/
+.loginBord .invalid {
+    width: 290px;
+    white-space: normal;
+    word-break: normal;
+	margin-left:20px;
+}
+.invalid i {
+	background-position: 0px -100px;
+	left: -20px;
+	top:-2px;
+	position:absolute;
+}
+.user input, .pass input, .otherAccout i, .textbox_ui .valid, .textbox_ui .invalid i {
+    background-image: url("../images/sign.png");
+    background-repeat: no-repeat;
+	height: 20px;
+	width: 20px;
+}
+.valid {
+    background-position: 0px -125px;
+	margin-left:-25px;
+}
+
+.joinin {
+	  height: 30px;
+  line-height: 30px;
+  font-size: 13px;
+  color: rgb(255, 255, 255);
+  background-color: #F8296D;
+  padding-left: 10px;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: 600;
+}

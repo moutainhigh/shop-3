@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.ProductHitTraceDao">
+
+    <sql id="productHitTraceColumns">
+		t.id,
+    	t.product_id as productId,
+    	t.product_name as productName,
+    	t.session_id as sessionId,
+    	t.account_id as accountId,
+    	t.hit_time as hitTime
+	</sql>
+	
+	<!-- 1. 添加ProductHitTrace -->
+	<insert id="insert" parameterType="ProductHitTrace" useGeneratedKeys="true" keyProperty="id">
+	    insert into t_product_hit_trace(product_id, product_name, session_id, account_id, hit_time)
+ 		values(#{productId}, #{productName}, #{sessionId}, #{accountId}, now())
+	</insert>
+
+	<!-- 2. 删除ProductHitTrace -->
+	<delete id="delete" parameterType="ProductHitTrace">
+		delete from t_product_hit_trace where id = #{id}
+	</delete>
+
+	<!-- 3. 修改ProductHitTrace -->
+	<update id="update" parameterType="ProductHitTrace">
+		update t_product_hit_trace
+		set id= #{id}
+		<if test="productId!=null">,product_id = #{productId}</if>
+		<if test="productName!=null and productName!=''">,product_name = #{productName}</if>
+		<if test="sessionId!=null and sessionId!=''">,session_id = #{sessionId}</if>
+		<if test="accountId!=null">,account_id = #{accountId}</if>
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据ProductHitTrace查询一条记录 -->
+	<select id="selectOne" parameterType="ProductHitTrace" resultType="ProductHitTrace">
+		select <include refid="productHitTraceColumns" /> from t_product_hit_trace t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询ProductHitTrace -->
+	<select id="selectPageList" parameterType="ProductHitTrace" resultType="ProductHitTrace">
+		select <include refid="productHitTraceColumns" /> from t_product_hit_trace t where 1 = 1
+		<if test="productId!=null"> and product_id = #{productId}</if>
+		<if test="sessionId!=null and sessionId!=''"> and session_id = #{sessionId}</if>
+		<if test="accountId!=null"> and account_id = #{accountId}</if>
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询ProductHitTrace -->
+	<select id="selectList" parameterType="ProductHitTrace" resultType="ProductHitTrace">
+		select <include refid="productHitTraceColumns" /> from t_product_hit_trace t where 1 = 1 
+		<if test="productId!=null"> and product_id = #{productId}</if>
+		<if test="sessionId!=null and sessionId!=''"> and session_id = #{sessionId}</if>
+		<if test="accountId!=null"> and account_id = #{accountId}</if>
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_product_hit_trace where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="ProductHitTrace">
+		select <include refid="productHitTraceColumns" /> from t_product_hit_trace t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询ProductHitTrace -->
+	<select id="selectPageCount" parameterType="ProductHitTrace" resultType="int">
+		select count(1) from t_product_hit_trace t where 1 = 1
+		<if test="productId!=null"> and product_id = #{productId}</if>
+		<if test="sessionId!=null and sessionId!=''"> and session_id = #{sessionId}</if>
+		<if test="accountId!=null"> and account_id = #{accountId}</if>
+	</select>
+
+</mapper>

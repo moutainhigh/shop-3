@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.InviteCodeDao">
+
+    <sql id="inviteCodeColumns">
+		t.invite_code as inviteCode,
+		t.account_id as accountId,
+		t.mobile,
+		t.mobile,
+		t.assigned_time as assignedTime
+	</sql>
+	
+	<!-- 1. 添加InviteCode -->
+	<insert id="insert" parameterType="InviteCode">
+		INSERT INTO t_invite_code(invite_code, account_id, mobile, assigned_time) 
+		VALUES (#{inviteCode}, #{accountId}, #{mobile}, now())
+	</insert>
+
+	<!-- 2. 删除InviteCode -->
+	<delete id="delete" parameterType="InviteCode">
+		delete from t_invite_code where invite_code = #{inviteCode}
+	</delete>
+
+	<!-- 3. 修改InviteCode -->
+	<update id="update" parameterType="InviteCode">
+		UPDATE t_invite_code SET 
+			account_id = #{accountId}, 
+			mobile = #{mobile}, 
+			assigned_time = #{assignedTime}
+		WHERE invite_code = #{inviteCode}
+	</update>
+
+	<!-- 4. 根据InviteCode查询一条记录 -->
+	<select id="selectOne" parameterType="InviteCode" resultType="InviteCode">
+		SELECT <include refid="inviteCodeColumns" />
+		FROM t_invite_code t 
+		WHERE t.invite_code = #{inviteCode}
+	</select>
+
+	<!-- 5. 分页查询InviteCode -->
+	<select id="selectPageList" parameterType="InviteCode" resultType="InviteCode">
+		SELECT <include refid="inviteCodeColumns" />
+		FROM t_invite_code t
+		WHERE 1 = 1
+		order by invite_code
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询InviteCode -->
+	<select id="selectList" parameterType="InviteCode" resultType="InviteCode">
+		SELECT <include refid="inviteCodeColumns" />
+		FROM t_invite_code t
+		WHERE 1 = 1
+		order by invite_code
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_invite_code where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="InviteCode">
+		SELECT <include refid="inviteCodeColumns" />
+		FROM t_invite_code t 
+		WHERE t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询InviteCode -->
+	<select id="selectPageCount" parameterType="InviteCode" resultType="int">
+		select count(1) from t_invite_code t
+	</select>
+	
+	<!-- 10. 根据inviteCode获得InviteCode -->
+	<select id="get" parameterType="string" resultType="InviteCode">
+		SELECT <include refid="inviteCodeColumns" />
+		FROM t_invite_code t 
+		WHERE t.invite_code = #{inviteCode}
+	</select>
+	
+	<!-- 11.batchSave  -->
+	<insert id="batchSave">
+		insert into t_invite_code
+		(invite_code)
+		values <foreach collection="list" item="item" index="index" separator=",">
+            (#{item})
+       </foreach >
+	</insert>
+	
+</mapper>

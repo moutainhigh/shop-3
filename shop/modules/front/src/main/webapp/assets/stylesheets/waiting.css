@@ -1,0 +1,27 @@
+.container-n {
+    width: 100%;
+}
+
+.loading-n {
+    width: 1090px;
+    margin: 0 auto;
+    padding: 200px 0;
+}
+
+.loading {
+    width: 350px;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #6B6B6B;
+}
+
+.loading span {
+    
+    color: #fc2e66;
+}
+
+.loading a {
+    text-decoration: none;
+    color: #fc2e66;
+}

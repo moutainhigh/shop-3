@@ -1,0 +1,1 @@
+package net.jeeshop.services.front.area.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Area;public interface AreaDao extends DaoManager<Area> {}

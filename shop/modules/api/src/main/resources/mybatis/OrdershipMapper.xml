@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.OrdershipDao">
+
+	<!-- 1. 添加Ordership -->
+	<insert id="insert" parameterType="Ordership" useGeneratedKeys="true" keyProperty="id">
+		insert into t_ordership
+		(id
+        <if test="orderid!=null">,orderid</if>
+        <if test="addressId!=null">,addressId</if>
+		<if test="shipname!=null and shipname!=''">,shipname</if>
+		<if test="shipaddress!=null and shipaddress!=''">,shipaddress</if>
+		<if test="provinceCode!=null and provinceCode!=''">,provinceCode</if>
+		<if test="province!=null and province!=''">,province</if>
+		<if test="cityCode!=null and cityCode!=''">,cityCode</if>
+		<if test="city!=null and city!=''">,city</if>
+		<if test="areaCode!=null and areaCode!=''">,areaCode</if>
+		<if test="area!=null and area!=''">,area</if>
+		<if test="phone!=null and phone!=''">,phone</if>
+		<if test="tel!=null and tel!=''">,tel</if>
+		<if test="zip!=null and zip!=''">,zip</if>
+		<if test="sex!=null and sex!=''">,sex</if>
+		<if test="remark!=null and remark!=''">,remark</if>
+		)
+		values
+		(
+		id
+		<if test="orderid!=null">,#{orderid}</if>
+		<if test="addressId!=null">,#{addressId}</if>
+		<if test="shipname!=null and shipname!=''">,#{shipname}</if>
+		<if test="shipaddress!=null and shipaddress!=''">,#{shipaddress}</if>
+		<if test="provinceCode!=null and provinceCode!=''">,#{provinceCode}</if>
+		<if test="province!=null and province!=''">,#{province}</if>
+		<if test="cityCode!=null and cityCode!=''">,#{cityCode}</if>
+		<if test="city!=null and city!=''">,#{city}</if>
+		<if test="areaCode!=null and areaCode!=''">,#{areaCode}</if>
+		<if test="area!=null and area!=''">,#{area}</if>
+		<if test="phone!=null and phone!=''">,#{phone}</if>
+		<if test="tel!=null and tel!=''">,#{tel}</if>
+		<if test="zip!=null and zip!=''">,#{zip}</if>
+		<if test="sex!=null and sex!=''">,#{sex}</if>
+		<if test="remark!=null and remark!=''">,#{remark}</if>
+		)
+	</insert>
+
+	<!-- 2. 删除Ordership -->
+	<delete id="delete" parameterType="Ordership">
+		delete from t_ordership where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Ordership -->
+	<update id="update" parameterType="Ordership">
+		update t_ordership
+		set id= #{id}
+		<if test="orderid!=null">,orderid = #{orderid}</if>
+		<if test="addressId!=null">,addressId = #{addressId}</if>
+		<if test="shipname!=null and shipname!=''">,shipname = #{shipname}</if>
+		<if test="shipaddress!=null and shipaddress!=''">,shipaddress = #{shipaddress}</if>
+		<if test="provinceCode!=null and provinceCode!=''">,provinceCode = #{provinceCode}</if>
+		<if test="province!=null and province!=''">,province = #{province}</if>
+		<if test="cityCode!=null and cityCode!=''">,cityCode = #{cityCode}</if>
+		<if test="city!=null and city!=''">,city = #{city}</if>
+		<if test="areaCode!=null and areaCode!=''">,areaCode = #{areaCode}</if>
+		<if test="area!=null and area!=''">,area = #{area}</if>
+		<if test="phone!=null and phone!=''">,phone = #{phone}</if>
+		<if test="tel!=null and tel!=''">,tel = #{tel}</if>
+		<if test="zip!=null and zip!=''">,zip = #{zip}</if>
+		<if test="sex!=null and sex!=''">,sex = #{sex}</if>
+		<if test="remark!=null and remark!=''">,remark = #{remark}</if>
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Ordership查询一条记录 -->
+	<select id="selectOne" parameterType="Ordership" resultType="Ordership">
+		select t.* from t_ordership t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Ordership -->
+	<select id="selectPageList" parameterType="Ordership" resultType="Ordership">
+		select t.* from t_ordership t where 1 = 1
+		<if test="orderid!=null"> and orderid = #{orderid}</if>
+		<if test="addressId!=null"> and addressId = #{addressId}</if>
+		<if test="shipname!=null and shipname!=''"> and shipname = #{shipname}</if>
+		<if test="shipaddress!=null and shipaddress!=''"> and shipaddress = #{shipaddress}</if>
+		<if test="provinceCode!=null and provinceCode!=''"> and provinceCode = #{provinceCode}</if>
+		<if test="province!=null and province!=''"> and province = #{province}</if>
+		<if test="cityCode!=null and cityCode!=''"> and cityCode = #{cityCode}</if>
+		<if test="city!=null and city!=''"> and city = #{city}</if>
+		<if test="areaCode!=null and areaCode!=''"> and areaCode = #{areaCode}</if>
+		<if test="area!=null and area!=''"> and area = #{area}</if>
+		<if test="phone!=null and phone!=''"> and phone = #{phone}</if>
+		<if test="tel!=null and tel!=''"> and tel = #{tel}</if>
+		<if test="zip!=null and zip!=''"> and zip = #{zip}</if>
+		<if test="sex!=null and sex!=''"> and sex = #{sex}</if>
+		<if test="remark!=null and remark!=''"> and remark = #{remark}</if>
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Ordership -->
+	<select id="selectList" parameterType="Ordership" resultType="Ordership">
+		select t.* from t_ordership t where 1 = 1 
+		<if test="orderid!=null"> and orderid = #{orderid}</if>
+		<if test="addressId!=null"> and addressId = #{addressId}</if>
+		<if test="shipname!=null and shipname!=''"> and shipname = #{shipname}</if>
+		<if test="shipaddress!=null and shipaddress!=''"> and shipaddress = #{shipaddress}</if>
+		<if test="provinceCode!=null and provinceCode!=''"> and provinceCode = #{provinceCode}</if>
+		<if test="province!=null and province!=''"> and province = #{province}</if>
+		<if test="cityCode!=null and cityCode!=''"> and cityCode = #{cityCode}</if>
+		<if test="city!=null and city!=''"> and city = #{city}</if>
+		<if test="areaCode!=null and areaCode!=''"> and areaCode = #{areaCode}</if>
+		<if test="area!=null and area!=''"> and area = #{area}</if>
+		<if test="phone!=null and phone!=''"> and phone = #{phone}</if>
+		<if test="tel!=null and tel!=''"> and tel = #{tel}</if>
+		<if test="zip!=null and zip!=''"> and zip = #{zip}</if>
+		<if test="sex!=null and sex!=''"> and sex = #{sex}</if>
+		<if test="remark!=null and remark!=''"> and remark = #{remark}</if>
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_ordership where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Ordership">
+		select t.* from t_ordership t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Ordership -->
+	<select id="selectPageCount" parameterType="Ordership" resultType="int">
+		select count(1) from t_ordership t where 1 = 1
+		<if test="orderid!=null"> and orderid = #{orderid}</if>
+		<if test="addressId!=null"> and addressId = #{addressId}</if>
+		<if test="shipname!=null and shipname!=''"> and shipname = #{shipname}</if>
+		<if test="shipaddress!=null and shipaddress!=''"> and shipaddress = #{shipaddress}</if>
+		<if test="provinceCode!=null and provinceCode!=''"> and provinceCode = #{provinceCode}</if>
+		<if test="province!=null and province!=''"> and province = #{province}</if>
+		<if test="cityCode!=null and cityCode!=''"> and cityCode = #{cityCode}</if>
+		<if test="city!=null and city!=''"> and city = #{city}</if>
+		<if test="areaCode!=null and areaCode!=''"> and areaCode = #{areaCode}</if>
+		<if test="area!=null and area!=''"> and area = #{area}</if>
+		<if test="phone!=null and phone!=''"> and phone = #{phone}</if>
+		<if test="tel!=null and tel!=''"> and tel = #{tel}</if>
+		<if test="zip!=null and zip!=''"> and zip = #{zip}</if>
+		<if test="sex!=null and sex!=''"> and sex = #{sex}</if>
+		<if test="remark!=null and remark!=''"> and remark = #{remark}</if>
+	</select>
+
+</mapper>

@@ -1,0 +1,63 @@
+#============================#
+#===== Database sttings =====#
+#============================#
+
+#mysql database setting
+jdbc.driver=com.mysql.jdbc.Driver
+#jdbc.url=jdbc:mysql://127.0.0.1:3306/shop?useUnicode=true&characterEncoding=utf-8
+jdbc.url=jdbc:mysql://jinshulai.mysql.rds.aliyuncs.com:3306/shop?useUnicode=true&characterEncoding=utf-8
+
+#jdbc.username=root
+#jdbc.password=xb123456
+jdbc.username=tst
+jdbc.password=tst1qaz2wsx
+
+#pool settings
+jdbc.pool.minIdle=3
+jdbc.pool.maxActive=20
+
+#============================#
+#=== Framework settings =====#
+#============================#
+
+#home page path
+web.view.index=/
+
+#internal resource view resolver
+web.view.prefix=/WEB-INF/views/
+web.view.suffix=.jsp
+
+#max upload size. 10M=10*1024*1024(B)=10485760 bytes
+web.maxUploadSize=10485760
+
+#============================#
+#====== Global sttings ======#
+#============================#
+
+#product sttings
+productName=Shop
+copyrightYear=2015
+version=V1.0
+
+#demo mod 
+demoMode=false
+
+#admin path
+adminPath=/admin
+
+#front path
+frontPath=/front
+
+#url suffix
+urlSuffix=.html
+
+#page settings
+page.pageSize=10
+
+#memcached
+memcached.servers=114.215.159.2:11211
+
+#sms
+smsSerialKey=vip_xqfb
+smsSerialPassword=Tch123456
+smsSendSMSURL=http://222.73.117.158/msg//HttpBatchSendSM

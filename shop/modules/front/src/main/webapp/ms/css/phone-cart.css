@@ -1,0 +1,260 @@
+.am-g {
+  padding-bottom: 47px;
+}
+.header {
+  padding: 0;
+  text-align: center;
+  background-color: #f65c8f;
+  position: relative;
+}
+.header .title {
+  margin-bottom: 0;
+  line-height: 45px;
+  margin-top: 0;
+  color: white;
+  letter-spacing: 3px;
+  font-size: 16px;
+}
+.header .header-left {
+  position: absolute;
+  width: 60px;
+  left: 0;
+  top: 0;
+}
+.header .header-left p {
+  margin-bottom: 0;
+  font-size: 13px;
+  line-height: 45px;
+  margin-left: 15px;
+  color: white;
+  display: inline;
+}
+.header .header-left img {
+  width: 15px;
+  display: inline;
+  margin-top: -2px;
+}
+.header .header-right {
+  height: 45px;
+  width: 60px;
+  text-align: right;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.header .header-right p {
+  margin-right: 15px;
+  margin-bottom: 0px;
+  color: white;
+  font-size: 13px;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.footer .am-checkbox {
+  float: left;
+  color: white;
+  font-size: 12px;
+  line-height: 22px;
+}
+.footer .am-checkbox .am-ucheck-icons {
+  color: #f65c8f;
+  font-size: 20px;
+}
+.footer .price-total {
+  float: left;
+}
+.footer .price-total p {
+  margin: 0 0 0 10px;
+  color: white;
+  line-height: 40px;
+}
+.footer .price-total span {
+  color: white;
+  font-size: 18px;
+  line-height: 40px;
+}
+.footer .go-to-settlement {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  top: 0;
+  line-height: 290%;
+  background-color: #f65c8f;
+  color: white;
+  font-size: 17px;
+  padding: 0 20px;
+}
+.footer .delete-pro {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  top: 0;
+  line-height: 290%;
+  background-color: #f65c8f;
+  color: white;
+  font-size: 17px;
+  padding: 0 20px;
+  text-align: center;
+  width: 91px;
+  display: none;
+}
+.merchant {
+  padding: 0;
+}
+.merchant .merchant-header {
+  background-color: #ECEBEB;
+}
+.merchant .am-checkbox {
+  float: left;
+}
+.merchant .am-checkbox .am-ucheck-icons {
+  color: #f65c8f;
+  font-size: 20px;
+}
+.merchant .merchant-title {
+  float: left;
+  margin: 0 0 0 5px;
+  line-height: 42px;
+}
+.merchant .merchant-img {
+  height: 42px;
+  float: left;
+  margin-left: 10px;
+}
+.merchant .merchant-img img {
+  height: 25px;
+  width: auto;
+}
+.merchant [class*=am-u-] + [class*=am-u-]:last-child {
+  border-bottom: none;
+}
+.merchant .merchant-pro-list {
+  background-color: white;
+  padding: 0 12px 5px 12px;
+  border-bottom: 1px solid #ccc;
+}
+.merchant .merchant-pro-list .am-checkbox {
+  margin-top: 37px;
+}
+.merchant .merchant-pro-list .merchant-pro-info {
+  padding: 15px 0 0 0;
+  float: left;
+  width: 75px;
+}
+.merchant .merchant-pro-list .merchant-pro-info img {
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+  margin-left: 5px;
+  float: left;
+}
+.merchant .merchant-pro-list .merchant-pro-info-r {
+  width: 100%;
+  padding: 15px 0 0px 110px;
+}
+.merchant .merchant-pro-list .merchant-pro-info-r .merchant-pro-title {
+  height: 32px;
+  overflow: hidden;
+}
+.merchant .merchant-pro-list .merchant-pro-info-r .merchant-pro-title p {
+  font-size: 13px;
+  margin: 0;
+  line-height: 16px;
+}
+.merchant .merchant-pro-list .merchant-pro-info-r .num-price {
+  padding-top: 10px;
+  color: #999;
+  font-size: 13px;
+  height: 38px;
+}
+.merchant .merchant-pro-list .merchant-pro-info-r .num-price .option .btn-del {
+  background-position: 10px -20px;
+}
+.merchant .merchant-pro-list .merchant-pro-info-r .num-price .option .btn-add,
+.merchant .merchant-pro-list .merchant-pro-info-r .num-price .option .btn-del {
+  overflow: hidden;
+  text-indent: -200px;
+}
+.merchant .merchant-pro-list .merchant-pro-info-r .num-price .btn-add,
+.merchant .merchant-pro-list .merchant-pro-info-r .num-price .btn-del,
+.merchant .merchant-pro-list .merchant-pro-info-r .num-price .fm-txt {
+  border: 1px solid #999;
+  float: left;
+  width: 32px;
+  height: 27px;
+  line-height: 19px;
+  text-align: center;
+  color: #6F6F6F;
+}
+.merchant .merchant-pro-list .merchant-pro-info-r .num-price .btn-del {
+  border-width: 1px 0 1px 1px;
+  border-radius: 3px 0 0 3px;
+  font-size: 20px;
+}
+.merchant .merchant-pro-list .merchant-pro-info-r .num-price .fm-txt {
+  border-width: 1px;
+  font-size: 16px;
+  border-radius: 0;
+  -webkit-appearance: none;
+  backgroumd-color: #fff;
+}
+.merchant .merchant-pro-list .merchant-pro-info-r .num-price .btn-add {
+  border-width: 1px 1px 1px 0;
+  border-radius: 0 3px 3px 0;
+  font-size: 20px;
+}
+
+.merchant .merchant-pro-list .merchant-pro-info-r .num-price .btn-add.disable,
+.merchant .merchant-pro-list .merchant-pro-info-r .num-price .btn-del.disable {
+   background-color: #e8e8e8;
+   color: #999;
+   background-position: 10px -45px;
+}
+
+.merchant .merchant-pro-list .merchant-pro-info-r .unit-price {
+  float: right;
+}
+.merchant .merchant-pro-list .merchant-pro-info-r .unit-price p {
+  font-size: 15px;
+  color: #f65c8f;
+  margin: 0;
+}
+.merchant .merchant-pro-list .merchant-pro-price-total {
+  font-size: 12px;
+  color: #f65c8f;
+  margin: 5px 0 0 24px;
+  float: left;
+  line-height: 13px;
+}
+
+.cart-null {
+  padding: 40px 0 20px 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 5px 5px #ccc;
+  text-align: center;
+  display:none;
+}
+.cart-null img {
+  width: 140px;
+}
+.cart-null .am-u-sm-6 {
+  text-align: center;
+  margin-top: 30px;
+}
+.cart-null .am-u-sm-6 .cart-null-btn {
+  padding: 7px 20px;
+  width: 120px;
+  border: 1px solid #a1a1a1;
+  color: #a1a1a1;
+  border-radius: 3px;
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=../css/phone-cart.css.map */

@@ -1,0 +1,1 @@
+package net.jeeshop.services.front.catalog.dao;import com.tuisitang.modules.shop.entity.Catalog;import net.jeeshop.core.DaoManager;public interface CatalogDao extends DaoManager<Catalog> {}

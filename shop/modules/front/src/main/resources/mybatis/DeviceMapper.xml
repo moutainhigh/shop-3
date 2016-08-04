@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.DeviceDao">
+
+    <sql id="deviceColumns">
+		a.id,
+		a.serial_id as serialId,
+		a.token,
+		a.mobile,
+		a.alias,
+		a.mode,
+		a.type,
+		a.os,
+		a.os_version as osVersion,
+		a.device_secret as deviceSecret,
+		a.create_time as createTime,
+		a.status
+	</sql>
+    
+	<!-- 1. 添加Device -->
+	<insert id="insert" parameterType="Device" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_device(serial_id, token, mobile, alias, mode, type, os, os_version, device_secret, status, create_time) 
+		VALUES (#{serialId}, #{token}, #{mobile}, #{alias}, #{mode}, #{type}, #{os}, #{osVersion}, #{deviceSecret}, #{status}, #{createTime})
+	</insert>
+
+	<!-- 2. 删除Device -->
+	<delete id="delete" parameterType="long">
+		delete from t_device where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Device -->
+	<update id="update" parameterType="Device">
+		UPDATE t_device SET 
+			serial_id = #{serialId}, 
+			token = #{token}, 
+			mobile = #{mobile}, 
+			alias = #{alias}, 
+			mode = #{mode}, 
+			type = #{type}, 
+			os = #{os}, 
+			os_version = #{osVersion}, 
+			status = #{status}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 4. 根据Device查询一条记录 -->
+	<select id="selectOne" parameterType="long" resultType="Device">
+		SELECT <include refid="deviceColumns" />
+		FROM t_device a
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Device -->
+	<select id="selectPageList" parameterType="Device" resultType="Device">
+		SELECT
+		<include refid="deviceColumns" />
+		FROM t_device a
+		WHERE 1 = 1
+		order by create_time
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Device -->
+	<select id="selectList" parameterType="Device" resultType="Device">
+		SELECT
+		<include refid="deviceColumns" />
+		FROM t_device a
+		WHERE 1 = 1
+		order by create_time
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		update t_device set status = '1', mobile = '' where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Device">
+		SELECT <include refid="deviceColumns" />
+		FROM t_device a 
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Device -->
+	<select id="selectPageCount" parameterType="Device" resultType="int">
+		select count(1) from t_device t where 1 = 1
+	</select>
+	
+	<!-- 10. 根据token获得 -->
+	<select id="selectByKeyword" parameterType="string" resultType="Device">
+		SELECT <include refid="deviceColumns" />
+		FROM t_device a
+		WHERE a.token = #{keyword}
+	</select>
+</mapper>

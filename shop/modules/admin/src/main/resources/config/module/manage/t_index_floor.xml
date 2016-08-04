@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manage.indexFloor">
+
+	<!-- 1. 添加IndexFloor -->
+	<insert id="manage.indexFloor.insert" parameterType="com.tuisitang.modules.shop.entity.IndexFloor" useGeneratedKeys="true" keyProperty="id">
+		insert into t_index_floor
+		(id
+        <if test="title!=null and title!=''">,title</if>
+		<if test="picture!=null and picture!=''">,picture</if>
+		<if test="link!=null and link!=''">,link</if>
+		<if test="floor!=null and floor!=''">,floor</if>
+		<if test="banner!=null and banner!=''">,banner</if>
+		<if test="sort!=0">,sort</if>
+		<if test="description!=null and description!=''">,description</if>
+		
+		)
+		values
+		(
+		id
+		<if test="title!=null and title!=''">,#{title}</if>
+		<if test="picture!=null and picture!=''">,#{picture}</if>
+		<if test="link!=null and link!=''">,#{link}</if>
+		<if test="floor!=null and floor!=''">,#{floor}</if>
+		<if test="banner!=null and banner!=''">,#{banner}</if>
+		<if test="sort!=0">,#{sort}</if>
+		<if test="description!=null and description!=''">,#{description}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除IndexFloor -->
+	<delete id="manage.indexFloor.delete" parameterType="com.tuisitang.modules.shop.entity.IndexFloor">
+		delete from t_index_floor where id = #{id}
+	</delete>
+
+	<!-- 3. 修改IndexFloor -->
+	<update id="manage.indexFloor.update" parameterType="com.tuisitang.modules.shop.entity.IndexFloor">
+		update t_index_floor
+		set id= #{id}
+		<if test="title!=null and title!=''">,title = #{title}</if>
+		<if test="picture!=null and picture!=''">,picture = #{picture}</if>
+		<if test="link!=null and link!=''">,link = #{link}</if>
+		<if test="floor!=null and floor!=''">,floor = #{floor}</if>
+		<if test="banner!=null and banner!=''">,banner = #{banner}</if>
+		<if test="sort!=0">,sort = #{sort}</if>
+		<if test="description!=null and description!=''">,description = #{description}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据IndexFloor查询一条记录 -->
+	<select id="manage.indexFloor.selectOne" parameterType="com.tuisitang.modules.shop.entity.IndexFloor" resultType="com.tuisitang.modules.shop.entity.IndexFloor">
+		select t.* from t_index_floor t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询IndexFloor -->
+	<select id="manage.indexFloor.selectPageList" parameterType="com.tuisitang.modules.shop.entity.IndexFloor" resultType="com.tuisitang.modules.shop.entity.IndexFloor">
+		select t.* from t_index_floor t where 1 = 1
+		<if test="title!=null and title!=''"> and title = #{title}</if>
+		<if test="picture!=null and picture!=''"> and picture = #{picture}</if>
+		<if test="link!=null and link!=''"> and link = #{link}</if>
+		<if test="floor!=null and floor!=''"> and floor = #{floor}</if>
+		<if test="banner!=null and banner!=''"> and banner = #{banner}</if>
+		<if test="sort!=0"> and sort = #{sort}</if>
+		<if test="description!=null and description!=''"> and description = #{description}</if>
+		
+		order by floor,banner,sort
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询IndexFloor -->
+	<select id="manage.indexFloor.selectList" parameterType="com.tuisitang.modules.shop.entity.IndexFloor" resultType="com.tuisitang.modules.shop.entity.IndexFloor">
+		select t.* from t_index_floor t where 1 = 1 
+		<if test="title!=null and title!=''"> and title = #{title}</if>
+		<if test="picture!=null and picture!=''"> and picture = #{picture}</if>
+		<if test="link!=null and link!=''"> and link = #{link}</if>
+		<if test="floor!=null and floor!=''"> and floor = #{floor}</if>
+		<if test="banner!=null and banner!=''"> and banner = #{banner}</if>
+		<if test="sort!=0"> and sort = #{sort}</if>
+		<if test="description!=null and description!=''"> and description = #{description}</if>
+		
+		order by floor,banner,sort
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="manage.indexFloor.deleteById" parameterType="long">
+		delete from t_index_floor where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="manage.indexFloor.selectById" parameterType="long" resultType="com.tuisitang.modules.shop.entity.IndexFloor">
+		select t.* from t_index_floor t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询IndexFloor -->
+	<select id="manage.indexFloor.selectPageCount" parameterType="com.tuisitang.modules.shop.entity.IndexFloor" resultType="int">
+		select count(1) from t_index_floor t where 1 = 1
+		<if test="title!=null and title!=''"> and title = #{title}</if>
+		<if test="picture!=null and picture!=''"> and picture = #{picture}</if>
+		<if test="link!=null and link!=''"> and link = #{link}</if>
+		<if test="floor!=null and floor!=''"> and floor = #{floor}</if>
+		<if test="banner!=null and banner!=''"> and banner = #{banner}</if>
+		<if test="sort!=0"> and sort = #{sort}</if>
+		<if test="description!=null and description!=''"> and description = #{description}</if>
+		
+	</select>
+	
+		
+
+</mapper>

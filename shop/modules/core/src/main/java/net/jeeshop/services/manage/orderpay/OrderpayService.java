@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.orderpay;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Orderpay;public interface OrderpayService extends Services<Orderpay> {}

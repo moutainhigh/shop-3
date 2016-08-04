@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.AddressDao">
+    <sql id="addressColumns">
+		t.id,
+		t.account_id AS accountId,
+		t.name,
+		t.province_id AS provinceId,
+		t.province_code AS provinceCode,
+		t.province_name AS provinceName,
+		t.city_id AS cityId,
+		t.city_code AS cityCode,
+		t.city_name AS cityName,
+		t.county_id AS countyId,
+		t.county_code AS countyCode,
+		t.county_name AS countyName,
+		t.address,
+		t.mobile,
+		t.phone,
+		t.zip,
+		t.is_default AS "isDefault"
+	</sql>
+	
+	<!-- 1. 添加Address -->
+	<insert id="insert" parameterType="Address" useGeneratedKeys="true" keyProperty="id">
+		insert into t_address
+		(id, account_id, name, province_id, province_code, province_name, city_id, city_code, city_name, county_id, county_code, county_name, address, mobile, phone, zip, is_default)
+		values
+		(#{id}, #{accountId}, #{name}, #{provinceId}, #{provinceCode}, #{provinceName}, #{cityId}, #{cityCode}, #{cityName}, #{countyId}, #{countyCode}, #{countyName}, #{address}, #{mobile}, #{phone}, #{zip}, #{isDefault})
+	</insert>
+
+	<!-- 2. 删除Address -->
+	<delete id="delete" parameterType="Address">
+		delete from t_address where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Address -->
+	<update id="update" parameterType="Address">
+		update t_address
+		set id= #{id}
+		<if test="name!=null and name!=''">,name = #{name}</if>
+		<if test="accountId!=null">,account_id = #{accountId}</if>
+		<if test="provinceId!=null">,province_id = #{provinceId}</if>
+		<if test="provinceCode!=null and provinceCode!=''">,province_code = #{provinceCode}</if>
+		<if test="provinceName!=null and provinceName!=''">,province_name = #{provinceName}</if>
+		<if test="cityId!=null">,city_id = #{cityId}</if>
+		<if test="cityCode!=null and cityCode!=''">,city_code = #{cityCode}</if>
+		<if test="cityName!=null and cityName!=''">,city_name = #{cityName}</if>
+		<if test="countyId!=null">,county_id = #{countyId}</if>
+		<if test="countyCode!=null and countyCode!=''">,county_code = #{countyCode}</if>
+		<if test="countyName!=null and countyName!=''">,county_name = #{countyName}</if>
+		<if test="address!=null and address!=''">,address = #{address}</if>
+		<if test="mobile!=null and mobile!=''">,mobile = #{mobile}</if>
+		<if test="phone!=null and phone!=''">,phone = #{phone}</if>
+		<if test="zip!=null and zip!=''">,zip = #{zip}</if>
+		<if test="isDefault!=null and isDefault!=''">,is_default = #{isDefault}</if>
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Address查询一条记录 -->
+	<select id="selectOne" parameterType="Address" resultType="Address">
+		select <include refid="addressColumns" /> from t_address t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Address -->
+	<select id="selectPageList" parameterType="Address" resultType="Address">
+		select <include refid="addressColumns" /> from t_address t where 1 = 1
+		<if test="accountId!=null"> and account_id = #{accountId}</if>
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Address -->
+	<select id="selectList" parameterType="Address" resultType="Address">
+		select <include refid="addressColumns" /> from t_address t where 1 = 1 
+		<if test="accountId!=null"> and account_id = #{accountId}</if>
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_address where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Address">
+		select <include refid="addressColumns" />  from t_address t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Address -->
+	<select id="selectPageCount" parameterType="Address" resultType="int">
+		select count(1) from t_address t where 1 = 1
+		<if test="accountId!=null"> and account_id = #{accountId}</if>
+	</select>
+	
+	<!-- 10. 初始化会员地址信息 -->
+	<update id="initAllAddress" parameterType="Address">
+		update t_address set is_default = 'n' where account_id = #{accountId}
+	</update>
+
+	<!-- 11. 根据accountId获得地址列表 -->
+	<select id="findByAccountId" parameterType="long" resultType="Address">
+		select <include refid="addressColumns" />  from t_address t where t.account_id = #{accountId}
+	</select>
+	
+</mapper>

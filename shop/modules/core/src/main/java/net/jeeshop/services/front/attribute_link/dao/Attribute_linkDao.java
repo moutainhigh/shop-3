@@ -1,0 +1,1 @@
+package net.jeeshop.services.front.attribute_link.dao;import net.jeeshop.core.DaoManager;import net.jeeshop.services.front.attribute_link.bean.AttributeLink;public interface Attribute_linkDao extends DaoManager<AttributeLink> {	/**	 * @param e	 * @return	 */	int deleteByCondition(AttributeLink e);}

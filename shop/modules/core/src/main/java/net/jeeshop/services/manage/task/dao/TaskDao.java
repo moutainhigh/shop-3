@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.task.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Task;public interface TaskDao extends DaoManager<Task> {}

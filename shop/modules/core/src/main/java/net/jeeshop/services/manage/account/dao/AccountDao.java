@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.account.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Account;public interface AccountDao extends DaoManager<Account> {}

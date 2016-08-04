@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manage.bookingorder">
+
+    <sql id="bookingOrderColumns2">
+		a.id,
+		a.session_id AS sessionId,
+		a.account_id AS accountId,
+		a.name,
+		a.mobile,
+		a.create_time AS createTime,
+		a.booking_time AS bookingTime,
+		a.province_id AS provinceId,
+		a.province_name AS provinceName,
+		a.city_id AS cityId,
+		a.city_name AS cityName,
+		a.county_id AS countyId,
+		a.county_name AS countyName,
+		a.address,
+		a.longitude,
+		a.latitude,
+		a.demand, 
+		a.status,
+		a.reason_id as reasonId,
+		a.reason,
+		a.remark
+	</sql>
+	
+    <sql id="bookingOrderColumns">
+		a.id,
+		a.session_id,
+		a.account_id,
+		a.name,
+		a.mobile,
+		a.create_time,
+		a.booking_time,
+		a.province_id,
+		a.province_name,
+		a.city_id,
+		a.city_name,
+		a.county_id,
+		a.county_name,
+		a.address,
+		a.longitude,
+		a.latitude,
+		a.demand, 
+		a.status,
+		a.reason_id,
+		a.reason,
+		a.remark,
+		b.id as 'b.id',
+		b.booking_order_id,
+		b.create_time as 'b.create_time',
+		b.action,
+		b.description, 
+		b.operate_id,
+		b.operate_name,
+		b.operate_type
+	</sql>
+	
+    <resultMap type="com.tuisitang.modules.shop.entity.BookingOrderLog" id="BookingOrderLogMap">
+		<result column="b.id" property="id"/>
+		<result column="booking_order_id" property="bookingOrderId"/>
+		<result column="b.create_time" property="createTime"/>
+		<result column="action" property="action"/>
+		<result column="description" property="description"/>
+		<result column="operate_id" property="operateId"/>
+		<result column="operate_name" property="operateName"/>
+		<result column="operate_type" property="operateType"/>
+    </resultMap>
+    
+	<resultMap type="com.tuisitang.modules.shop.entity.BookingOrder" id="BookingOrderMap">
+		<id column="id" property="id" />
+		<result column="session_id" property="sessionId" />
+		<result column="account_id" property="accountId" />
+		<result column="name" property="name" />
+		<result column="mobile" property="mobile" />
+		<result column="create_time" property="createTime" />
+		<result column="booking_time" property="bookingTime" />
+		<result column="province_id" property="provinceId" />
+		<result column="province_name" property="provinceName" />
+		<result column="city_id" property="cityId" />
+		<result column="city_name" property="cityName" />
+		<result column="county_id" property="countyId" />
+		<result column="county_name" property="countyName" />
+		<result column="address" property="address" />
+		<result column="longitude" property="longitude" />
+		<result column="latitude" property="latitude" />
+		<result column="demand" property="demand" />
+		<result column="status" property="status" />
+		<result column="reason_id" property="reasonId" />
+		<result column="reason" property="reason" />
+		<result column="remark" property="remark" />
+		<collection property="bookingOrderLogList" ofType="com.tuisitang.modules.shop.entity.BookingOrderLog" resultMap="BookingOrderLogMap" />
+	</resultMap>
+    
+	<!-- 1. 添加BookingOrder -->
+	<insert id="manage.bookingorder.insert" parameterType="com.tuisitang.modules.shop.entity.BookingOrder" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_booking_order(session_id, account_id, name, mobile, create_time, booking_time, province_id, 
+			province_name, city_id, city_name, county_id, county_name, address, longitude, latitude, demand, status) 
+		VALUES (#{sessionId}, #{accountId}, #{name}, #{mobile}, #{createTime}, #{bookingTime}, #{provinceId},
+			#{provinceName}, #{cityId}, #{cityName}, #{countyId}, #{countyName}, #{address}, #{longitude}, #{latitude}, #{demand}, #{status})
+	</insert>
+
+	<!-- 2. 删除BookingOrder -->
+	<delete id="manage.bookingorder.delete" parameterType="com.tuisitang.modules.shop.entity.BookingOrder">
+		delete from t_booking_order where id = #{id}
+	</delete>
+
+	<!-- 3. 修改BookingOrder -->
+	<update id="manage.bookingorder.update" parameterType="com.tuisitang.modules.shop.entity.BookingOrder">
+		UPDATE t_booking_order SET id=#{id}
+		<if test="status !=null">,status = #{status}</if>
+		<if test="reasonId !=null and reasonId != '' ">,reason_id = #{reasonId}</if>
+		<if test="reason !=null and reason != '' ">,reason = #{reason}</if>
+		<if test="remark !=null and remark != '' ">,remark = #{remark}</if>
+		WHERE id = #{id}
+	</update>
+
+	<!-- 4. 根据BookingOrder查询一条记录 -->
+	<select id="manage.bookingorder.selectOne" parameterType="com.tuisitang.modules.shop.entity.BookingOrder" resultMap="BookingOrderMap">
+		SELECT <include refid="bookingOrderColumns" />
+		FROM t_booking_order a
+		LEFT JOIN t_booking_order_log b ON b.booking_order_id = a.id
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询BookingOrder -->
+	<select id="manage.bookingorder.selectPageList" parameterType="com.tuisitang.modules.shop.entity.BookingOrder" resultMap="BookingOrderMap">
+		SELECT
+		<include refid="bookingOrderColumns" />
+		FROM (SELECT t.* FROM t_booking_order t WHERE 1 = 1 
+		<if test="name != null and name != '' ">and t.name like CONCAT('%','${name}','%' )</if>
+		<if test="mobile != null and mobile != '' ">and t.mobile like CONCAT('%','${mobile}','%' )</if>
+		<if test="provinceId != null ">and t.province_id = #{provinceId}</if>
+		<if test="cityId != null ">and t.city_id = #{cityId}</if>
+		<if test="countyId != null ">and t.county_id = #{countyId}</if>
+		<if test="status != null and status != '' ">and t.status = #{status}</if> order by t.create_time limit #{offset}, #{pageSize}) a
+		LEFT JOIN t_booking_order_log b ON b.booking_order_id = a.id
+	</select>
+
+	<!-- 6. 根据条件查询BookingOrder -->
+	<select id="manage.bookingorder.selectList" parameterType="com.tuisitang.modules.shop.entity.BookingOrder" resultMap="BookingOrderMap">
+		SELECT
+		<include refid="bookingOrderColumns" />
+		FROM t_booking_order a
+		LEFT JOIN t_booking_order_log b ON b.booking_order_id = a.id
+		WHERE 1 = 1
+		order by create_time
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="manage.bookingorder.deleteById" parameterType="long">
+		delete from t_booking_order where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="manage.bookingorder.selectById" parameterType="long" resultMap="BookingOrderMap">
+		SELECT <include refid="bookingOrderColumns" />
+		FROM t_booking_order a 
+		LEFT JOIN t_booking_order_log b ON b.booking_order_id = a.id
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询BookingOrder -->
+	<select id="manage.bookingorder.selectPageCount" parameterType="com.tuisitang.modules.shop.entity.BookingOrder" resultType="int">
+		select count(1) from t_booking_order a where 1 = 1
+		<if test="name != null and name != '' ">and a.name like CONCAT('%','${name}','%' )</if>
+		<if test="mobile != null and mobile != '' ">and a.mobile like CONCAT('%','${mobile}','%' )</if>
+		<if test="provinceId != null ">and a.province_id = #{provinceId}</if>
+		<if test="cityId != null ">and a.city_id = #{cityId}</if>
+		<if test="countyId != null ">and a.county_id = #{countyId}</if>
+		<if test="status != null and status != '' ">and a.status = #{status}</if>
+	</select>
+	
+</mapper>

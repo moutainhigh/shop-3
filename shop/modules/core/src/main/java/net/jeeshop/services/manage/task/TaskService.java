@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.task;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Task;public interface TaskService extends Services<Task> {}

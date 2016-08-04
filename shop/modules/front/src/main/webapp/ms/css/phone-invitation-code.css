@@ -1,0 +1,200 @@
+html {
+  height: 100%;
+}
+html body {
+  height: 100%;
+  background-color: #f6f6f6;
+}
+.title {
+  padding: 0;
+  text-align: center;
+  background-color: #f65c8f;
+}
+.title p {
+  font-size: 17px;
+  color: white;
+  margin: 9px 0;
+}
+.title2 {
+  text-align: center;
+  padding: 15px 0 0 0;
+}
+.title2 p {
+  font-size: 12px;
+  color: #aaa9a9;
+  font-weight: 600;
+  margin: 0;
+}
+.code {
+  text-align: center;
+  padding: 15px 0 0 0;
+}
+.code p {
+  font-size: 17px;
+  color: #f65c8f;
+  font-weight: 700;
+  margin: 0;
+  line-height: 18px;
+}
+.title3 {
+  text-align: center;
+  padding: 20px 0 0 0;
+}
+.title3 p {
+  font-size: 18px;
+  color: #18181a;
+  font-weight: 600;
+  margin: 0;
+  line-height: 20px;
+  letter-spacing: 2px;
+}
+.code-img {
+  text-align: center;
+  padding: 10px 0 0 0;
+}
+.code-img img {
+  width: 230px;
+  height: auto;
+}
+.inputs .submit-input {
+  text-align: center;
+  position: relative;
+  width: 290px;
+  height: 39px;
+  margin: 10px auto;
+}
+.inputs input {
+  text-align: center;
+  font-size: 17px;
+  color: #f65c8f;
+}
+.inputs input:focus {
+  outline: none;
+  border-color: #ccc;
+}
+.inputs input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #999;
+  font-size: 15px;
+  text-align: center;
+}
+.inputs input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #999;
+  font-size: 15px;
+  text-align: center;
+}
+.inputs input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #999;
+  font-size: 15px;
+  text-align: center;
+}
+.inputs input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #999;
+  font-size: 15px;
+  text-align: center;
+}
+.inputs .submit-btn {
+  height: 37px;
+  width: 37px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  padding: 2px 2px 2px 4px;
+}
+.inputs .submit-btn img {
+  width: 20px;
+}
+.inputs .active {
+  height: 37px;
+  width: 37px;
+  border-radius: 50%;
+  border: 1px solid #f65c8f;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  padding: 2px 2px 2px 4px;
+  background-color: #f65c8f;
+}
+.inputs .active img {
+  width: 20px;
+}
+.foot {
+  padding: 10px 20px;
+}
+.foot .am-vertical-align-middle {
+  width: 100%;
+}
+.foot .forgot-password {
+  text-align: center;
+}
+.foot .forgot-password a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+.foot .third-login {
+  position: relative;
+  padding: 6px 0 7px 0;
+  margin-bottom: 1.6rem;
+}
+.foot .third-login .line {
+  border-top: 1px solid #bebebe;
+}
+.foot .third-login p {
+  position: absolute;
+  font-size: 12px;
+  color: #bebebe;
+  margin: 0;
+  line-height: 14px;
+  top: 0;
+  left: 50%;
+  margin-left: -55px;
+  width: 110px;
+  background-color: #f6f6f6;
+  text-align: center;
+}
+.foot .login-link .qq {
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+.foot .login-link .qq img {
+  width: 40px;
+}
+.foot .login-link .weibo {
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+.foot .login-link .weibo img {
+  width: 40px;
+}
+
+.warning {
+  position: fixed;
+  z-index: 999;
+  width: 110px;
+  height: 100px;
+  background-color: #484848;
+  border-radius: 7px;
+  top: 40%;
+  margin-top: -50px;
+  left: 50%;
+  margin-left: -50px;
+  padding: 10px;
+  text-align: center;
+  display: none;
+}
+.warning p {
+  color: #E6E6E6;
+  font-size: 14px;
+  margin: 0;
+  text-align: center;
+}
+
+/*# sourceMappingURL=../css/phone-invitation-code.css.map */

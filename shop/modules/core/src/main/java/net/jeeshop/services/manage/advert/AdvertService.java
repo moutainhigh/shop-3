@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.advert;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Advert;public interface AdvertService extends Services<Advert> {}

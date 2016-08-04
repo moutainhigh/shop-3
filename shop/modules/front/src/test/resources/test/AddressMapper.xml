@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.AddressDao">
+
+	<!-- 1. 添加Address -->
+	<insert id="insert" parameterType="Address" useGeneratedKeys="true" keyProperty="id">
+		insert into t_address
+		(id
+        <if test="accountId!=0">,accountId</if>
+		<if test="account!=null and account!=''">,account</if>
+		<if test="name!=null and name!=''">,name</if>
+		<if test="province!=null and province!=''">,province</if>
+		<if test="city!=null and city!=''">,city</if>
+		<if test="area!=null and area!=''">,area</if>
+		<if test="pcadetail!=null and pcadetail!=''">,pcadetail</if>
+		<if test="address!=null and address!=''">,address</if>
+		<if test="zip!=null and zip!=''">,zip</if>
+		<if test="phone!=null and phone!=''">,phone</if>
+		<if test="mobile!=null and mobile!=''">,mobile</if>
+		<if test="isdefault!=null and isdefault!=''">,isdefault</if>
+		
+		)
+		values
+		(
+		id
+		<if test="accountId!=0">,${accountId}</if>
+		<if test="account!=null and account!=''">,#{account}</if>
+		<if test="name!=null and name!=''">,#{name}</if>
+		<if test="province!=null and province!=''">,#{province}</if>
+		<if test="city!=null and city!=''">,#{city}</if>
+		<if test="area!=null and area!=''">,#{area}</if>
+		<if test="pcadetail!=null and pcadetail!=''">,#{pcadetail}</if>
+		<if test="address!=null and address!=''">,#{address}</if>
+		<if test="zip!=null and zip!=''">,#{zip}</if>
+		<if test="phone!=null and phone!=''">,#{phone}</if>
+		<if test="mobile!=null and mobile!=''">,#{mobile}</if>
+		<if test="isdefault!=null and isdefault!=''">,#{isdefault}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除Address -->
+	<delete id="delete" parameterType="Address">
+		delete from t_address where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Address -->
+	<update id="update" parameterType="Address">
+		update t_address
+		set id= #{id}
+		<if test="accountId!=0">,accountId = #{accountId}</if>
+		<if test="account!=null and account!=''">,account = #{account}</if>
+		<if test="name!=null and name!=''">,name = #{name}</if>
+		<if test="province!=null and province!=''">,province = #{province}</if>
+		<if test="city!=null and city!=''">,city = #{city}</if>
+		<if test="area!=null and area!=''">,area = #{area}</if>
+		<if test="pcadetail!=null and pcadetail!=''">,pcadetail = #{pcadetail}</if>
+		<if test="address!=null and address!=''">,address = #{address}</if>
+		<if test="zip!=null and zip!=''">,zip = #{zip}</if>
+		<if test="phone!=null and phone!=''">,phone = #{phone}</if>
+		<if test="mobile!=null and mobile!=''">,mobile = #{mobile}</if>
+		<if test="isdefault!=null and isdefault!=''">,isdefault = #{isdefault}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Address查询一条记录 -->
+	<select id="selectOne" parameterType="Address" resultType="Address">
+		select t.* from t_address t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Address -->
+	<select id="selectPageList" parameterType="Address" resultType="Address">
+		select t.* from t_address t where 1 = 1
+		<if test="accountId!=0"> and accountId = #{accountId}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="province!=null and province!=''"> and province = #{province}</if>
+		<if test="city!=null and city!=''"> and city = #{city}</if>
+		<if test="area!=null and area!=''"> and area = #{area}</if>
+		<if test="pcadetail!=null and pcadetail!=''"> and pcadetail = #{pcadetail}</if>
+		<if test="address!=null and address!=''"> and address = #{address}</if>
+		<if test="zip!=null and zip!=''"> and zip = #{zip}</if>
+		<if test="phone!=null and phone!=''"> and phone = #{phone}</if>
+		<if test="mobile!=null and mobile!=''"> and mobile = #{mobile}</if>
+		<if test="isdefault!=null and isdefault!=''"> and isdefault = #{isdefault}</if>
+		
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Address -->
+	<select id="selectList" parameterType="Address" resultType="Address">
+		select t.* from t_address t where 1 = 1 
+		<if test="accountId!=0"> and accountId = #{accountId}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="province!=null and province!=''"> and province = #{province}</if>
+		<if test="city!=null and city!=''"> and city = #{city}</if>
+		<if test="area!=null and area!=''"> and area = #{area}</if>
+		<if test="pcadetail!=null and pcadetail!=''"> and pcadetail = #{pcadetail}</if>
+		<if test="address!=null and address!=''"> and address = #{address}</if>
+		<if test="zip!=null and zip!=''"> and zip = #{zip}</if>
+		<if test="phone!=null and phone!=''"> and phone = #{phone}</if>
+		<if test="mobile!=null and mobile!=''"> and mobile = #{mobile}</if>
+		<if test="isdefault!=null and isdefault!=''"> and isdefault = #{isdefault}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_address where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Address">
+		select t.* from t_address t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Address -->
+	<select id="selectPageCount" parameterType="Address" resultType="int">
+		select count(1) from t_address t where 1 = 1
+		<if test="accountId!=0"> and accountId = #{accountId}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="province!=null and province!=''"> and province = #{province}</if>
+		<if test="city!=null and city!=''"> and city = #{city}</if>
+		<if test="area!=null and area!=''"> and area = #{area}</if>
+		<if test="pcadetail!=null and pcadetail!=''"> and pcadetail = #{pcadetail}</if>
+		<if test="address!=null and address!=''"> and address = #{address}</if>
+		<if test="zip!=null and zip!=''"> and zip = #{zip}</if>
+		<if test="phone!=null and phone!=''"> and phone = #{phone}</if>
+		<if test="mobile!=null and mobile!=''"> and mobile = #{mobile}</if>
+		<if test="isdefault!=null and isdefault!=''"> and isdefault = #{isdefault}</if>
+		
+	</select>
+
+</mapper>

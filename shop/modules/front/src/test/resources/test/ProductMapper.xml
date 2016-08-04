@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.ProductDao">
+
+	<!-- 1. 添加Product -->
+	<insert id="insert" parameterType="Product" useGeneratedKeys="true" keyProperty="id">
+		insert into t_product
+		(id
+        <if test="name!=null and name!=''">,name</if>
+		<if test="introduce!=null and introduce!=''">,introduce</if>
+		<if test="price!=null">,price</if>
+		<if test="nowPrice!=null">,nowPrice</if>
+		<if test="picture!=null and picture!=''">,picture</if>
+		<if test="createtime!=null">,createtime</if>
+		<if test="createAccount!=null and createAccount!=''">,createAccount</if>
+		<if test="updateAccount!=null and updateAccount!=''">,updateAccount</if>
+		<if test="updatetime!=null">,updatetime</if>
+		<if test="isnew!=null and isnew!=''">,isnew</if>
+		<if test="sale!=null and sale!=''">,sale</if>
+		<if test="hit!=0">,hit</if>
+		<if test="status!=0">,status</if>
+		<if test="productHTML!=null">,productHTML</if>
+		<if test="maxPicture!=null and maxPicture!=''">,maxPicture</if>
+		<if test="images!=null and images!=''">,images</if>
+		<if test="catalogID!=null and catalogID!=''">,catalogID</if>
+		<if test="sellcount!=0">,sellcount</if>
+		<if test="stock!=0">,stock</if>
+		<if test="searchKey!=null and searchKey!=''">,searchKey</if>
+		<if test="title!=null and title!=''">,title</if>
+		<if test="description!=null and description!=''">,description</if>
+		<if test="keywords!=null and keywords!=''">,keywords</if>
+		<if test="activityID!=null and activityID!=''">,activityID</if>
+		<if test="unit!=null and unit!=''">,unit</if>
+		<if test="score!=0">,score</if>
+		<if test="isTimePromotion!=null and isTimePromotion!=''">,isTimePromotion</if>
+		<if test="giftID!=null and giftID!=''">,giftID</if>
+		
+		)
+		values
+		(
+		id
+		<if test="name!=null and name!=''">,#{name}</if>
+		<if test="introduce!=null and introduce!=''">,#{introduce}</if>
+		<if test="price!=null">,${price}</if>
+		<if test="nowPrice!=null">,${nowPrice}</if>
+		<if test="picture!=null and picture!=''">,#{picture}</if>
+		<if test="createtime!=null">,${createtime}</if>
+		<if test="createAccount!=null and createAccount!=''">,#{createAccount}</if>
+		<if test="updateAccount!=null and updateAccount!=''">,#{updateAccount}</if>
+		<if test="updatetime!=null">,${updatetime}</if>
+		<if test="isnew!=null and isnew!=''">,#{isnew}</if>
+		<if test="sale!=null and sale!=''">,#{sale}</if>
+		<if test="hit!=0">,${hit}</if>
+		<if test="status!=0">,${status}</if>
+		<if test="productHTML!=null">,${productHTML}</if>
+		<if test="maxPicture!=null and maxPicture!=''">,#{maxPicture}</if>
+		<if test="images!=null and images!=''">,#{images}</if>
+		<if test="catalogID!=null and catalogID!=''">,#{catalogID}</if>
+		<if test="sellcount!=0">,${sellcount}</if>
+		<if test="stock!=0">,${stock}</if>
+		<if test="searchKey!=null and searchKey!=''">,#{searchKey}</if>
+		<if test="title!=null and title!=''">,#{title}</if>
+		<if test="description!=null and description!=''">,#{description}</if>
+		<if test="keywords!=null and keywords!=''">,#{keywords}</if>
+		<if test="activityID!=null and activityID!=''">,#{activityID}</if>
+		<if test="unit!=null and unit!=''">,#{unit}</if>
+		<if test="score!=0">,${score}</if>
+		<if test="isTimePromotion!=null and isTimePromotion!=''">,#{isTimePromotion}</if>
+		<if test="giftID!=null and giftID!=''">,#{giftID}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除Product -->
+	<delete id="delete" parameterType="Product">
+		delete from t_product where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Product -->
+	<update id="update" parameterType="Product">
+		update t_product
+		set id= #{id}
+		<if test="name!=null and name!=''">,name = #{name}</if>
+		<if test="introduce!=null and introduce!=''">,introduce = #{introduce}</if>
+		<if test="price!=null">,price = #{price}</if>
+		<if test="nowPrice!=null">,nowPrice = #{nowPrice}</if>
+		<if test="picture!=null and picture!=''">,picture = #{picture}</if>
+		<if test="createtime!=null">,createtime = #{createtime}</if>
+		<if test="createAccount!=null and createAccount!=''">,createAccount = #{createAccount}</if>
+		<if test="updateAccount!=null and updateAccount!=''">,updateAccount = #{updateAccount}</if>
+		<if test="updatetime!=null">,updatetime = #{updatetime}</if>
+		<if test="isnew!=null and isnew!=''">,isnew = #{isnew}</if>
+		<if test="sale!=null and sale!=''">,sale = #{sale}</if>
+		<if test="hit!=0">,hit = #{hit}</if>
+		<if test="status!=0">,status = #{status}</if>
+		<if test="productHTML!=null">,productHTML = #{productHTML}</if>
+		<if test="maxPicture!=null and maxPicture!=''">,maxPicture = #{maxPicture}</if>
+		<if test="images!=null and images!=''">,images = #{images}</if>
+		<if test="catalogID!=null and catalogID!=''">,catalogID = #{catalogID}</if>
+		<if test="sellcount!=0">,sellcount = #{sellcount}</if>
+		<if test="stock!=0">,stock = #{stock}</if>
+		<if test="searchKey!=null and searchKey!=''">,searchKey = #{searchKey}</if>
+		<if test="title!=null and title!=''">,title = #{title}</if>
+		<if test="description!=null and description!=''">,description = #{description}</if>
+		<if test="keywords!=null and keywords!=''">,keywords = #{keywords}</if>
+		<if test="activityID!=null and activityID!=''">,activityID = #{activityID}</if>
+		<if test="unit!=null and unit!=''">,unit = #{unit}</if>
+		<if test="score!=0">,score = #{score}</if>
+		<if test="isTimePromotion!=null and isTimePromotion!=''">,isTimePromotion = #{isTimePromotion}</if>
+		<if test="giftID!=null and giftID!=''">,giftID = #{giftID}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Product查询一条记录 -->
+	<select id="selectOne" parameterType="Product" resultType="Product">
+		select t.* from t_product t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Product -->
+	<select id="selectPageList" parameterType="Product" resultType="Product">
+		select t.* from t_product t where 1 = 1
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="introduce!=null and introduce!=''"> and introduce = #{introduce}</if>
+		<if test="price!=null"> and price = #{price}</if>
+		<if test="nowPrice!=null"> and nowPrice = #{nowPrice}</if>
+		<if test="picture!=null and picture!=''"> and picture = #{picture}</if>
+		<if test="createtime!=null"> and createtime = #{createtime}</if>
+		<if test="createAccount!=null and createAccount!=''"> and createAccount = #{createAccount}</if>
+		<if test="updateAccount!=null and updateAccount!=''"> and updateAccount = #{updateAccount}</if>
+		<if test="updatetime!=null"> and updatetime = #{updatetime}</if>
+		<if test="isnew!=null and isnew!=''"> and isnew = #{isnew}</if>
+		<if test="sale!=null and sale!=''"> and sale = #{sale}</if>
+		<if test="hit!=0"> and hit = #{hit}</if>
+		<if test="status!=0"> and status = #{status}</if>
+		<if test="productHTML!=null"> and productHTML = #{productHTML}</if>
+		<if test="maxPicture!=null and maxPicture!=''"> and maxPicture = #{maxPicture}</if>
+		<if test="images!=null and images!=''"> and images = #{images}</if>
+		<if test="catalogID!=null and catalogID!=''"> and catalogID = #{catalogID}</if>
+		<if test="sellcount!=0"> and sellcount = #{sellcount}</if>
+		<if test="stock!=0"> and stock = #{stock}</if>
+		<if test="searchKey!=null and searchKey!=''"> and searchKey = #{searchKey}</if>
+		<if test="title!=null and title!=''"> and title = #{title}</if>
+		<if test="description!=null and description!=''"> and description = #{description}</if>
+		<if test="keywords!=null and keywords!=''"> and keywords = #{keywords}</if>
+		<if test="activityID!=null and activityID!=''"> and activityID = #{activityID}</if>
+		<if test="unit!=null and unit!=''"> and unit = #{unit}</if>
+		<if test="score!=0"> and score = #{score}</if>
+		<if test="isTimePromotion!=null and isTimePromotion!=''"> and isTimePromotion = #{isTimePromotion}</if>
+		<if test="giftID!=null and giftID!=''"> and giftID = #{giftID}</if>
+		
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Product -->
+	<select id="selectList" parameterType="Product" resultType="Product">
+		select t.* from t_product t where 1 = 1 
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="introduce!=null and introduce!=''"> and introduce = #{introduce}</if>
+		<if test="price!=null"> and price = #{price}</if>
+		<if test="nowPrice!=null"> and nowPrice = #{nowPrice}</if>
+		<if test="picture!=null and picture!=''"> and picture = #{picture}</if>
+		<if test="createtime!=null"> and createtime = #{createtime}</if>
+		<if test="createAccount!=null and createAccount!=''"> and createAccount = #{createAccount}</if>
+		<if test="updateAccount!=null and updateAccount!=''"> and updateAccount = #{updateAccount}</if>
+		<if test="updatetime!=null"> and updatetime = #{updatetime}</if>
+		<if test="isnew!=null and isnew!=''"> and isnew = #{isnew}</if>
+		<if test="sale!=null and sale!=''"> and sale = #{sale}</if>
+		<if test="hit!=0"> and hit = #{hit}</if>
+		<if test="status!=0"> and status = #{status}</if>
+		<if test="productHTML!=null"> and productHTML = #{productHTML}</if>
+		<if test="maxPicture!=null and maxPicture!=''"> and maxPicture = #{maxPicture}</if>
+		<if test="images!=null and images!=''"> and images = #{images}</if>
+		<if test="catalogID!=null and catalogID!=''"> and catalogID = #{catalogID}</if>
+		<if test="sellcount!=0"> and sellcount = #{sellcount}</if>
+		<if test="stock!=0"> and stock = #{stock}</if>
+		<if test="searchKey!=null and searchKey!=''"> and searchKey = #{searchKey}</if>
+		<if test="title!=null and title!=''"> and title = #{title}</if>
+		<if test="description!=null and description!=''"> and description = #{description}</if>
+		<if test="keywords!=null and keywords!=''"> and keywords = #{keywords}</if>
+		<if test="activityID!=null and activityID!=''"> and activityID = #{activityID}</if>
+		<if test="unit!=null and unit!=''"> and unit = #{unit}</if>
+		<if test="score!=0"> and score = #{score}</if>
+		<if test="isTimePromotion!=null and isTimePromotion!=''"> and isTimePromotion = #{isTimePromotion}</if>
+		<if test="giftID!=null and giftID!=''"> and giftID = #{giftID}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_product where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Product">
+		select t.* from t_product t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Product -->
+	<select id="selectPageCount" parameterType="Product" resultType="int">
+		select count(1) from t_product t where 1 = 1
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="introduce!=null and introduce!=''"> and introduce = #{introduce}</if>
+		<if test="price!=null"> and price = #{price}</if>
+		<if test="nowPrice!=null"> and nowPrice = #{nowPrice}</if>
+		<if test="picture!=null and picture!=''"> and picture = #{picture}</if>
+		<if test="createtime!=null"> and createtime = #{createtime}</if>
+		<if test="createAccount!=null and createAccount!=''"> and createAccount = #{createAccount}</if>
+		<if test="updateAccount!=null and updateAccount!=''"> and updateAccount = #{updateAccount}</if>
+		<if test="updatetime!=null"> and updatetime = #{updatetime}</if>
+		<if test="isnew!=null and isnew!=''"> and isnew = #{isnew}</if>
+		<if test="sale!=null and sale!=''"> and sale = #{sale}</if>
+		<if test="hit!=0"> and hit = #{hit}</if>
+		<if test="status!=0"> and status = #{status}</if>
+		<if test="productHTML!=null"> and productHTML = #{productHTML}</if>
+		<if test="maxPicture!=null and maxPicture!=''"> and maxPicture = #{maxPicture}</if>
+		<if test="images!=null and images!=''"> and images = #{images}</if>
+		<if test="catalogID!=null and catalogID!=''"> and catalogID = #{catalogID}</if>
+		<if test="sellcount!=0"> and sellcount = #{sellcount}</if>
+		<if test="stock!=0"> and stock = #{stock}</if>
+		<if test="searchKey!=null and searchKey!=''"> and searchKey = #{searchKey}</if>
+		<if test="title!=null and title!=''"> and title = #{title}</if>
+		<if test="description!=null and description!=''"> and description = #{description}</if>
+		<if test="keywords!=null and keywords!=''"> and keywords = #{keywords}</if>
+		<if test="activityID!=null and activityID!=''"> and activityID = #{activityID}</if>
+		<if test="unit!=null and unit!=''"> and unit = #{unit}</if>
+		<if test="score!=0"> and score = #{score}</if>
+		<if test="isTimePromotion!=null and isTimePromotion!=''"> and isTimePromotion = #{isTimePromotion}</if>
+		<if test="giftID!=null and giftID!=''"> and giftID = #{giftID}</if>
+		
+	</select>
+
+</mapper>

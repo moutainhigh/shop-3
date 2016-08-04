@@ -1,0 +1,114 @@
+.verityWrap {
+	display: none
+}
+
+#change_verify_code,#change_dynamic_verify_code {
+	cursor: pointer;
+	color: #ed145b
+}
+
+.submit_btn {
+	height: 42px;
+	_background: #e5406f;
+	_border: 1px solid #c81f52;
+	_color: #fff;
+	_font-weight: 700;
+	_cursor: pointer
+}
+
+.placeholder {
+	color: #aaa
+}
+
+.textbox_ui {
+	height: 44px
+}
+
+.loginPic {
+	position: relative;
+	width: 960px;
+	height: 370px;
+	position: relative
+}
+
+.loginWrap {
+	margin-top: 50px
+}
+
+.loginWrap .loginBord {
+	top: -10px
+}
+
+.dynamic_pass {
+	display: inline-block;
+	margin-top: 0
+}
+
+.dynamic_pass_wrap {
+	height: 44px;
+	margin-top: 10px;
+	margin-bottom: 28px
+}
+
+.textbox_ui .hint {
+	position: absolute;
+	line-height: 1.5;
+	display: none;
+	word-break: keep-all;
+	white-space: nowrap;
+	margin-top: 4px;
+	color: #999;
+	top: 100%;
+	left: 0
+}
+
+.hint_ui .focus_text {
+	display: none
+}
+
+.loginWrap .dynamic_pass_wrap .textbox_ui {
+	display: inline-block;
+	margin-bottom: 0;
+	*display: inline;
+	*zoom: 1
+}
+
+.sign .gtVerifyWrap .textbox_ui {
+	height: 220px
+}
+.loginWrap {
+	height: 350px
+}
+
+.sign .dynamic_pass_wrap {
+	margin-top: 10px
+}
+.pass input {
+    background-position: 5px -50px;
+}
+.tosignup .seconds {
+	color: #ED145B;
+}
+.dynamic_pass input {
+    width: 88px;
+    display: inline-block;
+}
+.phonecode {
+	background: #fcfcfc;
+	background: -webkit-gradient(linear,left top,left bottom,from(#fcfcfc),to(#f2f2f2));
+	background: -webkit-linear-gradient(top,#fcfcfc,#f2f2f2);
+	background: -moz-linear-gradient(top,#fcfcfc,#f2f2f2);
+	background: -o-linear-gradient(top,#fcfcfc,#f2f2f2);
+	background: linear-gradient(to bottom,#fcfcfc,#f2f2f2);
+	border: 1px solid #d9d9d9;
+	text-decoration: none;
+	cursor: pointer;
+	padding: 0;
+	display: inline-block;
+	line-height: 41px;
+	height: 41px;
+	font-weight: 700;
+	color: #666;
+	text-align: center;
+	margin-left:14px;
+}

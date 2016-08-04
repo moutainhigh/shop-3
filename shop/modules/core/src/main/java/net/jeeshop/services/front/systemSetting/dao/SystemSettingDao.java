@@ -1,0 +1,1 @@
+package net.jeeshop.services.front.systemSetting.dao;import com.tuisitang.modules.shop.entity.SystemSetting;import net.jeeshop.core.DaoManager;public interface SystemSettingDao extends DaoManager<SystemSetting> {}

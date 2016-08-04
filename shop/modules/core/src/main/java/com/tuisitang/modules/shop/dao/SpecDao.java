@@ -1,0 +1,1 @@
+package com.tuisitang.modules.shop.dao;import com.tuisitang.modules.shop.entity.Spec;@MyBatisRepositorypublic interface SpecDao extends BaseDao<Spec> {}

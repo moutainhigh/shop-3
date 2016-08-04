@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.gift.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.dao.MyBatisRepository;import com.tuisitang.modules.shop.entity.Gift;@MyBatisRepositorypublic interface GiftDao extends DaoManager<Gift> {}

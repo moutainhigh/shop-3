@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.FavoriteDao">
+
+	<select id="selectPageList" parameterType="Favorite" resultType="Favorite">
+		select * from t_favorite t where 1=1
+		<if test="accountId!=null and accountId!=''"> and accountId=#{accountId} </if>
+		order by id desc
+		limit #{offset},#{pageSize}
+	</select>
+
+	<select id="selectPageCount" parameterType="Favorite"
+		resultType="java.lang.Integer">
+		select count(*) from t_favorite where 1=1
+		<if test="accountId!=null and accountId!=''"> and accountId=#{accountId} </if>
+	</select>
+
+	<insert id="insert" parameterType="Favorite" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into t_favorite
+		(
+		id,createtime
+		<if test="accountId!=null and accountId!=''">
+			,accountId
+		</if>
+		<if test="productID!=null and productID!=''">
+			,productID
+		</if>
+		)
+		values
+		(
+		id,now()
+		<if test="accountId !=null and accountId !=''">
+			,#{accountId}
+		</if>
+		<if test="productID !=null and productID !=''">
+			,#{productID}
+		</if>
+		)
+	</insert>
+
+	<update id="update" parameterType="Favorite">
+		update t_favorite
+		set id=#{id}
+		<if test="accountId !=null and accountId !=''">
+			,accountId=#{accountId}
+		</if>
+		<if test="productID !=null and productID !=''">
+			,productID=#{productID}
+		</if>
+		where 1=1 and id=#{id}
+	</update>
+
+	<select id="selectOne" parameterType="Favorite" resultType="Favorite">
+		select
+		t.id "id",
+		t.accountId "accountId",
+		t.productID "productid",
+		t.createtime
+		"createtime"
+		from t_favorite t where 1=1 and id=#{id}
+	</select>
+
+	<select id="selectCount" parameterType="Favorite" resultType="int">
+		select count(*) from t_favorite t where 1=1
+		<if test="accountId!=null and accountId!=''"> and accountId=#{accountId} </if>
+		<if test="productID!=null and productID!=''"> and productID=#{productID} </if>
+	</select>
+
+	<delete id="deleteById" parameterType="Favorite">
+		delete from t_favorite
+		where 1=1 and id=#{id}
+	</delete>
+</mapper> 

@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.keyvalue.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Keyvalue;public interface KeyvalueDao extends DaoManager<Keyvalue> {}

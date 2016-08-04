@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.orderlog.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Orderlog;public interface OrderlogDao extends DaoManager<Orderlog> {}

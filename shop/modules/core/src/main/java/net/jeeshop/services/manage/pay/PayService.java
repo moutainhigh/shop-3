@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.pay;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Pay;public interface PayService extends Services<Pay> {}

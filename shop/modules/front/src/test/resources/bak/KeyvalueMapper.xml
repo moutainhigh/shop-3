@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.KeyvalueDao">
+
+	<select id="selectPageList" parameterType="Keyvalue" resultType="Keyvalue">
+		select
+		t.id "id",
+		t.keyword "keyword",
+		t.value "value"
+		from t_keyvalue t where 1=1
+		<if test="keyword!=null and keyword!=''"> and keyword=#{keyword}</if>
+		<if test="value!=null and value!=''"> and value=#{value}</if>
+		order by id desc
+		limit #{offset},#{pageSize}
+	</select>
+
+	<select id="selectPageCount" parameterType="Keyvalue"
+		resultType="java.lang.Integer">
+		select count(*) from (select 1 from t_keyvalue t where 1=1
+		<if test="keyword!=null and keyword!=''"> and keyword=#{keyword}</if>
+		<if test="value!=null and value!=''"> and value=#{value}</if>
+		) a
+	</select>
+
+	<select id="selectList" parameterType="Keyvalue" resultType="Keyvalue">
+		select
+		t.id "id",
+		t.keyword "keyword",
+		t.value "value"
+		from t_keyvalue t where 1=1
+	</select>
+
+	<insert id="insert" parameterType="Keyvalue" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into t_keyvalue
+		(
+		id
+		<if test="keyword!=null and keyword!=''">
+			,keyword
+		</if>
+		<if test="value!=null and value!=''">
+			,value
+		</if>
+		)
+		values
+		(
+		id
+		<if test="keyword !=null and keyword !=''">
+			,#{keyword}
+		</if>
+		<if test="value !=null and value !=''">
+			,#{value}
+		</if>
+		)
+	</insert>
+	<update id="update" parameterType="Keyvalue">
+		update t_keyvalue
+		set id=#{id}
+		<if test="keyword !=null and keyword !=''">
+			,keyword=#{keyword}
+		</if>
+		<if test="value !=null and value !=''">
+			,value=#{value}
+		</if>
+		where 1=1 and id=#{id}
+		<if test="keyword!=null and keyword!=''"> and keyword=#{keyword}</if>
+		<if test="value!=null and value!=''"> and value=#{value}</if>
+	</update>
+	<select id="selectOne" parameterType="Keyvalue" resultType="Keyvalue">
+		select
+		t.id "id",
+		t.keyword "keyword",
+		t.value "value"
+		from t_keyvalue t where 1=1 and id=#{id}
+		<if test="keyword!=null and keyword!=''"> and keyword=#{keyword}</if>
+		<if test="value!=null and value!=''"> and value=#{value}</if>
+	</select>
+	<delete id="deleteById" parameterType="Keyvalue">
+		delete from t_keyvalue
+		where 1=1 and id=#{id}
+	</delete>
+</mapper> 

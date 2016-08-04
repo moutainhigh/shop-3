@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.navigation.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Navigation;public interface NavigationDao extends DaoManager<Navigation> {}

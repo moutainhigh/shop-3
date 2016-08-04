@@ -1,0 +1,1 @@
+package com.tuisitang.modules.shop.dao;import com.tuisitang.modules.shop.dao.MyBatisRepository;import com.tuisitang.modules.shop.entity.Gift;@MyBatisRepositorypublic interface GiftDao extends BaseDao<Gift> {	}

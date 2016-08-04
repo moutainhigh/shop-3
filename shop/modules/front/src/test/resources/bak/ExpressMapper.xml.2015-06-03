@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.ExpressDao">
+
+	<select id="selectPageList" parameterType="Express" resultType="Express">
+		select *
+		from t_express t where 1=1
+		order by sort
+		limit #{offset},#{pageSize}
+	</select>
+
+	<select id="selectPageCount" parameterType="Express" resultType="java.lang.Integer">
+		select count(*) from (select 1 from t_express t where 1=1
+		) a
+	</select>
+
+	<select id="selectList" parameterType="Express" resultType="Express">
+		select * from t_express t where 1=1 order by sort
+	</select>
+
+	<insert id="insert" parameterType="Express" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into t_express
+		(
+		id
+		<if test="code!=null and code!=''">
+			,code
+		</if>
+		<if test="name!=null and name!=''">
+			,name
+		</if>
+		<if test="fee!=null and fee!=''">
+			,fee
+		</if>
+		<if test="sort!=0">
+			,sort
+		</if>
+		)
+		values
+		(
+		id
+		<if test="code !=null and code !=''">
+			,#{code}
+		</if>
+		<if test="name !=null and name !=''">
+			,#{name}
+		</if>
+		<if test="fee !=null and fee !=''">
+			,#{fee}
+		</if>
+		<if test="sort !=0">
+			,#{sort}
+		</if>
+		)
+	</insert>
+	<update id="update" parameterType="Express">
+		update t_express
+		set id=#{id}
+		<if test="code !=null and code !=''">
+			,code=#{code}
+		</if>
+		<if test="name !=null and name !=''">
+			,name=#{name}
+		</if>
+		<if test="fee !=null and fee !=''">
+			,fee=#{fee}
+		</if>
+		<if test="sort !=0">
+			,sort=#{sort}
+		</if>
+		where 1=1 and id=#{id}
+	</update>
+	<select id="selectOne" parameterType="Express" resultType="Express">
+		select * from t_express t where 1=1 and id=#{id}
+	</select>
+	<delete id="deleteById" parameterType="Express">
+		delete from t_express
+		where 1=1 and id=#{id}
+	</delete>
+</mapper> 

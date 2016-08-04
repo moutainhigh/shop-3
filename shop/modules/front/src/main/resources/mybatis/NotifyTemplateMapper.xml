@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.NotifyTemplateDao">
+
+	<!-- 1. 添加NotifyTemplate -->
+	<insert id="insert" parameterType="NotifyTemplate" useGeneratedKeys="true" keyProperty="id">
+		insert into t_notifytemplate
+		(id
+        <if test="type!=null and type!=''">,type</if>
+		<if test="code!=null and code!=''">,code</if>
+		<if test="name!=null and name!=''">,name</if>
+		<if test="template!=null">,template</if>
+		<if test="remark!=null and remark!=''">,remark</if>
+		)
+		values
+		(
+		id
+		<if test="type!=null and type!=''">,#{type}</if>
+		<if test="code!=null and code!=''">,#{code}</if>
+		<if test="name!=null and name!=''">,#{name}</if>
+		<if test="template!=null">,#{template}</if>
+		<if test="remark!=null and remark!=''">,#{remark}</if>
+		)
+	</insert>
+
+	<!-- 2. 删除NotifyTemplate -->
+	<delete id="delete" parameterType="NotifyTemplate">
+		delete from t_notifytemplate where id = #{id}
+	</delete>
+
+	<!-- 3. 修改NotifyTemplate -->
+	<update id="update" parameterType="NotifyTemplate">
+		update t_notifytemplate
+		set id= #{id}
+		<if test="type!=null and type!=''">,type = #{type}</if>
+		<if test="code!=null and code!=''">,code = #{code}</if>
+		<if test="name!=null and name!=''">,name = #{name}</if>
+		<if test="template!=null">,template = #{template}</if>
+		<if test="remark!=null and remark!=''">,remark = #{remark}</if>
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据NotifyTemplate查询一条记录 -->
+	<select id="selectOne" parameterType="NotifyTemplate" resultType="NotifyTemplate">
+		select t.* from t_notifytemplate t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询NotifyTemplate -->
+	<select id="selectPageList" parameterType="NotifyTemplate" resultType="NotifyTemplate">
+		select t.* from t_notifytemplate t where 1 = 1
+		<if test="type!=null and type!=''"> and type = #{type}</if>
+		<if test="code!=null and code!=''"> and code = #{code}</if>
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="template!=null"> and template = #{template}</if>
+		<if test="remark!=null and remark!=''"> and remark = #{remark}</if>
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询NotifyTemplate -->
+	<select id="selectList" parameterType="NotifyTemplate" resultType="NotifyTemplate">
+		select t.* from t_notifytemplate t where 1 = 1 
+		<if test="type!=null and type!=''"> and type = #{type}</if>
+		<if test="code!=null and code!=''"> and code = #{code}</if>
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="template!=null"> and template = #{template}</if>
+		<if test="remark!=null and remark!=''"> and remark = #{remark}</if>
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_notifytemplate where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="NotifyTemplate">
+		select t.* from t_notifytemplate t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询NotifyTemplate -->
+	<select id="selectPageCount" parameterType="NotifyTemplate" resultType="int">
+		select count(1) from t_notifytemplate t where 1 = 1
+		<if test="type!=null and type!=''"> and type = #{type}</if>
+		<if test="code!=null and code!=''"> and code = #{code}</if>
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="template!=null"> and template = #{template}</if>
+		<if test="remark!=null and remark!=''"> and remark = #{remark}</if>
+	</select>
+	
+	<!-- 10. getByTypeAndCode -->
+	<select id="getByTypeAndCode" resultType="string">
+		select t.template from t_notifytemplate t where t.type = #{type} and t.code = #{code}
+	</select>
+</mapper>

@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.commentType;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.CommentType;public interface CommentTypeService extends Services<CommentType> {}

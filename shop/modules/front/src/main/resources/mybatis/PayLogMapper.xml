@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.PayLogDao">
+
+	<!-- 1. 添加PayLog -->
+	<insert id="insert" parameterType="PayLog" useGeneratedKeys="true" keyProperty="id">
+		insert into t_pay_log
+		(id
+        <if test="accountId!=0">,accountId</if>
+		<if test="orderId!=0">,orderId</if>
+		<if test="amount!=null">,amount</if>
+		<if test="tradeStatus!=null and tradeStatus!=''">,tradeStatus</if>
+		<if test="createTime!=null">,createTime</if>
+		
+		)
+		values
+		(
+		id
+		<if test="accountId!=0">,#{accountId}</if>
+		<if test="orderId!=0">,#{orderId}</if>
+		<if test="amount!=null">,#{amount}</if>
+		<if test="tradeStatus!=null and tradeStatus!=''">,#{tradeStatus}</if>
+		<if test="createTime!=null">,#{createTime}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除PayLog -->
+	<delete id="delete" parameterType="PayLog">
+		delete from t_pay_log where id = #{id}
+	</delete>
+
+	<!-- 3. 修改PayLog -->
+	<update id="update" parameterType="PayLog">
+		update t_pay_log
+		set id= #{id}
+		<if test="accountId!=0">,accountId = #{accountId}</if>
+		<if test="orderId!=0">,orderId = #{orderId}</if>
+		<if test="amount!=null">,amount = #{amount}</if>
+		<if test="tradeStatus!=null and tradeStatus!=''">,tradeStatus = #{tradeStatus}</if>
+		<if test="createTime!=null">,createTime = #{createTime}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据PayLog查询一条记录 -->
+	<select id="selectOne" parameterType="PayLog" resultType="PayLog">
+		select t.* from t_pay_log t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询PayLog -->
+	<select id="selectPageList" parameterType="PayLog" resultType="PayLog">
+		select t.* from t_pay_log t where 1 = 1
+		<if test="accountId!=0"> and accountId = #{accountId}</if>
+		<if test="orderId!=0"> and orderId = #{orderId}</if>
+		<if test="amount!=null"> and amount = #{amount}</if>
+		<if test="tradeStatus!=null and tradeStatus!=''"> and tradeStatus = #{tradeStatus}</if>
+		<if test="createTime!=null"> and createTime = #{createTime}</if>
+		
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询PayLog -->
+	<select id="selectList" parameterType="PayLog" resultType="PayLog">
+		select t.* from t_pay_log t where 1 = 1 
+		<if test="accountId!=0"> and accountId = #{accountId}</if>
+		<if test="orderId!=0"> and orderId = #{orderId}</if>
+		<if test="amount!=null"> and amount = #{amount}</if>
+		<if test="tradeStatus!=null and tradeStatus!=''"> and tradeStatus = #{tradeStatus}</if>
+		<if test="createTime!=null"> and createTime = #{createTime}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_pay_log where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="PayLog">
+		select t.* from t_pay_log t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询PayLog -->
+	<select id="selectPageCount" parameterType="PayLog" resultType="int">
+		select count(1) from t_pay_log t where 1 = 1
+		<if test="accountId!=0"> and accountId = #{accountId}</if>
+		<if test="orderId!=0"> and orderId = #{orderId}</if>
+		<if test="amount!=null"> and amount = #{amount}</if>
+		<if test="tradeStatus!=null and tradeStatus!=''"> and tradeStatus = #{tradeStatus}</if>
+		<if test="createTime!=null"> and createTime = #{createTime}</if>
+		
+	</select>
+
+</mapper>

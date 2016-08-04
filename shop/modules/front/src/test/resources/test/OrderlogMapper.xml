@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.OrderlogDao">
+
+	<!-- 1. 添加Orderlog -->
+	<insert id="insert" parameterType="Orderlog" useGeneratedKeys="true" keyProperty="id">
+		insert into t_orderlog
+		(id
+        <if test="orderid!=null and orderid!=''">,orderid</if>
+		<if test="accountId!=0">,accountId</if>
+		<if test="account!=null and account!=''">,account</if>
+		<if test="createdate!=null">,createdate</if>
+		<if test="content!=null and content!=''">,content</if>
+		<if test="accountType!=null and accountType!=''">,accountType</if>
+		
+		)
+		values
+		(
+		id
+		<if test="orderid!=null and orderid!=''">,#{orderid}</if>
+		<if test="accountId!=0">,${accountId}</if>
+		<if test="account!=null and account!=''">,#{account}</if>
+		<if test="createdate!=null">,${createdate}</if>
+		<if test="content!=null and content!=''">,#{content}</if>
+		<if test="accountType!=null and accountType!=''">,#{accountType}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除Orderlog -->
+	<delete id="delete" parameterType="Orderlog">
+		delete from t_orderlog where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Orderlog -->
+	<update id="update" parameterType="Orderlog">
+		update t_orderlog
+		set id= #{id}
+		<if test="orderid!=null and orderid!=''">,orderid = #{orderid}</if>
+		<if test="accountId!=0">,accountId = #{accountId}</if>
+		<if test="account!=null and account!=''">,account = #{account}</if>
+		<if test="createdate!=null">,createdate = #{createdate}</if>
+		<if test="content!=null and content!=''">,content = #{content}</if>
+		<if test="accountType!=null and accountType!=''">,accountType = #{accountType}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Orderlog查询一条记录 -->
+	<select id="selectOne" parameterType="Orderlog" resultType="Orderlog">
+		select t.* from t_orderlog t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Orderlog -->
+	<select id="selectPageList" parameterType="Orderlog" resultType="Orderlog">
+		select t.* from t_orderlog t where 1 = 1
+		<if test="orderid!=null and orderid!=''"> and orderid = #{orderid}</if>
+		<if test="accountId!=0"> and accountId = #{accountId}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="createdate!=null"> and createdate = #{createdate}</if>
+		<if test="content!=null and content!=''"> and content = #{content}</if>
+		<if test="accountType!=null and accountType!=''"> and accountType = #{accountType}</if>
+		
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Orderlog -->
+	<select id="selectList" parameterType="Orderlog" resultType="Orderlog">
+		select t.* from t_orderlog t where 1 = 1 
+		<if test="orderid!=null and orderid!=''"> and orderid = #{orderid}</if>
+		<if test="accountId!=0"> and accountId = #{accountId}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="createdate!=null"> and createdate = #{createdate}</if>
+		<if test="content!=null and content!=''"> and content = #{content}</if>
+		<if test="accountType!=null and accountType!=''"> and accountType = #{accountType}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_orderlog where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Orderlog">
+		select t.* from t_orderlog t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Orderlog -->
+	<select id="selectPageCount" parameterType="Orderlog" resultType="int">
+		select count(1) from t_orderlog t where 1 = 1
+		<if test="orderid!=null and orderid!=''"> and orderid = #{orderid}</if>
+		<if test="accountId!=0"> and accountId = #{accountId}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="createdate!=null"> and createdate = #{createdate}</if>
+		<if test="content!=null and content!=''"> and content = #{content}</if>
+		<if test="accountType!=null and accountType!=''"> and accountType = #{accountType}</if>
+		
+	</select>
+
+</mapper>

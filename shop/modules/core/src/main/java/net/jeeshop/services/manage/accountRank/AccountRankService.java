@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.accountRank;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.AccountRank;public interface AccountRankService extends Services<AccountRank> {}

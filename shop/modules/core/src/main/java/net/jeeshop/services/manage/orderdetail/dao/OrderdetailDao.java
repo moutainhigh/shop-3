@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.orderdetail.dao;import java.util.List;import net.jeeshop.core.DaoManager;import net.jeeshop.services.manage.order.bean.ReportInfo;import com.tuisitang.modules.shop.entity.Orderdetail;public interface OrderdetailDao extends DaoManager<Orderdetail> {	List<ReportInfo> reportProductSales(Orderdetail orderdetail);}

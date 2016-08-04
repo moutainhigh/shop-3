@@ -1,0 +1,196 @@
+html {
+  height: 100%;
+}
+html body {
+  height: 100%;
+  background-color: #f6f6f6;
+}
+.title {
+  padding: 0;
+  text-align: center;
+  background-color: #f65c8f;
+}
+.title p {
+  font-size: 17px;
+  color: white;
+  margin: 9px 0;
+}
+.invitation {
+  padding: 0;
+  text-align: center;
+  background-color: #f9aac4;
+}
+.invitation p {
+  font-size: 12px;
+  color: white;
+  margin: 7px 0;
+}
+.invitation p span {
+  color: #f65c8f;
+}
+.register-list {
+  padding: 0;
+  position: relative;
+  margin-top: 18px;
+  border-top: 1px solid #bcbcbc;
+}
+.register-list .phone-num {
+  width: 100%;
+  border-left: medium none;
+  border-right: medium none;
+  border-top: medium none;
+  border-bottom: 1px solid #bcbcbc;
+  outline: white;
+  padding: 12px 0px 12px 90px;
+  font-size: 16px;
+  color: #999;
+  border-radius: 0;
+  -moz-box-shadow: none;
+  /* For Firefox3.6+ */
+  -webkit-box-shadow: none;
+  /* For Chrome5+, Safari5+ */
+  box-shadow: none;
+}
+.register-list .user-name {
+  width: 100%;
+  border-left: medium none;
+  border-right: medium none;
+  border-top: medium none;
+  border-bottom: 1px solid #bcbcbc;
+  outline: white;
+  padding: 12px 0px 12px 90px;
+  font-size: 16px;
+  color: #999;
+  border-radius: 0;
+  -moz-box-shadow: none;
+  /* For Firefox3.6+ */
+  -webkit-box-shadow: none;
+  /* For Chrome5+, Safari5+ */
+  box-shadow: none;
+}
+.register-list .code {
+  width: 100%;
+  border-left: medium none;
+  border-right: medium none;
+  border-top: medium none;
+  border-bottom: 1px solid #bcbcbc;
+  outline: medium;
+  padding: 12px 0px 12px 90px;
+  font-size: 16px;
+  color: #999;
+  border-radius: 0;
+}
+.register-list .password {
+  width: 100%;
+  border-left: medium none;
+  border-right: medium none;
+  border-top: medium none;
+  border-bottom: 1px solid #bcbcbc;
+  outline: medium;
+  padding: 12px 0px 12px 90px;
+  font-size: 16px;
+  color: #999;
+  border-radius: 0;
+}
+.register-list input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #999;
+  font-size: 16px;
+}
+.register-list input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #999;
+  font-size: 16px;
+}
+.register-list input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #999;
+  font-size: 16px;
+}
+.register-list input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #999;
+  font-size: 16px;
+}
+.register-list .left-blank {
+  position: absolute;
+  height: 88px;
+  width: 12px;
+  left: 0;
+  top: 1px;
+  z-index: 2;
+  background-color: white;
+}
+.register-list .phone-img {
+  padding-right: 23px;
+  border-right: 1px solid #cacace;
+  position: absolute;
+  top: 7px;
+  left: 12px;
+}
+.register-list .phone-img img {
+  width: 15px;
+}
+.register-list .key-img {
+  padding-right: 23px;
+  border-right: 1px solid #cacace;
+  position: absolute;
+  top: 52px;
+  left: 12px;
+}
+.register-list .key-img img {
+  width: 15px;
+}
+.register-list .get-code {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-size: 14px;
+  background-color: #f65c8f;
+  color: white;
+}
+.register-list .get-code[disabled]:hover{
+    border:1px solid #FF5D93;
+    background-color: #FF5D93;
+    color: white;
+}
+
+.submit-btn {
+  padding: 15px;
+}
+.submit-btn button {
+  width: 100%;
+  padding: 13px;
+  font-size: 17px;
+  color: #ffffff;
+  background-color: #a6a6ad;
+  border-radius: 1000px;
+}
+.submit-btn .active {
+  background-color: #f65c8f;
+}
+.warning {
+  position: fixed;
+  z-index: 999;
+  width: 110px;
+  height: 100px;
+  background-color: #484848;
+  border-radius: 7px;
+  top: 40%;
+  margin-top: -50px;
+  left: 50%;
+  margin-left: -50px;
+  padding: 10px;
+  text-align: center;
+  display: none;
+}
+.warning p {
+  color: #E6E6E6;
+  font-size: 14px;
+  margin: 0;
+  text-align: center;
+}
+
+/*# sourceMappingURL=../css/phone-register.css.map */

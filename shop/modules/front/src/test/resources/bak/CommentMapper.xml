@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.CommentDao">
+
+	<select id="selectPageList" parameterType="Comment" resultType="Comment">
+		select * from t_comment t where 1=1 and status='y'
+		<if test="productID!=0">
+			and productID=#{productID}
+		</if>
+		order by id desc
+		limit #{offset},#{pageSize}
+	</select>
+
+	<select id="selectPageCount" parameterType="Comment" resultType="java.lang.Integer">
+		select count(*) from (select 1 from t_comment t where 1=1 and
+		status='y'
+		<if test="productID!=0">
+			and productID=#{productID}
+		</if>
+		) a
+	</select>
+
+	<insert id="insert" parameterType="Comment" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into t_comment
+		(
+		id,createdate,nickname
+		<if test="productID!=0">
+			,productID
+		</if>
+		<if test="accountId!=null and accountId!=''">
+			,accountId
+		</if>
+		<if test="orderID!=0">
+			,orderID
+		</if>
+		<if test="orderdetailID!=0">
+			,orderdetailID
+		</if>
+		<if test="content!=null and content!=''">
+			,content
+		</if>
+		<if test="status!=null and status!=''">
+			,status
+		</if>
+		<if test="star!=0">
+			,star
+		</if>
+		)
+		values
+		(
+		id,now(),#{nickname}
+		<if test="productID !=0">
+			,#{productID}
+		</if>
+		<if test="accountId !=null and accountId !=''">
+			,#{accountId}
+		</if>
+		<if test="orderID !=0">
+			,#{orderID}
+		</if>
+		<if test="orderdetailID !=0">
+			,#{orderdetailID}
+		</if>
+		<if test="content !=null and content !=''">
+			,#{content}
+		</if>
+		<if test="status!=null and status!=''">
+			,#{status}
+		</if>
+		<if test="star !=0">
+			,#{star}
+		</if>
+		)
+	</insert>
+
+	<update id="update" parameterType="Comment">
+		update t_comment
+		set id=#{id},createdate=now()
+		<if test="productID !=0">
+			,productID=#{productID}
+		</if>
+		<if test="accountId !=null and accountId !=''">
+			,accountId=#{accountId}
+		</if>
+		<if test="orderID !=0">
+			,orderID=#{orderID}
+		</if>
+		<if test="orderdetailID !=0">
+			,orderdetailID=#{orderdetailID}
+		</if>
+		<if test="content !=null and content !=''">
+			,content=#{content}
+		</if>
+		<if test="status!=null and status!=''">
+			,status=#{status}
+		</if>
+		<if test="star !=0">
+			,star=#{star}
+		</if>
+		where 1=1 and id=#{id}
+	</update>
+
+	<select id="selectOne" parameterType="Comment" resultType="Comment">
+		select * from t_comment t where 1=1 and status='y'
+		<if test="id!=null and id!=''">
+			and id=#{id}
+		</if>
+		<if test="accountId!=null and accountId!=''">
+			and accountId=#{accountId}
+		</if>
+		<if test="productID!=null and productID!=''">
+			and productID=#{productID}
+		</if>
+		<if test="orderID!=0">
+			and orderID=#{orderID}
+		</if>
+	</select>
+
+	<delete id="deleteById" parameterType="Comment">
+		delete from t_comment
+		where 1=1 and id=#{id}
+	</delete>
+
+	<select id="selectCount" parameterType="string" resultType="int">
+		select count(*) from t_comment where 1=1 and orderID=#{orderID}
+	</select>
+</mapper> 

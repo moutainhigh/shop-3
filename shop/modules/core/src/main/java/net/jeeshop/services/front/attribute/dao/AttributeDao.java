@@ -1,0 +1,1 @@
+package net.jeeshop.services.front.attribute.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Attribute;public interface AttributeDao extends DaoManager<Attribute> {	/**	 * @param e	 */	void deleteByPid(Attribute e);}

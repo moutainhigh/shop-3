@@ -1,0 +1,257 @@
+body {
+    /* height: 2000px; */
+    margin: 0;
+}
+
+.shopcarright {
+    float: left;
+    width: 50px;
+    height: 100%;
+    background-color: #716b6b;
+    right: 0;
+    top: 0;
+    z-index: 999;
+    position: relative;
+    width: 8px;
+}
+
+.cartbar {
+    width: 50px;
+    position: absolute;
+    top: 50%;
+    margin-top: -90px;
+    right: 8px;
+}
+
+.cartbar-bt {
+    width: 50px;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 40px;
+    right: 8px;
+}
+
+.cartbar-bt a,
+.cartbar a {
+    display: block;
+    background-color: #716b6b;
+    margin: 3px 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.cartbar-bt a:hover,
+.cartbar a:hover {
+    background-color: #ed145b;
+}
+
+
+.cartbar img {
+    width: 22px;
+    margin: 10px auto;
+    position: relative;
+    left: 50%;
+    margin-left: -11px;
+}
+
+.cartbar-bt img {
+    width: 22px;
+    margin: 15px auto;
+    position: relative;
+    left: 50%;
+    margin-left: -11px;
+}
+
+.shor-car-num {
+    background: url('../image/shopquan.png') no-repeat;
+    background-size: 22px;
+    width: 23px;
+    height: 23px;
+    position: absolute;
+    text-align: center;
+    color: white;
+    left: 30px;
+    top: 1px;
+    font-size: 13px;
+    line-height: 21px;
+    font-weight: 500;
+}
+
+
+.ibar_cart_content {
+    position: relative;
+    float: right;
+    width: 270px;
+    height: 100%;
+    background-color: white;
+}
+
+.ibar_plugin_title {
+    height: 38px;
+    line-height: 38px;
+    border-bottom: 1px solid #dedede;
+    color: #333;
+    font-size: 14px;
+    font-weight: 700;
+    width: 250px;
+    margin: 0 auto;
+}
+
+.ibar_closebtn {
+    width: 30px;
+    height: 30px;
+    background-position: 5px -267px;
+    padding: 5px;
+    overflow: hidden;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-image: url(../image/ibar_sprites.png);
+    background-position: 5px -267px;
+    background-repeat: no-repeat;
+}
+
+.ibar_cart_content .ibar_cart_group_items {
+    list-style: none;
+    margin: 0;
+    padding: 0 10px;
+    overflow-y: auto;
+}
+
+.ibar_cart_content .ibar_cart_group_items::-webkit-scrollbar-track {
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background-color: transparent;
+}
+
+.ibar_cart_content .ibar_cart_group_items::-webkit-scrollbar {
+    width: 5px;
+}
+
+.ibar_cart_content .ibar_cart_group_items::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: #7b6f6f;
+}
+
+.ibar_cart_item {
+    padding: 15px 0;
+    border-bottom: 1px dotted #ddd;
+    list-style: none;
+}
+
+.ibar_cart_item_pic {
+    position: relative;
+    float: left;
+    width: 87px;
+    height: 87px;
+}
+
+.ibar_cart_item_desc {
+    float: left;
+    width: 133px;
+    padding: 3px 0 0 13px;
+}
+
+.clearfix:after {
+    content: "\00A0";
+    display: block;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    clear: both;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+
+.ibar_cart_item_name_wrapper {
+    display: inline-block;
+    width: 100%;
+    height: 38px;
+    overflow: hidden;
+    line-height: 18px;
+}
+
+.ibar_cart_item_name {
+    color: #5c5c5c;
+    font-size: 12px;
+    text-decoration: none;
+    line-height: 18px;
+}
+
+.ibar_cart_item_pic img {
+    width: 85px;
+    height: 85px;
+    border: 1px solid #f4f4f4;
+}
+
+.ibar_cart_item_price {
+    font-weight: 700;
+    font-family: "Microsoft YaHei","Microsoft JhengHei",STHeiti,MingLiu;
+    font-size: 12px;
+}
+
+.ibar_pink {
+    color: #ed145b;
+}
+
+.ibar_cart_item_sku {
+    width: 130px;
+    height: 24px;
+    line-height: 24px;
+    color: #999;
+    font-size: 12px;
+}
+
+.ibar_cart_handler_attached {
+    height: 90px;
+    bottom: auto;
+    padding-top: 10px;
+}
+
+.ibar_cart_handler {
+    position: absolute;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+}
+
+.ibar_cart_go_btn, .ibar_cart_handler_header {
+    width: 250px;
+    margin: 8px auto;
+}
+
+.ibar_cart_go_btn {
+    display: block;
+    height: 33px;
+    line-height: 33px;
+    margin: 0 auto;
+    font-size: 19px;
+    font-family: SimHei;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    background: #ed145b;
+}
+
+.ibar_cart_handler_header_left {
+    float: left;
+    font-size: 12px;
+    line-height: 21px;
+}
+
+.ibar_cart_total_price {
+    float: right;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: "Microsoft YaHei","Microsoft JhengHei",STHeiti,MingLiu;
+}
+
+.right-bar {
+    position: fixed;
+    right: -272px;
+    top: 0;
+    height: 100%;
+    z-index: 10;
+}

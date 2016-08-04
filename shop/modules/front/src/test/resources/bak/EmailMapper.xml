@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.EmailDao">
+
+	<select id="selectPageList" parameterType="Email" resultType="Email">
+		select *
+		from t_email t where 1=1
+		order by id desc
+		limit
+		#{offset},#{pageSize}
+	</select>
+
+	<select id="selectPageCount" parameterType="Email" resultType="java.lang.Integer">
+		select count(*) from (select 1 from t_email t where 1=1
+		) a
+	</select>
+
+	<insert id="insert" parameterType="Email" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into t_email
+		(
+		id,createdate
+		<if test="sign!=null and sign!=''">
+			,sign
+		</if>
+		<if test="accountId!=null and accountId!=''">
+			,accountId
+		</if>
+		<if test="type!=null and type!=''">
+			,type
+		</if>
+		<if test="url!=null and url!=''">
+			,url
+		</if>
+		<if test="starttime!=null and starttime!=''">
+			,starttime
+		</if>
+		<if test="endtime!=null and endtime!=''">
+			,endtime
+		</if>
+		<if test="newEmail!=null and newEmail!=''">
+			,newEmail
+		</if>
+		<if test="sendStatus!=null and sendStatus!=''">
+			,sendStatus
+		</if>
+		)
+		values
+		(
+		id,now()
+		<if test="sign !=null and sign !=''">
+			,#{sign}
+		</if>
+		<if test="accountId !=null and accountId !=''">
+			,#{accountId}
+		</if>
+		<if test="type !=null and type !=''">
+			,#{type}
+		</if>
+		<if test="url !=null and url !=''">
+			,#{url}
+		</if>
+		<if test="starttime !=null and starttime !=''">
+			,#{starttime}
+		</if>
+		<if test="endtime !=null and endtime !=''">
+			,#{endtime}
+		</if>
+		<if test="newEmail!=null and newEmail!=''">
+			,#{newEmail}
+		</if>
+		<if test="sendStatus!=null and sendStatus!=''">
+			,#{sendStatus}
+		</if>
+		)
+	</insert>
+	<update id="update" parameterType="Email">
+		update t_email
+		set id=#{id}
+		<if test="sign !=null and sign !=''">
+			,sign=#{sign}
+		</if>
+		<if test="accountId !=null and accountId !=''">
+			,accountId=#{accountId}
+		</if>
+		<if test="type !=null and type !=''">
+			,type=#{type}
+		</if>
+		<if test="url !=null and url !=''">
+			,url=#{url}
+		</if>
+		<if test="starttime !=null and starttime !=''">
+			,starttime=#{starttime}
+		</if>
+		<if test="endtime !=null and endtime !=''">
+			,endtime=#{endtime}
+		</if>
+		<if test="newEmail!=null and newEmail!=''">
+			,newEmail=#{newEmail}
+		</if>
+		<if test="status!=null and status!=''">
+			,status=#{status}
+		</if>
+		<if test="sendStatus!=null and sendStatus!=''">
+			,sendStatus=#{sendStatus}
+		</if>
+		where 1=1 and id=#{id}
+	</update>
+	
+	<select id="selectOne" parameterType="Email" resultType="Email">
+		select *
+		from t_email t where 1=1
+		<if test="sign!=null and sign!=''"> and sign=#{sign} </if>
+		<if test="id!=null and id!=''"> and id=#{id} </if>
+	</select>
+	
+	<delete id="deleteById" parameterType="Email">
+		delete from t_email where
+		1=1 and id=#{id}
+	</delete>
+
+	<update id="updateEmailInvalidWhenReg" parameterType="Email">
+		update
+		t_email set status='y' where 1=1 and accountId=#{accountId} and
+		type='email_reg'
+	</update>
+	
+	<select id="selectList" parameterType="Email" resultType="Email">
+		select *
+		from t_email t where 1=1
+		order by id desc
+	</select>
+</mapper> 

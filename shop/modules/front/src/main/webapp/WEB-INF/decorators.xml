@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/views">
+	
+	<!-- 默认装饰页面, 在需要装饰的页面增加<meta name="decorator" content="default"/> -->
+	<decorator name="default" page="layouts/default.jsp" />
+	<decorator name="default_new" page="layouts/default_new.jsp" />
+	<!-- Mobile Template -->
+	<decorator name="default_mb" page="mobile/layouts/default.jsp" />
+	
+	<decorator name="account_default" page="layouts/account_default.jsp" />
+	<decorator name="account_default_new" page="layouts/account_default_new.jsp" />
+	<decorator name="cart_default_new" page="layouts/cart_default_new.jsp" />
+</decorators>

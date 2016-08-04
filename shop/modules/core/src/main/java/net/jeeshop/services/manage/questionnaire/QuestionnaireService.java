@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.questionnaire;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Questionnaire;public interface QuestionnaireService extends Services<Questionnaire> {	/**	 * 批量修改问卷状态	 * @param ids	 * @param questionnaireStatusY	 */	void changeStatus(Long[] ids, String questionnaireStatusY);}

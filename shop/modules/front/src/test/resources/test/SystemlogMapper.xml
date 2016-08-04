@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.SystemlogDao">
+
+	<!-- 1. 添加Systemlog -->
+	<insert id="insert" parameterType="Systemlog" useGeneratedKeys="true" keyProperty="id">
+		insert into t_systemlog
+		(id
+        <if test="title!=null and title!=''">,title</if>
+		<if test="content!=null and content!=''">,content</if>
+		<if test="type!=0">,type</if>
+		<if test="account!=null and account!=''">,account</if>
+		<if test="loginIP!=null and loginIP!=''">,loginIP</if>
+		<if test="logintime!=null">,logintime</if>
+		<if test="loginArea!=null and loginArea!=''">,loginArea</if>
+		<if test="diffAreaLogin!=null and diffAreaLogin!=''">,diffAreaLogin</if>
+		
+		)
+		values
+		(
+		id
+		<if test="title!=null and title!=''">,#{title}</if>
+		<if test="content!=null and content!=''">,#{content}</if>
+		<if test="type!=0">,${type}</if>
+		<if test="account!=null and account!=''">,#{account}</if>
+		<if test="loginIP!=null and loginIP!=''">,#{loginIP}</if>
+		<if test="logintime!=null">,${logintime}</if>
+		<if test="loginArea!=null and loginArea!=''">,#{loginArea}</if>
+		<if test="diffAreaLogin!=null and diffAreaLogin!=''">,#{diffAreaLogin}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除Systemlog -->
+	<delete id="delete" parameterType="Systemlog">
+		delete from t_systemlog where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Systemlog -->
+	<update id="update" parameterType="Systemlog">
+		update t_systemlog
+		set id= #{id}
+		<if test="title!=null and title!=''">,title = #{title}</if>
+		<if test="content!=null and content!=''">,content = #{content}</if>
+		<if test="type!=0">,type = #{type}</if>
+		<if test="account!=null and account!=''">,account = #{account}</if>
+		<if test="loginIP!=null and loginIP!=''">,loginIP = #{loginIP}</if>
+		<if test="logintime!=null">,logintime = #{logintime}</if>
+		<if test="loginArea!=null and loginArea!=''">,loginArea = #{loginArea}</if>
+		<if test="diffAreaLogin!=null and diffAreaLogin!=''">,diffAreaLogin = #{diffAreaLogin}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Systemlog查询一条记录 -->
+	<select id="selectOne" parameterType="Systemlog" resultType="Systemlog">
+		select t.* from t_systemlog t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Systemlog -->
+	<select id="selectPageList" parameterType="Systemlog" resultType="Systemlog">
+		select t.* from t_systemlog t where 1 = 1
+		<if test="title!=null and title!=''"> and title = #{title}</if>
+		<if test="content!=null and content!=''"> and content = #{content}</if>
+		<if test="type!=0"> and type = #{type}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="loginIP!=null and loginIP!=''"> and loginIP = #{loginIP}</if>
+		<if test="logintime!=null"> and logintime = #{logintime}</if>
+		<if test="loginArea!=null and loginArea!=''"> and loginArea = #{loginArea}</if>
+		<if test="diffAreaLogin!=null and diffAreaLogin!=''"> and diffAreaLogin = #{diffAreaLogin}</if>
+		
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Systemlog -->
+	<select id="selectList" parameterType="Systemlog" resultType="Systemlog">
+		select t.* from t_systemlog t where 1 = 1 
+		<if test="title!=null and title!=''"> and title = #{title}</if>
+		<if test="content!=null and content!=''"> and content = #{content}</if>
+		<if test="type!=0"> and type = #{type}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="loginIP!=null and loginIP!=''"> and loginIP = #{loginIP}</if>
+		<if test="logintime!=null"> and logintime = #{logintime}</if>
+		<if test="loginArea!=null and loginArea!=''"> and loginArea = #{loginArea}</if>
+		<if test="diffAreaLogin!=null and diffAreaLogin!=''"> and diffAreaLogin = #{diffAreaLogin}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_systemlog where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Systemlog">
+		select t.* from t_systemlog t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Systemlog -->
+	<select id="selectPageCount" parameterType="Systemlog" resultType="int">
+		select count(1) from t_systemlog t where 1 = 1
+		<if test="title!=null and title!=''"> and title = #{title}</if>
+		<if test="content!=null and content!=''"> and content = #{content}</if>
+		<if test="type!=0"> and type = #{type}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="loginIP!=null and loginIP!=''"> and loginIP = #{loginIP}</if>
+		<if test="logintime!=null"> and logintime = #{logintime}</if>
+		<if test="loginArea!=null and loginArea!=''"> and loginArea = #{loginArea}</if>
+		<if test="diffAreaLogin!=null and diffAreaLogin!=''"> and diffAreaLogin = #{diffAreaLogin}</if>
+		
+	</select>
+
+</mapper>

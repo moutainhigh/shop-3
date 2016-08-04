@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.spec;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Spec;public interface SpecService extends Services<Spec> {}

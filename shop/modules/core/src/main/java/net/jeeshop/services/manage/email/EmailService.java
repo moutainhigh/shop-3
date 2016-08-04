@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.email;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Email;public interface EmailService extends Services<Email> {}

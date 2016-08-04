@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.OrderdetailDao">
+
+	<!-- 1. 添加Orderdetail -->
+	<insert id="insert" parameterType="Orderdetail" useGeneratedKeys="true" keyProperty="id">
+		insert into t_orderdetail
+		(id
+        <if test="orderID!=0">,orderID</if>
+		<if test="productID!=0">,productID</if>
+		<if test="price!=null">,price</if>
+		<if test="number!=0">,number</if>
+		<if test="productName!=null and productName!=''">,productName</if>
+		<if test="picture!=null and picture!=''">,picture</if>
+		<if test="fee!=null">,fee</if>
+		<if test="total0!=null">,total0</if>
+		<if test="isComment!=null and isComment!=''">,isComment</if>
+		<if test="lowStocks!=null and lowStocks!=''">,lowStocks</if>
+		<if test="score!=0">,score</if>
+		<if test="specId!=0">,specId</if>
+		<if test="specInfo!=null and specInfo!=''">,specInfo</if>
+		<if test="sellerId!=0">,sellerId</if>
+		<if test="sellerName!=null and sellerName!=''">,sellerName</if>
+		<if test="giftID!=null and giftID!=''">,giftID</if>
+		)
+		values
+		(
+		id
+		<if test="orderID!=0">,#{orderID}</if>
+		<if test="productID!=0">,#{productID}</if>
+		<if test="price!=null">,#{price}</if>
+		<if test="number!=0">,#{number}</if>
+		<if test="productName!=null and productName!=''">,#{productName}</if>
+		<if test="picture!=null and picture!=''">,#{picture}</if>
+		<if test="fee!=null">,#{fee}</if>
+		<if test="total0!=null">,#{total0}</if>
+		<if test="isComment!=null and isComment!=''">,#{isComment}</if>
+		<if test="lowStocks!=null and lowStocks!=''">,#{lowStocks}</if>
+		<if test="score!=0">,#{score}</if>
+		<if test="specId!=0">,#{specId}</if>
+		<if test="specInfo!=null and specInfo!=''">,#{specInfo}</if>
+		<if test="sellerId!=0">,#{sellerId}</if>
+		<if test="sellerName!=null and sellerName!=''">,#{sellerName}</if>
+		<if test="giftID!=null and giftID!=''">,#{giftID}</if>
+		)
+	</insert>
+
+	<!-- 2. 删除Orderdetail -->
+	<delete id="delete" parameterType="Orderdetail">
+		delete from t_orderdetail where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Orderdetail -->
+	<update id="update" parameterType="Orderdetail">
+		update t_orderdetail
+		set id= #{id}
+		<if test="orderID!=0">,orderID = #{orderID}</if>
+		<if test="productID!=0">,productID = #{productID}</if>
+		<if test="price!=null">,price = #{price}</if>
+		<if test="number!=0">,number = #{number}</if>
+		<if test="productName!=null and productName!=''">,productName = #{productName}</if>
+		<if test="picture!=null and picture!=''">,picture = #{picture}</if>
+		<if test="fee!=null">,fee = #{fee}</if>
+		<if test="total0!=null">,total0 = #{total0}</if>
+		<if test="isComment!=null and isComment!=''">,isComment = #{isComment}</if>
+		<if test="lowStocks!=null and lowStocks!=''">,lowStocks = #{lowStocks}</if>
+		<if test="score!=0">,score = #{score}</if>
+		<if test="specId!=0">,specId = #{specId}</if>
+		<if test="specInfo!=null and specInfo!=''">,specInfo = #{specInfo}</if>
+		<if test="sellerId!=0">,sellerId = #{sellerId}</if>
+		<if test="sellerName!=null and sellerName!=''">,sellerName = #{sellerName}</if>
+		<if test="giftID!=null and giftID!=''">,giftID = #{giftID}</if>
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Orderdetail查询一条记录 -->
+	<select id="selectOne" parameterType="Orderdetail" resultType="Orderdetail">
+		select t.* from t_orderdetail t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Orderdetail -->
+	<select id="selectPageList" parameterType="Orderdetail" resultType="Orderdetail">
+		select t.* from t_orderdetail t where 1 = 1
+		<if test="orderID!=0"> and orderID = #{orderID}</if>
+		<if test="productID!=0"> and productID = #{productID}</if>
+		<if test="price!=null"> and price = #{price}</if>
+		<if test="number!=0"> and number = #{number}</if>
+		<if test="productName!=null and productName!=''"> and productName = #{productName}</if>
+		<if test="fee!=null"> and fee = #{fee}</if>
+		<if test="total0!=null"> and total0 = #{total0}</if>
+		<if test="isComment!=null and isComment!=''"> and isComment = #{isComment}</if>
+		<if test="lowStocks!=null and lowStocks!=''"> and lowStocks = #{lowStocks}</if>
+		<if test="score!=0"> and score = #{score}</if>
+		<if test="specId!=0"> and specId = #{specId}</if>
+		<if test="specInfo!=null and specInfo!=''"> and specInfo = #{specInfo}</if>
+		<if test="giftID!=null and giftID!=''"> and giftID = #{giftID}</if>
+		
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Orderdetail -->
+	<select id="selectList" parameterType="Orderdetail" resultType="Orderdetail">
+		select t.*,(select p.picture from t_product p where p.id=t.productID) picture 
+		  from t_orderdetail t where 1=1
+		<if test="orderID!=0"> and orderID = #{orderID}</if>
+		<if test="productID!=0"> and productID = #{productID}</if>
+		<if test="price!=null"> and price = #{price}</if>
+		<if test="number!=0"> and number = #{number}</if>
+		<if test="productName!=null and productName!=''"> and productName = #{productName}</if>
+		<if test="fee!=null"> and fee = #{fee}</if>
+		<if test="total0!=null"> and total0 = #{total0}</if>
+		<if test="isComment!=null and isComment!=''"> and isComment = #{isComment}</if>
+		<if test="lowStocks!=null and lowStocks!=''"> and lowStocks = #{lowStocks}</if>
+		<if test="score!=0"> and score = #{score}</if>
+		<if test="specId!=0"> and specId = #{specId}</if>
+		<if test="specInfo!=null and specInfo!=''"> and specInfo = #{specInfo}</if>
+		<if test="giftID!=null and giftID!=''"> and giftID = #{giftID}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_orderdetail where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Orderdetail">
+		select t.* from t_orderdetail t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Orderdetail -->
+	<select id="selectPageCount" parameterType="Orderdetail" resultType="int">
+		select count(1) from t_orderdetail t where 1 = 1
+		<if test="orderID!=0"> and orderID = #{orderID}</if>
+		<if test="productID!=0"> and productID = #{productID}</if>
+		<if test="price!=null"> and price = #{price}</if>
+		<if test="number!=0"> and number = #{number}</if>
+		<if test="productName!=null and productName!=''"> and productName = #{productName}</if>
+		<if test="fee!=null"> and fee = #{fee}</if>
+		<if test="total0!=null"> and total0 = #{total0}</if>
+		<if test="isComment!=null and isComment!=''"> and isComment = #{isComment}</if>
+		<if test="lowStocks!=null and lowStocks!=''"> and lowStocks = #{lowStocks}</if>
+		<if test="score!=0"> and score = #{score}</if>
+		<if test="specId!=0"> and specId = #{specId}</if>
+		<if test="specInfo!=null and specInfo!=''"> and specInfo = #{specInfo}</if>
+		<if test="giftID!=null and giftID!=''"> and giftID = #{giftID}</if>
+		
+	</select>
+	
+	<!-- 10. 订单详情数量 -->
+	<select id="selectCount" parameterType="string" resultType="int">
+		select count(*) from t_orderdetail where 1=1 and orderID=#{orderID}
+	</select>
+	
+	<!-- 11.batchSave  -->
+	<insert id="batchSave">
+		insert into t_orderdetail
+		(orderID, productID, price, picture, number, productName, fee, total0, isComment, lowStocks, score, specId, specInfo, sellerId, sellerName, giftID)
+		values <foreach collection="odList" item="item" index="index" separator=",">
+            (#{orderId}, #{item.productID}, #{item.price}, #{item.picture}, #{item.number}, #{item.productName}, #{item.fee}, #{item.total0}, #{item.isComment}, #{item.lowStocks}, #{item.score}, #{item.specId}, #{item.specInfo}, #{item.sellerId} ,#{item.sellerName}, #{item.giftID})
+       </foreach >
+	</insert>
+</mapper>

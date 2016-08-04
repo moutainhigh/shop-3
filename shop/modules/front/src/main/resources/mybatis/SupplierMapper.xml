@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.SupplierDao">
+
+    <sql id="supplierColumns">
+		a.id,
+    	a.short_name as shortName,
+    	a.name,
+    	a.level,
+    	a.province_id as provinceId,
+    	a.province_name as provinceName,
+    	a.city_id as cityId,
+    	a.city_name as cityName,
+    	a.county_id as countyId,
+    	a.county_name as countyName,
+    	a.address,
+    	a.longitude,
+    	a.latitude,
+    	a.phone,
+    	a.contact_name as contactName,
+    	a.contact_mobile as contactMobile,
+    	a.business,
+    	a.status
+	</sql>
+    
+	<!-- 1. 添加Supplier -->
+	<insert id="insert" parameterType="Supplier" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_supplier(short_name, name, level, province_id, province_name, city_id, city_name, county_id, county_name, address, longitude, latitude,
+			phone, contact_name, contact_mobile, business,status) 
+		VALUES (#{shortName}, #{name}, #{level}, #{provinceId}, #{provinceName}, #{cityId}, #{cityName}, #{countyId}, #{countyName}, #{address}, #{longitude}, #{latitude},
+			#{phone}, #{contactName}, #{contactMobile}, #{business}, #{status})
+	</insert>
+
+	<!-- 2. 删除Supplier -->
+	<delete id="delete" parameterType="Supplier">
+		delete from t_supplier where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Supplier -->
+	<update id="update" parameterType="Supplier">
+		UPDATE t_supplier 
+		SET id= #{id}
+		<if test="shortName != null and shortName != ''">,short_name = #{shortName}</if>
+		<if test="name != null and name != ''">,name = #{name}</if>
+		<if test="level != null">,level = #{level}</if>
+		<if test="provinceId != null">,province_id = #{provinceId}</if>
+		<if test="provinceName != null and provinceName != ''">,province_name = #{provinceName}</if>
+		<if test="cityId != null">,city_id = #{cityId}</if>
+		<if test="cityName != null and cityName != ''">,city_name = #{cityName}</if>
+		<if test="countyId != null">,county_id = #{countyId}</if>
+		<if test="countyName != null and countyName != ''">,county_name = #{countyName}</if>
+		<if test="address != null and address != ''">,address = #{address}</if>
+		<if test="longitude != null">,longitude = #{longitude}</if>
+		<if test="latitude != null">,latitude = #{latitude}</if>
+		<if test="phone != null and phone != ''">,phone = #{phone}</if>
+		<if test="contactName != null and contactName != ''">,contact_name = #{contactName}</if>
+		<if test="contactMobile != null and contactMobile != ''">,contact_mobile = #{contactMobile}</if>
+		<if test="business != null and business != ''">,business = #{business}</if>
+		<if test="status != null and status != ''">,status = #{status}</if>
+		WHERE id = #{id}
+	</update>
+
+	<!-- 4. 根据Supplier查询一条记录 -->
+	<select id="selectOne" parameterType="Supplier" resultType="Supplier">
+		SELECT <include refid="supplierColumns" />
+		FROM t_supplier a
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Supplier -->
+	<select id="selectPageList" parameterType="Supplier" resultType="Supplier">
+		SELECT
+		<include refid="supplierColumns" />
+		FROM t_supplier a
+		WHERE 1 = 1
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Supplier -->
+	<select id="selectList" parameterType="Supplier" resultType="Supplier">
+		SELECT
+		<include refid="supplierColumns" />
+		FROM t_supplier a
+		WHERE 1 = 1
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_supplier where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Supplier">
+		SELECT <include refid="supplierColumns" />
+		FROM t_supplier a 
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Supplier -->
+	<select id="selectPageCount" parameterType="Supplier" resultType="int">
+		select count(1) from t_supplier t where 1 = 1
+	</select>
+	
+</mapper>

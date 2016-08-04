@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.ProductSellCountDao">
+
+	<!-- 1. 添加ProductSellCount -->
+	<insert id="insert" parameterType="ProductSellCount" useGeneratedKeys="true" keyProperty="id">
+		insert into t_product_sellcount
+		(id
+        <if test="productId!=0">,productId</if>
+		<if test="sellCount!=0">,sellCount</if>
+		
+		)
+		values
+		(
+		id
+		<if test="productId!=0">,#{productId}</if>
+		<if test="sellCount!=0">,#{sellCount}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除ProductSellCount -->
+	<delete id="delete" parameterType="ProductSellCount">
+		delete from t_product_sellcount where id = #{id}
+	</delete>
+
+	<!-- 3. 修改ProductSellCount -->
+	<update id="update" parameterType="ProductSellCount">
+		update t_product_sellcount
+		set id= #{id}
+		<if test="productId!=0">,productId = #{productId}</if>
+		<if test="sellCount!=0">,sellCount = #{sellCount}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据ProductSellCount查询一条记录 -->
+	<select id="selectOne" parameterType="ProductSellCount" resultType="ProductSellCount">
+		select t.* from t_product_sellcount t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询ProductSellCount -->
+	<select id="selectPageList" parameterType="ProductSellCount" resultType="ProductSellCount">
+		select t.* from t_product_sellcount t where 1 = 1
+		<if test="productId!=0"> and productId = #{productId}</if>
+		<if test="sellCount!=0"> and sellCount = #{sellCount}</if>
+		
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询ProductSellCount -->
+	<select id="selectList" parameterType="ProductSellCount" resultType="ProductSellCount">
+		select t.* from t_product_sellcount t where 1 = 1 
+		<if test="productId!=0"> and productId = #{productId}</if>
+		<if test="sellCount!=0"> and sellCount = #{sellCount}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_product_sellcount where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="ProductSellCount">
+		select t.* from t_product_sellcount t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询ProductSellCount -->
+	<select id="selectPageCount" parameterType="ProductSellCount" resultType="int">
+		select count(1) from t_product_sellcount t where 1 = 1
+		<if test="productId!=0"> and productId = #{productId}</if>
+		<if test="sellCount!=0"> and sellCount = #{sellCount}</if>
+	</select>
+	
+	<!-- 10. 点击数新增 -->
+	<update id="incr" parameterType="long">
+		update t_product_sellcount set sellcount = sellcount + 1 where productId = #{productId}
+	</update>
+	
+	<!-- 11. countProductSellCount -->
+	<select id="countProductSellCount" parameterType="long" resultType="java.lang.Integer">
+	    select t.sellcount from t_product_sellcount t where productId = #{productId}
+	</select>
+</mapper>

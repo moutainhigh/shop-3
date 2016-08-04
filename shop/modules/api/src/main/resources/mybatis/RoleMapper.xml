@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.RoleDao">
+
+    <sql id="roleColumns">
+		a.id,
+		a.role_name as roleName,
+		a.role_desc as roleDesc,
+		a.role_dbPrivilege as roleDbPrivilege,
+		a.status
+	</sql>
+    
+	<!-- 1. 添加Role -->
+	<insert id="insert" parameterType="Role" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_role(role_name, role_desc, role_dbPrivilege, status) 
+		VALUES (#{roleName}, #{roleDesc}, #{roleDbPrivilege}, #{status})
+	</insert>
+
+	<!-- 2. 删除Role -->
+	<delete id="delete" parameterType="Role">
+		delete from t_role where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Role -->
+	<update id="update" parameterType="Role">
+		UPDATE t_role SET 
+			role_name = #{roleName}, 
+			role_desc = #{roleDesc}, 
+			role_dbPrivilege = #{roleDbPrivilege}, 
+			status = #{status}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 4. 根据Role查询一条记录 -->
+	<select id="selectOne" parameterType="Role" resultType="Role">
+		SELECT <include refid="roleColumns" />
+		FROM t_role a
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Role -->
+	<select id="selectPageList" parameterType="Role" resultType="Role">
+		SELECT
+		<include refid="roleColumns" />
+		FROM t_role a
+		WHERE 1 = 1
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Role -->
+	<select id="selectList" parameterType="Role" resultType="Role">
+		SELECT
+		<include refid="roleColumns" />
+		FROM t_role a
+		WHERE 1 = 1
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_role where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Role">
+		SELECT <include refid="roleColumns" />
+		FROM t_role a 
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Role -->
+	<select id="selectPageCount" parameterType="Role" resultType="int">
+		select count(1) from t_role t where 1 = 1
+	</select>
+	
+</mapper>

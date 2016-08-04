@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.NavigationDao">
+
+	<!-- 1. 添加Navigation -->
+	<insert id="insert" parameterType="Navigation" useGeneratedKeys="true" keyProperty="id">
+		insert into t_navigation
+		(id
+        <if test="name!=null and name!=''">,name</if>
+		<if test="target!=null and target!=''">,target</if>
+		<if test="position!=null and position!=''">,position</if>
+		<if test="description!=null and description!=''">,description</if>
+		<if test="sort!=0">,sort</if>
+		<if test="http!=null and http!=''">,http</if>
+		
+		)
+		values
+		(
+		id
+		<if test="name!=null and name!=''">,#{name}</if>
+		<if test="target!=null and target!=''">,#{target}</if>
+		<if test="position!=null and position!=''">,#{position}</if>
+		<if test="description!=null and description!=''">,#{description}</if>
+		<if test="sort!=0">,${sort}</if>
+		<if test="http!=null and http!=''">,#{http}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除Navigation -->
+	<delete id="delete" parameterType="Navigation">
+		delete from t_navigation where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Navigation -->
+	<update id="update" parameterType="Navigation">
+		update t_navigation
+		set id= #{id}
+		<if test="name!=null and name!=''">,name = #{name}</if>
+		<if test="target!=null and target!=''">,target = #{target}</if>
+		<if test="position!=null and position!=''">,position = #{position}</if>
+		<if test="description!=null and description!=''">,description = #{description}</if>
+		<if test="sort!=0">,sort = #{sort}</if>
+		<if test="http!=null and http!=''">,http = #{http}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Navigation查询一条记录 -->
+	<select id="selectOne" parameterType="Navigation" resultType="Navigation">
+		select t.* from t_navigation t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Navigation -->
+	<select id="selectPageList" parameterType="Navigation" resultType="Navigation">
+		select t.* from t_navigation t where 1 = 1
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="target!=null and target!=''"> and target = #{target}</if>
+		<if test="position!=null and position!=''"> and position = #{position}</if>
+		<if test="description!=null and description!=''"> and description = #{description}</if>
+		<if test="sort!=0"> and sort = #{sort}</if>
+		<if test="http!=null and http!=''"> and http = #{http}</if>
+		
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Navigation -->
+	<select id="selectList" parameterType="Navigation" resultType="Navigation">
+		select t.* from t_navigation t where 1 = 1 
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="target!=null and target!=''"> and target = #{target}</if>
+		<if test="position!=null and position!=''"> and position = #{position}</if>
+		<if test="description!=null and description!=''"> and description = #{description}</if>
+		<if test="sort!=0"> and sort = #{sort}</if>
+		<if test="http!=null and http!=''"> and http = #{http}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_navigation where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Navigation">
+		select t.* from t_navigation t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Navigation -->
+	<select id="selectPageCount" parameterType="Navigation" resultType="int">
+		select count(1) from t_navigation t where 1 = 1
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="target!=null and target!=''"> and target = #{target}</if>
+		<if test="position!=null and position!=''"> and position = #{position}</if>
+		<if test="description!=null and description!=''"> and description = #{description}</if>
+		<if test="sort!=0"> and sort = #{sort}</if>
+		<if test="http!=null and http!=''"> and http = #{http}</if>
+		
+	</select>
+
+</mapper>

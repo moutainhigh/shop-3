@@ -1,0 +1,401 @@
+* {
+    font-family: 'Microsoft Yahei', Arial , '\5FAE\8F6F\96C5\9ED1';
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.container-n {
+    width: 100%;
+}
+
+.container-n h1{
+    font-weight: 400;
+    position: relative;
+    line-height: 46px;
+    overflow: hidden;
+    font-size: 18px;
+    display: block;
+    color: #333;
+}
+
+.f-l {
+    float: left;
+}
+
+.f-r {
+    float: right;
+}
+
+.container-n .option-left {
+    width: 115px;
+}
+
+
+.option-left p {
+    line-height: 30px;
+    font-size: 14px;
+    color: #666;
+    /*font-family: "Microsoft YaHei";*/
+}
+
+.option-left em {
+    font-style: normal;
+    color: rgb(236,26,91);
+    padding-right: 3px;
+}
+
+.xieyi,
+.user-idImg,
+.user-id,
+.user-name,
+.zhengjian-type,
+.celphone {
+    margin-top: 40px;
+}
+
+.xieyi:after,
+.user-idImg:after,
+.user-id:after,
+.user-name:after,
+.zhengjian-type:after,
+.celphone:after {
+    visibility: hidden;
+    overflow: hidden;
+    display: block;
+    content: ".";
+    clear: both;
+    height: 0;
+}
+.user-idImg p.warning {
+    font-size: 13px;
+    color: rgb(236,26,91);
+    line-height: 18px;
+    margin-top: 2px;
+}
+
+.container-n .option-right {
+    float: left;
+}
+
+.option-right {
+    position: relative;
+}
+
+
+.option-right input {
+    width: 270px;
+    height: 31px;
+    padding: 5px;
+    font-size: 14px;
+    color: #4C4C4C;
+    border: 1px solid #ccc;
+}
+
+
+.option-right p {
+    line-height: 30px;
+    font-size: 23px;
+    color: black;
+}
+
+.option-right .btn-group button {
+    width: 270px;
+    font-size: 13px;
+    border-radius: 0px;
+    text-align: left;
+}
+
+.option-right .btn-group span {
+    float: right;
+    margin-top: 7px;
+}
+
+.option-right .btn-group .dropdown-menu {
+    border-radius: 0;
+    width: 270px;
+}
+
+.option-right p.warning {
+    font-size: 13px;
+    color: rgb(236,26,91);
+    line-height: 18px;
+    margin-top: 2px;
+}
+
+.option-right p.tips {
+    font-size: 13px;
+    line-height: 18px;
+    color: #999;
+}
+/*.user-idImg-upload {
+    width: 230px;
+    height: 31px;
+    
+}*/
+
+.option-right .upload-input {
+    width: 120px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.option-right .upload-div {
+    width: 270px;
+    height: 31px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 31px;
+    color: rgb(236,26,91);
+}
+.after-upload .re-upload img,
+.upload-div img {
+    margin-top: -5px;
+    margin-right: 5px;
+}
+
+.yulan {
+    width: 270px;
+    border: 1px solid #ccc;
+    height: 160px;
+}
+
+.yulan img {
+    width: 270px;
+    height: 160px;
+}
+
+.after-upload {
+    width: 270px;
+    height: 31px;
+    margin-top: 6px;
+    position: relative;
+}
+
+.after-upload .re-upload {
+    width: 50%;
+    float: left;
+    height: 31px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 31px;
+    color: rgb(236,26,91);
+}
+
+.after-upload .look-big-img {
+    width: 50%;
+    float: left;
+    height: 31px;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    line-height: 31px;
+    color: rgb(236,26,91);
+    cursor: pointer;
+}
+
+.after-upload .re-upload-input {
+    width: 50%;
+    height: 31px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.border-r {
+    padding-right: 5px;
+    border-right: 1px solid #ccc 
+}
+
+.example-idcar {
+    float: left;
+    margin-left: 9px;
+    position: relative;
+}
+
+.example-idcar p {
+    color: #666;
+}
+
+.example-idcar .example-img {
+    width: 100px;
+    height: auto;
+}
+
+.example-idcar .fangda {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 12;
+    cursor: pointer;
+}
+
+.xieyi .option-left {
+    height: 1px;
+}
+
+.xieyi .option-right {
+    width: 270px;
+}
+
+.xieyi .option-right input {
+    float: left;
+    font-size: 13px;
+    width: auto;
+    height: 23px;
+    margin-right: 2px;
+}
+
+.xieyi .option-right p {
+    float: left;
+    font-size: 13px;
+    color: #999;
+}
+
+.xieyi p.warning {
+    font-size: 13px;
+    color: rgb(236,26,91);
+    line-height: 18px;
+    margin-top: 2px;
+    width:100%;
+}
+
+.next-step {
+    float: left;
+}
+
+.next-step button {
+    border-radius: 0px;
+    width: 90px;
+    background-color: 
+}
+
+.info-after {
+    width: 733px;
+    text-align: center;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+
+.info-after h2{
+    font-weight: 600;
+    position: relative;
+    line-height: 46px;
+    overflow: hidden;
+    font-size: 23px;
+    display: block;
+    color: #333;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.info-after p{
+    font-size: 13px;
+    color: #565656;
+}
+
+.info-after p em{
+    color: #EC1A5B;
+    font-style: normal;
+}
+
+.info-after a{
+
+    color: #565656;
+}
+
+.info-after a:hover{
+
+    color: #EC1A5B;
+}
+
+.info-after-btn {
+    width: 733px;
+    padding: 40px 80px;
+}
+
+.info-after-btn a {
+    display: block;
+    height: 55px;
+    width: 250px;
+    line-height: 55px;
+    text-align: center;
+    color: white;
+    background-color: #EC1A5B;
+    font-size: 18px;
+}
+
+.info-after div{
+    height: 52px;
+    padding: 0 150px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.info-after div h1{
+    float: right;
+}
+
+.info-after img {
+    float: left;
+}
+
+.info-after h1{
+    font-weight: 600;
+    position: relative;
+    line-height: 52px;
+    overflow: hidden;
+    font-size: 23px;
+    display: block;
+    color: #333;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.info-after p{
+    font-size: 13px;
+    color: #565656;
+}
+
+.info-after p em{
+    color: #EC1A5B;
+    font-style: normal;
+}
+
+.info-after a{
+
+    color: #565656;
+}
+
+.info-after a:hover{
+
+    color: #EC1A5B;
+}
+
+.info-after-btn {
+    width: 733px;
+    padding: 40px 80px;
+}
+
+.info-after-btn a {
+    display: block;
+    height: 55px;
+    width: 250px;
+    line-height: 55px;
+    text-align: center;
+    color: white;
+    background-color: #EC1A5B;
+    font-size: 18px;
+}

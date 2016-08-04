@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.sms;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Sms;public interface SmsService extends Services<Sms> {}

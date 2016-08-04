@@ -1,0 +1,1 @@
+package net.jeeshop.services.front.questionnaire;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Questionnaire;public interface QuestionnaireService extends Services<Questionnaire> {}

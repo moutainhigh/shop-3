@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.SystemSettingDao">
+
+	<!-- 1. 添加SystemSetting -->
+	<insert id="insert" parameterType="SystemSetting" useGeneratedKeys="true" keyProperty="id">
+		insert into t_systemsetting
+		(id
+        <if test="systemCode!=null and systemCode!=''">,systemCode</if>
+		<if test="name!=null and name!=''">,name</if>
+		<if test="www!=null and www!=''">,www</if>
+		<if test="log!=null and log!=''">,log</if>
+		<if test="title!=null and title!=''">,title</if>
+		<if test="description!=null and description!=''">,description</if>
+		<if test="keywords!=null and keywords!=''">,keywords</if>
+		<if test="shortcuticon!=null and shortcuticon!=''">,shortcuticon</if>
+		<if test="address!=null and address!=''">,address</if>
+		<if test="tel!=null and tel!=''">,tel</if>
+		<if test="email!=null and email!=''">,email</if>
+		<if test="icp!=null and icp!=''">,icp</if>
+		<if test="isopen!=null and isopen!=''">,isopen</if>
+		<if test="closeMsg!=null and closeMsg!=''">,closeMsg</if>
+		<if test="qq!=null and qq!=''">,qq</if>
+		<if test="imageRootPath!=null and imageRootPath!=''">,imageRootPath</if>
+		<if test="manageHttp!=null and manageHttp!=''">,manageHttp</if>
+		<if test="defaultProductImg!=null and defaultProductImg!=''">,defaultProductImg</if>
+		<if test="style!=null and style!=''">,style</if>
+		<if test="version!=null and version!=''">,version</if>
+		<if test="qqHelpHtml!=null">,qqHelpHtml</if>
+		<if test="images!=null">,images</if>
+		<if test="manageLeftTreeLeafIcon!=null and manageLeftTreeLeafIcon!=''">,manageLeftTreeLeafIcon</if>
+		<if test="statisticsCode!=null and statisticsCode!=''">,statisticsCode</if>
+		<if test="openResponsive!=null and openResponsive!=''">,openResponsive</if>
+		
+		)
+		values
+		(
+		id
+		<if test="systemCode!=null and systemCode!=''">,#{systemCode}</if>
+		<if test="name!=null and name!=''">,#{name}</if>
+		<if test="www!=null and www!=''">,#{www}</if>
+		<if test="log!=null and log!=''">,#{log}</if>
+		<if test="title!=null and title!=''">,#{title}</if>
+		<if test="description!=null and description!=''">,#{description}</if>
+		<if test="keywords!=null and keywords!=''">,#{keywords}</if>
+		<if test="shortcuticon!=null and shortcuticon!=''">,#{shortcuticon}</if>
+		<if test="address!=null and address!=''">,#{address}</if>
+		<if test="tel!=null and tel!=''">,#{tel}</if>
+		<if test="email!=null and email!=''">,#{email}</if>
+		<if test="icp!=null and icp!=''">,#{icp}</if>
+		<if test="isopen!=null and isopen!=''">,#{isopen}</if>
+		<if test="closeMsg!=null and closeMsg!=''">,#{closeMsg}</if>
+		<if test="qq!=null and qq!=''">,#{qq}</if>
+		<if test="imageRootPath!=null and imageRootPath!=''">,#{imageRootPath}</if>
+		<if test="manageHttp!=null and manageHttp!=''">,#{manageHttp}</if>
+		<if test="defaultProductImg!=null and defaultProductImg!=''">,#{defaultProductImg}</if>
+		<if test="style!=null and style!=''">,#{style}</if>
+		<if test="version!=null and version!=''">,#{version}</if>
+		<if test="qqHelpHtml!=null">,${qqHelpHtml}</if>
+		<if test="images!=null">,${images}</if>
+		<if test="manageLeftTreeLeafIcon!=null and manageLeftTreeLeafIcon!=''">,#{manageLeftTreeLeafIcon}</if>
+		<if test="statisticsCode!=null and statisticsCode!=''">,#{statisticsCode}</if>
+		<if test="openResponsive!=null and openResponsive!=''">,#{openResponsive}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除SystemSetting -->
+	<delete id="delete" parameterType="SystemSetting">
+		delete from t_systemsetting where id = #{id}
+	</delete>
+
+	<!-- 3. 修改SystemSetting -->
+	<update id="update" parameterType="SystemSetting">
+		update t_systemsetting
+		set id= #{id}
+		<if test="systemCode!=null and systemCode!=''">,systemCode = #{systemCode}</if>
+		<if test="name!=null and name!=''">,name = #{name}</if>
+		<if test="www!=null and www!=''">,www = #{www}</if>
+		<if test="log!=null and log!=''">,log = #{log}</if>
+		<if test="title!=null and title!=''">,title = #{title}</if>
+		<if test="description!=null and description!=''">,description = #{description}</if>
+		<if test="keywords!=null and keywords!=''">,keywords = #{keywords}</if>
+		<if test="shortcuticon!=null and shortcuticon!=''">,shortcuticon = #{shortcuticon}</if>
+		<if test="address!=null and address!=''">,address = #{address}</if>
+		<if test="tel!=null and tel!=''">,tel = #{tel}</if>
+		<if test="email!=null and email!=''">,email = #{email}</if>
+		<if test="icp!=null and icp!=''">,icp = #{icp}</if>
+		<if test="isopen!=null and isopen!=''">,isopen = #{isopen}</if>
+		<if test="closeMsg!=null and closeMsg!=''">,closeMsg = #{closeMsg}</if>
+		<if test="qq!=null and qq!=''">,qq = #{qq}</if>
+		<if test="imageRootPath!=null and imageRootPath!=''">,imageRootPath = #{imageRootPath}</if>
+		<if test="manageHttp!=null and manageHttp!=''">,manageHttp = #{manageHttp}</if>
+		<if test="defaultProductImg!=null and defaultProductImg!=''">,defaultProductImg = #{defaultProductImg}</if>
+		<if test="style!=null and style!=''">,style = #{style}</if>
+		<if test="version!=null and version!=''">,version = #{version}</if>
+		<if test="qqHelpHtml!=null">,qqHelpHtml = #{qqHelpHtml}</if>
+		<if test="images!=null">,images = #{images}</if>
+		<if test="manageLeftTreeLeafIcon!=null and manageLeftTreeLeafIcon!=''">,manageLeftTreeLeafIcon = #{manageLeftTreeLeafIcon}</if>
+		<if test="statisticsCode!=null and statisticsCode!=''">,statisticsCode = #{statisticsCode}</if>
+		<if test="openResponsive!=null and openResponsive!=''">,openResponsive = #{openResponsive}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据SystemSetting查询一条记录 -->
+	<select id="selectOne" parameterType="SystemSetting" resultType="SystemSetting">
+		select t.* from t_systemsetting t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询SystemSetting -->
+	<select id="selectPageList" parameterType="SystemSetting" resultType="SystemSetting">
+		select t.* from t_systemsetting t where 1 = 1
+		<if test="systemCode!=null and systemCode!=''"> and systemCode = #{systemCode}</if>
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="www!=null and www!=''"> and www = #{www}</if>
+		<if test="log!=null and log!=''"> and log = #{log}</if>
+		<if test="title!=null and title!=''"> and title = #{title}</if>
+		<if test="description!=null and description!=''"> and description = #{description}</if>
+		<if test="keywords!=null and keywords!=''"> and keywords = #{keywords}</if>
+		<if test="shortcuticon!=null and shortcuticon!=''"> and shortcuticon = #{shortcuticon}</if>
+		<if test="address!=null and address!=''"> and address = #{address}</if>
+		<if test="tel!=null and tel!=''"> and tel = #{tel}</if>
+		<if test="email!=null and email!=''"> and email = #{email}</if>
+		<if test="icp!=null and icp!=''"> and icp = #{icp}</if>
+		<if test="isopen!=null and isopen!=''"> and isopen = #{isopen}</if>
+		<if test="closeMsg!=null and closeMsg!=''"> and closeMsg = #{closeMsg}</if>
+		<if test="qq!=null and qq!=''"> and qq = #{qq}</if>
+		<if test="imageRootPath!=null and imageRootPath!=''"> and imageRootPath = #{imageRootPath}</if>
+		<if test="manageHttp!=null and manageHttp!=''"> and manageHttp = #{manageHttp}</if>
+		<if test="defaultProductImg!=null and defaultProductImg!=''"> and defaultProductImg = #{defaultProductImg}</if>
+		<if test="style!=null and style!=''"> and style = #{style}</if>
+		<if test="version!=null and version!=''"> and version = #{version}</if>
+		<if test="qqHelpHtml!=null"> and qqHelpHtml = #{qqHelpHtml}</if>
+		<if test="images!=null"> and images = #{images}</if>
+		<if test="manageLeftTreeLeafIcon!=null and manageLeftTreeLeafIcon!=''"> and manageLeftTreeLeafIcon = #{manageLeftTreeLeafIcon}</if>
+		<if test="statisticsCode!=null and statisticsCode!=''"> and statisticsCode = #{statisticsCode}</if>
+		<if test="openResponsive!=null and openResponsive!=''"> and openResponsive = #{openResponsive}</if>
+		
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询SystemSetting -->
+	<select id="selectList" parameterType="SystemSetting" resultType="SystemSetting">
+		select t.* from t_systemsetting t where 1 = 1 
+		<if test="systemCode!=null and systemCode!=''"> and systemCode = #{systemCode}</if>
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="www!=null and www!=''"> and www = #{www}</if>
+		<if test="log!=null and log!=''"> and log = #{log}</if>
+		<if test="title!=null and title!=''"> and title = #{title}</if>
+		<if test="description!=null and description!=''"> and description = #{description}</if>
+		<if test="keywords!=null and keywords!=''"> and keywords = #{keywords}</if>
+		<if test="shortcuticon!=null and shortcuticon!=''"> and shortcuticon = #{shortcuticon}</if>
+		<if test="address!=null and address!=''"> and address = #{address}</if>
+		<if test="tel!=null and tel!=''"> and tel = #{tel}</if>
+		<if test="email!=null and email!=''"> and email = #{email}</if>
+		<if test="icp!=null and icp!=''"> and icp = #{icp}</if>
+		<if test="isopen!=null and isopen!=''"> and isopen = #{isopen}</if>
+		<if test="closeMsg!=null and closeMsg!=''"> and closeMsg = #{closeMsg}</if>
+		<if test="qq!=null and qq!=''"> and qq = #{qq}</if>
+		<if test="imageRootPath!=null and imageRootPath!=''"> and imageRootPath = #{imageRootPath}</if>
+		<if test="manageHttp!=null and manageHttp!=''"> and manageHttp = #{manageHttp}</if>
+		<if test="defaultProductImg!=null and defaultProductImg!=''"> and defaultProductImg = #{defaultProductImg}</if>
+		<if test="style!=null and style!=''"> and style = #{style}</if>
+		<if test="version!=null and version!=''"> and version = #{version}</if>
+		<if test="qqHelpHtml!=null"> and qqHelpHtml = #{qqHelpHtml}</if>
+		<if test="images!=null"> and images = #{images}</if>
+		<if test="manageLeftTreeLeafIcon!=null and manageLeftTreeLeafIcon!=''"> and manageLeftTreeLeafIcon = #{manageLeftTreeLeafIcon}</if>
+		<if test="statisticsCode!=null and statisticsCode!=''"> and statisticsCode = #{statisticsCode}</if>
+		<if test="openResponsive!=null and openResponsive!=''"> and openResponsive = #{openResponsive}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_systemsetting where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="SystemSetting">
+		select t.* from t_systemsetting t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询SystemSetting -->
+	<select id="selectPageCount" parameterType="SystemSetting" resultType="int">
+		select count(1) from t_systemsetting t where 1 = 1
+		<if test="systemCode!=null and systemCode!=''"> and systemCode = #{systemCode}</if>
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="www!=null and www!=''"> and www = #{www}</if>
+		<if test="log!=null and log!=''"> and log = #{log}</if>
+		<if test="title!=null and title!=''"> and title = #{title}</if>
+		<if test="description!=null and description!=''"> and description = #{description}</if>
+		<if test="keywords!=null and keywords!=''"> and keywords = #{keywords}</if>
+		<if test="shortcuticon!=null and shortcuticon!=''"> and shortcuticon = #{shortcuticon}</if>
+		<if test="address!=null and address!=''"> and address = #{address}</if>
+		<if test="tel!=null and tel!=''"> and tel = #{tel}</if>
+		<if test="email!=null and email!=''"> and email = #{email}</if>
+		<if test="icp!=null and icp!=''"> and icp = #{icp}</if>
+		<if test="isopen!=null and isopen!=''"> and isopen = #{isopen}</if>
+		<if test="closeMsg!=null and closeMsg!=''"> and closeMsg = #{closeMsg}</if>
+		<if test="qq!=null and qq!=''"> and qq = #{qq}</if>
+		<if test="imageRootPath!=null and imageRootPath!=''"> and imageRootPath = #{imageRootPath}</if>
+		<if test="manageHttp!=null and manageHttp!=''"> and manageHttp = #{manageHttp}</if>
+		<if test="defaultProductImg!=null and defaultProductImg!=''"> and defaultProductImg = #{defaultProductImg}</if>
+		<if test="style!=null and style!=''"> and style = #{style}</if>
+		<if test="version!=null and version!=''"> and version = #{version}</if>
+		<if test="qqHelpHtml!=null"> and qqHelpHtml = #{qqHelpHtml}</if>
+		<if test="images!=null"> and images = #{images}</if>
+		<if test="manageLeftTreeLeafIcon!=null and manageLeftTreeLeafIcon!=''"> and manageLeftTreeLeafIcon = #{manageLeftTreeLeafIcon}</if>
+		<if test="statisticsCode!=null and statisticsCode!=''"> and statisticsCode = #{statisticsCode}</if>
+		<if test="openResponsive!=null and openResponsive!=''"> and openResponsive = #{openResponsive}</if>
+		
+	</select>
+
+</mapper>

@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.ProductDao">
+	<sql id="productColumns">
+		t.id "id",
+		t.catalogID "catalogID",
+		t.name "name",
+		t.introduce "introduce",
+		t.price "price",
+		t.nowPrice "nowprice",
+		t.picture "picture",
+		DATE_FORMAT(t.createtime,'%Y-%m-%d') "createtime",
+		t.isnew "isnew",
+		t.sale "sale",
+		t.isRecommend "isRecommend",
+		t.status,
+		t.productHTML,
+		t.images,
+		t.title,
+		t.giftID,
+		t.description,
+		t.unit,
+		t.minSell,
+		t.score,
+		t.sellerID,
+		t.activityID,
+		h.hit "hit",
+		s.stock "stock",
+		ps.sellcount "sellCount",
+		ts.name  "seller.name",
+		ts.logo  "seller.logo",
+		a.id as 'activity.id',
+		a.name as 'activity.name',
+		a.accountRange as 'activity.accountRange',
+		a.startDate as 'activity.startDate',
+		a.endDate as 'activity.endDate',
+		a.content as 'activity.content',
+		a.status as 'activity.status',
+		a.catalogs as 'activity.catalogs',
+		a.activityType as 'activity.activityType',
+		a.discountType as 'activity.discountType',
+		a.discount as 'activity.discount',
+		a.minprice as 'activity.minprice',
+		a.maxprice as 'activity.maxprice',
+		a.maxSellCount as 'activity.maxSellCount',
+		a.productID as 'activity.productID',
+		a.exchangeScore as 'activity.exchangeScore',
+		a.minGroupCount as 'activity.minGroupCount',
+		a.tuanPrice as 'activity.tuanPrice',
+		a.hasBuyGroupPerson as 'activity.hasBuyGroupPerson'
+	</sql>
+	
+	<sql id="productJoins">
+		t_product t 
+	    LEFT JOIN t_product_catalog_rela r ON t.id = r.productId  
+	    LEFT JOIN t_product_stock s ON t.id = s.productId 
+	    LEFT JOIN t_product_sellcount ps ON t.id = ps.productId 
+	    LEFT JOIN t_product_hit h ON t.id = h.productId 
+	    LEFT JOIN t_seller ts ON t.sellerID = ts.id
+	    LEFT JOIN t_activity a ON t.activityID = a.id
+    </sql>
+
+	<!-- 1. 添加Product -->
+	<insert id="insert" parameterType="Product" useGeneratedKeys="true" keyProperty="id">
+		insert into t_product
+		(id
+        <if test="name!=null and name!=''">,name</if>
+		<if test="introduce!=null and introduce!=''">,introduce</if>
+		<if test="price!=null">,price</if>
+		<if test="nowPrice!=null">,nowPrice</if>
+		<if test="picture!=null and picture!=''">,picture</if>
+		<if test="createtime!=null">,createtime</if>
+		<if test="createAccount!=null and createAccount!=''">,createAccount</if>
+		<if test="updateAccount!=null and updateAccount!=''">,updateAccount</if>
+		<if test="updatetime!=null">,updatetime</if>
+		<if test="isnew!=null and isnew!=''">,isnew</if>
+		<if test="sale!=null and sale!=''">,sale</if>
+		<if test="hit!=0">,hit</if>
+		<if test="status!=0">,status</if>
+		<if test="productHTML!=null">,productHTML</if>
+		<if test="maxPicture!=null and maxPicture!=''">,maxPicture</if>
+		<if test="images!=null and images!=''">,images</if>
+		<if test="catalogID!=null and catalogID!=''">,catalogID</if>
+		<if test="sellcount!=0">,sellcount</if>
+		<if test="stock!=0">,stock</if>
+		<if test="searchKey!=null and searchKey!=''">,searchKey</if>
+		<if test="title!=null and title!=''">,title</if>
+		<if test="description!=null and description!=''">,description</if>
+		<if test="keywords!=null and keywords!=''">,keywords</if>
+		<if test="activityID!=null and activityID!=''">,activityID</if>
+		<if test="unit!=null and unit!=''">,unit</if>
+		<if test="minSell!=0">,minSell</if>
+		<if test="score!=0">,score</if>
+		<if test="isTimePromotion!=null and isTimePromotion!=''">,isTimePromotion</if>
+		<if test="giftID!=null and giftID!=''">,giftID</if>
+		<if test="sellerID!=null and sellerID!=''">,sellerID</if>
+		
+		)
+		values
+		(
+		id
+		<if test="name!=null and name!=''">,#{name}</if>
+		<if test="introduce!=null and introduce!=''">,#{introduce}</if>
+		<if test="price!=null">,#{price}</if>
+		<if test="nowPrice!=null">,#{nowPrice}</if>
+		<if test="picture!=null and picture!=''">,#{picture}</if>
+		<if test="createtime!=null">,#{createtime}</if>
+		<if test="createAccount!=null and createAccount!=''">,#{createAccount}</if>
+		<if test="updateAccount!=null and updateAccount!=''">,#{updateAccount}</if>
+		<if test="updatetime!=null">,#{updatetime}</if>
+		<if test="isnew!=null and isnew!=''">,#{isnew}</if>
+		<if test="sale!=null and sale!=''">,#{sale}</if>
+		<if test="hit!=0">,#{hit}</if>
+		<if test="status!=0">,#{status}</if>
+		<if test="productHTML!=null">,#{productHTML}</if>
+		<if test="maxPicture!=null and maxPicture!=''">,#{maxPicture}</if>
+		<if test="images!=null and images!=''">,#{images}</if>
+		<if test="catalogID!=null and catalogID!=''">,#{catalogID}</if>
+		<if test="sellcount!=0">,#{sellcount}</if>
+		<if test="stock!=0">,#{stock}</if>
+		<if test="searchKey!=null and searchKey!=''">,#{searchKey}</if>
+		<if test="title!=null and title!=''">,#{title}</if>
+		<if test="description!=null and description!=''">,#{description}</if>
+		<if test="keywords!=null and keywords!=''">,#{keywords}</if>
+		<if test="activityID!=null and activityID!=''">,#{activityID}</if>
+		<if test="unit!=null and unit!=''">,#{unit}</if>
+		<if test="minSell!=0">,#{minSell}</if>
+		<if test="score!=0">,#{score}</if>
+		<if test="isTimePromotion!=null and isTimePromotion!=''">,#{isTimePromotion}</if>
+		<if test="giftID!=null and giftID!=''">,#{giftID}</if>
+		<if test="sellerID!=null and sellerID!=''">,#{sellerID}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除Product -->
+	<delete id="delete" parameterType="Product">
+		delete from t_product where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Product -->
+	<update id="update" parameterType="Product">
+		update t_product
+		set id= #{id}
+		<if test="name!=null and name!=''">,name = #{name}</if>
+		<if test="introduce!=null and introduce!=''">,introduce = #{introduce}</if>
+		<if test="price!=null">,price = #{price}</if>
+		<if test="nowPrice!=null">,nowPrice = #{nowPrice}</if>
+		<if test="picture!=null and picture!=''">,picture = #{picture}</if>
+		<if test="createtime!=null">,createtime = #{createtime}</if>
+		<if test="createAccount!=null and createAccount!=''">,createAccount = #{createAccount}</if>
+		<if test="updateAccount!=null and updateAccount!=''">,updateAccount = #{updateAccount}</if>
+		<if test="updatetime!=null">,updatetime = #{updatetime}</if>
+		<if test="isnew!=null and isnew!=''">,isnew = #{isnew}</if>
+		<if test="sale!=null and sale!=''">,sale = #{sale}</if>
+		<if test="hit!=0">,hit = #{hit}</if>
+		<if test="status!=0">,status = #{status}</if>
+		<if test="productHTML!=null">,productHTML = #{productHTML}</if>
+		<if test="maxPicture!=null and maxPicture!=''">,maxPicture = #{maxPicture}</if>
+		<if test="images!=null and images!=''">,images = #{images}</if>
+		<if test="catalogID!=null and catalogID!=''">,catalogID = #{catalogID}</if>
+		<if test="sellcount!=0">,sellcount = #{sellcount}</if>
+		<if test="stock!=0">,stock = #{stock}</if>
+		<if test="searchKey!=null and searchKey!=''">,searchKey = #{searchKey}</if>
+		<if test="title!=null and title!=''">,title = #{title}</if>
+		<if test="description!=null and description!=''">,description = #{description}</if>
+		<if test="keywords!=null and keywords!=''">,keywords = #{keywords}</if>
+		<if test="activityID!=null and activityID!=''">,activityID = #{activityID}</if>
+		<if test="unit!=null and unit!=''">,unit = #{unit}</if>
+		<if test="minSell!=0">,minSell = #{minSell}</if>
+		<if test="score!=0">,score = #{score}</if>
+		<if test="isTimePromotion!=null and isTimePromotion!=''">,isTimePromotion = #{isTimePromotion}</if>
+		<if test="giftID!=null and giftID!=''">,giftID = #{giftID}</if>
+		<if test="sellerID!=null and sellerID!=''">,sellerID = #{sellerID}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Product查询一条记录 -->
+	<select id="selectOne" parameterType="Product" resultType="Product">
+		select t.* from t_product t where 1=1
+		<if test="id!=null and id!=''">
+			and id=#{id}
+		</if>
+		<if test="catalogID!=null and catalogID!=''">
+			and catalogID=#{catalogID}
+		</if>
+		<if test="name!=null and name!=''">
+			and t.name like CONCAT('%','${name}','%' )
+		</if>
+	</select>
+
+	<!-- 5. 分页查询Product -->
+	<select id="selectPageList" parameterType="Product" resultType="Product">
+		select
+			t.id "id",
+			t.status,
+			t.catalogID "catalogID",
+			t.name "name",
+			t.introduce
+			"introduce",
+			t.price "price",
+			t.nowPrice "nowprice",
+			t.picture "picture",
+			DATE_FORMAT(t.createtime,'%Y-%m-%d') "createtime",
+			t.isnew "isnew",
+			t.sale "sale",
+			t.hit "hit",
+			t.minSell,
+			t.stock,
+			t.sellcount,
+			t.sellerID 
+		from t_product t where 1=1 and status=2 and activityID is null
+		<if test="attrID!=0">
+			and t.id in (select al.productID from t_attribute_link al where
+			al.attrID=#{attrID})
+		</if>
+		<if test="queryCatalogIDs!=null and queryCatalogIDs.size &gt; 0">
+			and catalogID in
+			<foreach item="item" index="index" collection="queryCatalogIDs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="id!=null and id!=''">
+			and id=#{id}
+		</if>
+		<if test="name!=null and name!=''">
+			and t.name like CONCAT('%','${name}','%' )
+		</if>
+		<if test="special!=null and special!=''">
+			<if test="special.equals('hot')"> order by hit desc </if>
+			<if test="special.equals('newest')"> and isnew='y' </if>
+			<if test="special.equals('sale')"> and sale='y' </if>
+		</if>
+		<if test="special==null">
+			<if test="orderBy==0">
+				order by id desc
+			</if>
+			<if test="orderBy==1">
+				order by hit desc
+			</if>
+			<if test="orderBy==2">
+				order by price desc
+			</if>
+			<if test="orderBy==3">
+				order by createtime desc
+			</if>
+		</if>
+		limit #{offset},#{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Product -->
+	<select id="selectList" parameterType="Product" resultType="Product">
+		select
+			t.id "id",
+			t.catalogID "catalogID",
+			t.name "name",
+			t.introduce "introduce",
+			t.price "price",
+			t.nowPrice "nowprice",
+			t.picture "picture",
+			DATE_FORMAT(t.createtime,'%Y-%m-%d') "createtime",
+			t.isnew "isnew",
+			t.sale "sale",
+			t.hit "hit",
+			t.minSell,
+			t.stock,
+			t.sellcount,
+			t.sellerID
+		from t_product t where 1=1 and status=2
+		<if test="queryCatalogIDs!=null and queryCatalogIDs.size &gt; 0">
+			and catalogID in
+			<foreach item="item" index="index" collection="queryCatalogIDs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="id!=null and id!=''">
+			and id=#{id}
+		</if>
+		<if test="name!=null and name!=''">
+			and t.name like CONCAT('%','${name}','%' )
+		</if>
+		<if test="isnew!=null and isnew!=''">
+			and isnew=#{isnew}
+		</if>
+		<if test="sale!=null and sale!=''">
+			and sale=#{sale}
+		</if>
+
+		<if test="hot">
+			order by sellcount desc
+		</if>
+		<if test="!hot">
+			order by id desc
+		</if>
+		<if test="top &gt; 0">
+			limit 0,#{top}
+		</if>
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_product where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Product">
+		select distinct
+			<include refid="productColumns" />
+		from <include refid="productJoins" />
+	   where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Product -->
+	<select id="selectPageCount" parameterType="Product" resultType="java.lang.Integer">
+		select count(1) from t_product t where 1=1 and status=2 and activityID
+		is null
+		<if test="attrID!=0">
+			and t.id in (select al.productID from t_attribute_link al where
+			al.attrID=#{attrID})
+		</if>
+		<if test="queryCatalogIDs!=null and queryCatalogIDs.size &gt; 0">
+			and catalogID in
+			<foreach item="item" index="index" collection="queryCatalogIDs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="id!=null and id!=''">
+			and id=#{id}
+		</if>
+		<if test="name!=null and name!=''">
+			and t.name like CONCAT('%','${name}','%' )
+		</if>
+		<if test="special!=null and special!=''">
+			<if test="special.equals('hot')"> order by hit desc </if>
+			<if test="special.equals('newest')"> and isnew='y' </if>
+			<if test="special.equals('sale')"> and sale='y' </if>
+		</if>
+	</select>
+	
+	<!-- 10.根据产品Id批量查询产品-->
+	<select id="selectHotSearch" resultType="Product">
+		select
+			t.id,
+			t.name
+		from t_product t where 1=1 and status=2
+			and t.id in
+		<foreach item="item" index="index" collection="list"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<!-- 11.查询活动产品 -->
+	<select id="selectActivityProductList"  resultType="Product">
+		select
+		t.id "id",
+		t.status,
+		t.catalogID "catalogID",
+		t.name "name",
+		t.introduce "introduce",
+		t.price "price",
+		t.nowPrice "nowprice",
+		t.picture "picture",
+		DATE_FORMAT(t.createtime,'%Y-%m-%d') "createtime",
+		t.isnew "isnew",
+		t.sale "sale",
+		t.hit "hit",
+		t.minSell,
+		t.stock,
+		t.sellcount,
+		t.sellerID,
+		t.activityID
+		from t_product t where 1=1 and status=2 and activityID is not null
+		and t.id in
+		<foreach item="item" index="index" collection="list"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<!-- 12.查询目录下所有已上架产品 -->
+	<select id="loadHotProductShowInSuperMenu"  resultType="Product">
+		select t.id,t.name from t_product t where 1=1 and status=2
+		and t.catalogID in
+		<foreach item="item" index="index" collection="list"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		order by sellcount desc
+	</select>
+	
+	<!-- 13. 查询热门推荐商品 -->
+	<select id="selectPageLeftHotProducts" resultType="Product">
+		<if test="catalogId != null">
+			select
+				t.id "id",
+				t.name "name",
+				t.introduce,
+				t.price "price",
+				t.nowPrice "nowprice",
+				t.picture "picture",
+				t.isnew "isnew",
+				t.sale "sale",
+				t.sellerID
+			from t_product t, t_product_catalog_rela r
+		   where t.id = r.productId 
+		     and t.status=2
+		     and t.activityID is null
+			 and t.isRecommend = 'y'
+			and r.catalogId = #{catalogId}
+			<if test="limit !=0 "> 
+				limit #{limit}
+			</if>
+		</if>
+		<if test="catalogId == null">
+			select
+				t.id "id",
+				t.name "name",
+				t.introduce,
+				t.price "price",
+				t.nowPrice "nowprice",
+				t.picture "picture",
+				t.isnew "isnew",
+				t.sale "sale",
+				t.sellerID
+			from t_product t
+		   where t.status=2
+			 and t.isRecommend = 'y'
+			<if test="limit !=0 "> 
+				limit #{limit}
+			</if>
+		</if>
+	</select>
+	
+	<!--14. 查询已上架产品库存 -->
+	<select id="selectStockList" parameterType="long" resultType="ProductStockInfo">
+		select t.id,t.stock,t.activityID,score from t_product t where 1=1 and
+		status=2 and id=#{id}
+	</select>
+	
+	<!-- 15.根据产品ID批量查询产品 -->
+	<select id="selectProductListByIds" resultType="Product">
+		select t.id,t.stock,t.name,t.nowPrice,t.picture from t_product t where
+		1=1 and status=2
+		and id in
+		<foreach item="item" index="index" collection="list"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<!--16.查询产品介绍  -->
+	<select id="selectListProductHTML" parameterType="long" resultType="Product">
+		select t.id,t.productHTML from t_product t where 1=1 and status=2 and
+		t.productHTML is not null and id=#{id}
+	</select>
+	
+	<!-- 17.支付成功后更新产品库存 -->
+	<update id="updateStockAfterPaySuccess" parameterType="long">
+		update
+		t_product set stock=#{stock},sellcount=#{addSellcount}+sellcount where
+		1=1 and id=#{id}
+	</update>
+	
+	<!--18.更新点击数-->
+	<update id="updateHit" parameterType="long">
+		update t_product_hit set
+		hit=hit+1 where 1=1 and productId=#{id}
+	</update>
+	
+	<!-- 19. -->
+	<select id="selectParameterList" parameterType="long" resultType="ProductAttribute">
+		SELECT a.name,al.value FROM t_attribute a,t_attribute_link al
+		where a.id=al.attrID and al.productID=#{id} and al.value is not null
+	</select>
+	
+	<!-- 查询热门商品 -->
+	<select id="selectHotProducts" resultType="Product">
+        select t.*
+		  from t_product t left join t_product_sellcount s on t.id= s.productId
+		 where t.status= 2 and t.activityID is null
+		 order by s.sellCount desc
+		<if test="limit !=0 "> 
+			limit #{limit}
+		</if>
+	</select> 
+	<!-- 查询特价商品 -->
+	<select id="selectSaleProducts" resultType="Product">
+		 select t.*
+		  from t_product t
+		 where t.status= 2 and t.activityID is null
+		   and t.sale= 'y'
+		   order by t.nowPrice asc
+		<if test="limit !=0 "> 
+			limit #{limit}
+		</if>
+	</select>
+	<!-- 查询最新商品 -->
+	<select id="selectNewProducts" resultType="Product">
+		select
+			t.*
+		from t_product t
+	   where t.status=2 and t.activityID is null
+		 and t.isnew = 'y'
+		 order by t.sort desc
+		<if test="limit !=0 "> 
+			limit #{limit}
+		</if>
+	</select>
+
+	<!-- 查询分页商品 -->
+	<select id="findPageProduct" parameterType="map" resultType="Product">
+		select
+			distinct <include refid="productColumns" />
+		from <include refid="productJoins" />
+	   where t.status=2
+	   <if test="catalogIds !=null and catalogIds.size > 0 "> 
+			and r.catalogId in 
+			<foreach item="item" index="index" collection="catalogIds" open="(" separator="," close=")">  
+	  			#{item}  
+	 		</foreach>
+	   </if>
+	   <if test="startPrice !=null and startPrice != ''">
+	   	   and t.nowPrice &gt; #{startPrice}
+	   </if>
+	   <if test="endPrice !=null and endPrice != '' ">
+	   	   and t.nowPrice &lt; #{endPrice}
+	   </if>
+	   <if test="isNew !=null and isNew != '' ">
+	   	   and t.isnew = #{isNew}
+	   </if>
+	   <if test="sale !=null and sale != '' ">
+	   	   and t.sale = #{sale}
+	   </if>
+	   <if test="keyword !=null and keyword != '' ">
+	   	   and ( t.introduce like '%${keyword}%'
+	   	   or  t.name like '%${keyword}%')
+	   </if>
+	   
+	   <if test="orderBy == 'newSort'">
+	   		order by t.sort desc
+	   </if>
+	   <if test="orderBy == 'sellCountUp'">
+	   		order by ps.sellCount asc
+	   </if>
+	   <if test="orderBy == 'sellCountDown'">
+	   		order by ps.sellCount desc
+	   </if>
+	   <if test="orderBy == 'priceUp'">
+	   		order by t.nowPrice asc
+	   </if>
+	   <if test="orderBy == 'priceDown'">
+	   		order by t.nowPrice desc
+	   </if>
+	   <if test="orderBy == 'hitUp'">
+	   		order by h.hit asc
+	   </if>
+	   <if test="orderBy == 'hitDown'">
+	   		order by h.hit desc
+	   </if>
+	   <if test="orderBy == '' or orderBy== null">
+	   		order by t.createtime desc
+	   </if>
+	   
+	   limit #{offset}, #{pageSize}
+	</select>
+	<!-- 查询统计商品 -->
+	<select id="countProduct" parameterType="map" resultType="Integer">
+		select count(1) from (
+		select distinct t.id
+		 from t_product t 
+		  LEFT JOIN t_product_catalog_rela r
+		  ON t.id = r.productId
+		  LEFT JOIN t_product_sellCount s
+		  ON  t.id = s.productId
+		  LEFT JOIN t_product_hit h
+		  ON  t.id = h.productId
+	   where t.status=2
+	   <if test="catalogIds !=null and catalogIds.size > 0 "> 
+			and r.catalogId in 
+			<foreach item="item" index="index" collection="catalogIds" open="(" separator="," close=")">  
+	  			#{item}  
+	 		</foreach>
+	   </if>
+	   <if test="startPrice !=null and startPrice != ''">
+	   	   and t.nowPrice &gt; #{startPrice}
+	   </if>
+	   <if test="endPrice !=null and endPrice != '' ">
+	   	   and t.nowPrice &lt; #{endPrice}
+	   </if>
+	   <if test="endPrice !=null and endPrice != '' ">
+	   	   and t.nowPrice &lt; #{endPrice}
+	   </if>
+	   <if test="isNew !=null and isNew != '' ">
+	   	   and t.isnew = #{isNew}
+	   </if>
+	   <if test="sale !=null and sale != '' ">
+	   	   and t.sale = #{sale}
+	   </if>
+	   <if test="keyword !=null and keyword != '' ">
+	   	   and ( t.introduce like '%${keyword}%'
+	   	   or  t.name like '%${keyword}%')
+	   </if>
+	   ) a
+	</select>
+	
+	<!-- 根据id获得Product 以及Activity -->
+	<select id="getWithActivity" parameterType="long" resultType="Product">
+		select t.*,
+	       a.id as 'activity.id',
+	       a.name as 'activity.name',
+	       a.accountRange as 'activity.accountRange',
+	       a.startDate as 'activity.startDate',
+	       a.endDate as 'activity.endDate',
+	       a.content as 'activity.content',
+	       a.status as 'activity.status',
+	       a.catalogs as 'activity.catalogs',
+	       a.productID as 'activity.productID',
+	       a.discountType as 'activity.discountType',
+	       a.discount as 'activity.discount',
+	       a.minprice as 'activity.minprice',
+	       a.maxprice as 'activity.maxprice',
+	       a.maxSellCount as 'activity.maxSellCount',
+	       a.activityType as 'activity.activityType',
+	       a.exchangeScore as 'activity.exchangeScore',
+	       a.minGroupCount as 'activity.minGroupCount',
+	       a.tuanPrice as 'activity.tuanPrice',
+	       a.hasBuyGroupPerson as 'activity.hasBuyGroupPerson',
+	       ps.stock,
+	       p.sellCount as sellcount,
+	       ts.name  "seller.name",
+		   ts.logo  "seller.logo"
+	  from t_product t 
+	  	left join t_activity a on t.activityID= a.id 
+	  	left join t_product_stock ps on t.id= ps.productId 
+	  	left join t_product_sellcount p on t.id= p.productId 
+	  	left join t_seller ts on t.sellerID = ts.id
+	  	where t.id = #{id}
+	</select>
+	<!-- 根据类型查询活动 -->
+	<select id="getActivityProductByType" parameterType="string" resultType="Product">
+		select t.*,
+	       a.id as 'activity.id',
+	       a.name as 'activity.name',
+	       a.accountRange as 'activity.accountRange',
+	       a.startDate as 'activity.startDate',
+	       a.endDate as 'activity.endDate',
+	       a.content as 'activity.content',
+	       a.status as 'activity.status',
+	       a.catalogs as 'activity.catalogs',
+	       a.productID as 'activity.productID',
+	       a.discountType as 'activity.discountType',
+	       a.discount as 'activity.discount',
+	       a.minprice as 'activity.minprice',
+	       a.maxprice as 'activity.maxprice',
+	       a.maxSellCount as 'activity.maxSellCount',
+	       a.activityType as 'activity.activityType',
+	       a.exchangeScore as 'activity.exchangeScore',
+	       a.minGroupCount as 'activity.minGroupCount',
+	       a.tuanPrice as 'activity.tuanPrice',
+	       a.hasBuyGroupPerson as 'activity.hasBuyGroupPerson',
+	       ps.stock,
+	       p.sellCount as sellcount,
+	       ts.name  "seller.name",
+		   ts.logo  "seller.logo"
+	  from t_product t 
+	  	left join t_activity a on t.activityID= a.id 
+	  	left join t_product_stock ps on t.id= ps.productId 
+	  	left join t_product_sellcount p on t.id= p.productId 
+	  	left join t_seller ts on t.sellerID = ts.id
+	  where a.activityType = #{type}
+	    and t.status = 2
+	    order by a.startDate
+ 	</select>
+</mapper>

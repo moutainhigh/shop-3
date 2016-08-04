@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.CartDao">
+
+    <sql id="cartColumns">
+		t.id,
+		t.account_id AS accountId,
+		t.session_id AS sessionId,
+		t.product_id AS productId,
+		t.spec_id   AS specId,
+		t.spec_name AS specName,
+		t.seller_id AS sellerId,
+		t.seller_name AS sellerName,
+		t.product_name AS productName,
+		t.product_image AS productImage,
+		t.quantity,
+		t.market_price AS marketPrice,
+		t.now_price AS nowPrice,
+		t.activity_status AS activityStatus,
+		t.activity_type AS activityType,
+		t.discount_type AS discountType,
+		t.discount,
+		t.required_integral AS requiredIntegral,
+		t.present_integral AS presentIntegral,
+		t.create_time AS createTime,
+		t.status
+	</sql>
+	
+    <sql id="cartJoins">
+		LEFT JOIN t_product p ON p.id = t.product_id
+    </sql>
+    
+	<!-- 1. 添加Cart -->
+	<insert id="insert" parameterType="Cart" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_cart(id, account_id, session_id, product_id,spec_id, spec_name, seller_id, seller_name, product_name, product_image, quantity, market_price, now_price, 
+			activity_status, activity_type, discount_type, discount, required_integral, present_integral, create_time, status) 
+		VALUES (#{id}, #{accountId}, #{sessionId}, #{productId}, #{specId}, #{specName}, #{sellerId}, #{sellerName}, #{productName}, #{productImage}, #{quantity}, #{marketPrice}, #{nowPrice}, 
+			#{activityStatus}, #{activityType}, #{discountType}, #{discount}, #{requiredIntegral}, #{presentIntegral}, #{createTime}, #{status})
+	</insert>
+
+	<!-- 2. 删除Cart -->
+	<delete id="delete" parameterType="Cart">
+		delete from t_cart where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Cart -->
+	<update id="update" parameterType="Cart">
+		UPDATE t_cart SET id= #{id}
+			<if test="accountId!=null">,account_id = #{accountId}</if> 
+			<if test="sessionId!=null and sessionId!=''">,session_id = #{sessionId}</if>  
+			<if test="productId!=null">,product_id = #{productId}</if>  
+			<if test="specId!=null and specId!=''">,spec_id = #{specId}</if>  
+			<if test="specName!=null and specName!=''">,spec_name = #{specName}</if>  
+			<if test="productName!=null and productName!=''">,product_name = #{productName}</if>  
+			<if test="productImage!=null and productImage!=''">,product_image = #{productImage}</if>  
+			<if test="quantity!=null">,quantity = #{quantity}</if> 
+			<if test="marketPrice!=null">,market_price = #{marketPrice}</if> 
+			<if test="nowPrice!=null">,now_price = #{nowPrice}</if> 
+			<if test="activityStatus!=null">,activity_status = #{activityStatus}</if> 
+			<if test="activityType!=null and activityType!=''">,activity_type = #{activityType}</if> 
+			<if test="discountType!=null and discountType!=''">,discount_type = #{discountType}</if> 
+			<if test="discount!=null">,discount = #{discount}</if> 
+			<if test="requiredIntegral!=null">,required_integral = #{requiredIntegral}</if> 
+			<if test="presentIntegral!=null">,present_integral = #{presentIntegral}</if> 
+		WHERE id = #{id}
+	</update>
+
+	<!-- 4. 根据Cart查询一条记录 -->
+	<select id="selectOne" parameterType="Cart" resultType="Cart">
+		SELECT <include refid="cartColumns" />
+		FROM t_cart t <include refid="cartJoins" />
+		WHERE t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Cart -->
+	<select id="selectPageList" parameterType="Cart" resultType="Cart">
+		SELECT
+		<include refid="cartColumns" />
+		FROM t_cart t
+		<include refid="cartJoins" />
+		WHERE 1 = 1
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Cart -->
+	<select id="selectList" parameterType="Cart" resultType="Cart">
+		SELECT
+		<include refid="cartColumns" />
+		FROM t_cart t
+		<include refid="cartJoins" />
+		WHERE 1 = 1
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_cart where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Cart">
+		SELECT <include refid="cartColumns" />
+		FROM t_cart t <include refid="cartJoins" />
+		WHERE t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Cart -->
+	<select id="selectPageCount" parameterType="Cart" resultType="int">
+		select count(1) from t_cart t where 1 = 1
+	</select>
+	
+	<!-- 10. getByProductIdAndAccountId -->
+	<select id="getByProductIdAndAccountId" resultType="Cart">
+		SELECT <include refid="cartColumns" />
+		FROM t_cart t <include refid="cartJoins" />
+		WHERE t.account_id = #{accountId} AND t.product_id = #{productId}
+		<if test="specId != null"> and t.spec_id = #{specId} </if>
+	</select>
+	
+	<!-- 11. getByProductIdAndSessionId -->
+	<select id="getByProductIdAndSessionId" resultType="Cart">
+		SELECT <include refid="cartColumns" />
+		FROM t_cart t <include refid="cartJoins" />
+		WHERE t.session_id = #{sessionId} AND t.product_id = #{productId}
+		<if test="specId != null"> and t.spec_id = #{specId} </if>
+	</select>
+	
+	<!-- 12. findBySessionId -->
+	<select id="findBySessionId" resultType="Cart">
+		SELECT <include refid="cartColumns" />
+		FROM t_cart t <include refid="cartJoins" />
+		WHERE t.session_id = #{sessionId}
+	</select>
+	
+	<!-- 13. findBySessionIdOrAccountId -->
+	<select id="findBySessionIdOrAccountId" resultType="Cart">
+		SELECT <include refid="cartColumns" />
+		FROM t_cart t <include refid="cartJoins" />
+		WHERE <if test="accountId != null">t.account_id = #{accountId} or</if> t.session_id = #{sessionId}
+		ORDER BY t.seller_id
+	</select>
+	
+	<!-- 14. deleteByProductId -->
+	<delete id="deleteByProductId">
+		delete from t_cart where product_id = #{productId} and session_id = #{sessionId} <if test="accountId != null"> or account_id = #{accountId} </if> <if test="specId != null"> and spec_id = #{specId} </if>
+	</delete>
+	
+	<!-- 15.updateQuantity -->
+	<update id="updateQuantity">
+		UPDATE t_cart SET quantity = #{quantity} WHERE id = #{id}
+	</update>
+	
+	<!-- 16.deleteBySessionIdOrAccountId -->
+	<delete id="deleteBySessionIdOrAccountId">
+		delete from t_cart t where <if test="accountId != null">t.account_id = #{accountId} or</if> t.session_id = #{sessionId}
+	</delete>
+	
+	<!-- 17. findBySessionIdOrAccountIdAndIds -->
+	<select id="findBySessionIdOrAccountIdAndIds" resultType="Cart">
+		SELECT <include refid="cartColumns" />
+		FROM t_cart t <include refid="cartJoins" />
+		WHERE (<if test="accountId != null">t.account_id = #{accountId} or</if> t.session_id = #{sessionId}) and t.id in <foreach collection="ids" item="item" index="index"
+            open="(" close=")" separator=",">
+            #{item}
+       </foreach >
+	</select>
+	
+	<!-- 18. updateStatus -->
+	<update id="updateStatus">
+		UPDATE t_cart SET status = #{status} WHERE id in <foreach collection="ids" item="item" index="index"
+            open="(" close=")" separator=",">
+            #{item}
+       </foreach >
+	</update>
+	
+	<!-- 19. updateAccountId -->
+	<update id="updateAccountId">
+		UPDATE t_cart SET account_id = #{accountId} WHERE session_id = #{sessionId}
+	</update>
+	
+	<!-- 20. 根据ids删除 -->
+	<delete id="deleteByIds">
+		delete from t_cart where id in <foreach collection="ids" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+       </foreach >
+	</delete>
+</mapper>

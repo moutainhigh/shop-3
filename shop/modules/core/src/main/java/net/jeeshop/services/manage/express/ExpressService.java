@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.express;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Express;public interface ExpressService extends Services<Express> {}

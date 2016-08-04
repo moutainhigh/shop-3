@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.OrderpayDao">
+
+	<!-- 1. 添加Orderpay -->
+	<insert id="insert" parameterType="Orderpay" useGeneratedKeys="true" keyProperty="id">
+		insert into t_orderpay
+		(id,createtime
+        <if test="orderid!=null and orderid!=''">,orderid</if>
+		<if test="paystatus!=null and paystatus!=''">,paystatus</if>
+		<if test="payamount!=null">,payamount</if>
+		<if test="paymethod!=null and paymethod!=''">,paymethod</if>
+		<if test="confirmdate!=null">,confirmdate</if>
+		<if test="confirmuser!=null and confirmuser!=''">,confirmuser</if>
+		<if test="remark!=null and remark!=''">,remark</if>
+		<if test="tradeNo!=null and tradeNo!=''">,tradeNo</if>
+		
+		)
+		values
+		(
+		id,now()
+		<if test="orderid!=null and orderid!=''">,#{orderid}</if>
+		<if test="paystatus!=null and paystatus!=''">,#{paystatus}</if>
+		<if test="payamount!=null">,#{payamount}</if>
+		<if test="createtime!=null">,#{createtime}</if>
+		<if test="paymethod!=null and paymethod!=''">,#{paymethod}</if>
+		<if test="confirmdate!=null">,#{confirmdate}</if>
+		<if test="confirmuser!=null and confirmuser!=''">,#{confirmuser}</if>
+		<if test="remark!=null and remark!=''">,#{remark}</if>
+		<if test="tradeNo!=null and tradeNo!=''">,#{tradeNo}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除Orderpay -->
+	<delete id="delete" parameterType="Orderpay">
+		delete from t_orderpay where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Orderpay -->
+	<update id="update" parameterType="Orderpay">
+		update t_orderpay
+		set id= #{id}
+		<if test="orderid!=null and orderid!=''">,orderid = #{orderid}</if>
+		<if test="paystatus!=null and paystatus!=''">,paystatus = #{paystatus}</if>
+		<if test="payamount!=null">,payamount = #{payamount}</if>
+		<if test="createtime!=null">,createtime = #{createtime}</if>
+		<if test="paymethod!=null and paymethod!=''">,paymethod = #{paymethod}</if>
+		<if test="confirmdate!=null">,confirmdate = #{confirmdate}</if>
+		<if test="confirmuser!=null and confirmuser!=''">,confirmuser = #{confirmuser}</if>
+		<if test="remark!=null and remark!=''">,remark = #{remark}</if>
+		<if test="tradeNo!=null and tradeNo!=''">,tradeNo = #{tradeNo}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Orderpay查询一条记录 -->
+	<select id="selectOne" parameterType="Orderpay" resultType="Orderpay">
+		select t.* from t_orderpay t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Orderpay -->
+	<select id="selectPageList" parameterType="Orderpay" resultType="Orderpay">
+		select t.* from t_orderpay t where 1 = 1
+		<if test="orderid!=null and orderid!=''"> and orderid = #{orderid}</if>
+		<if test="paystatus!=null and paystatus!=''"> and paystatus = #{paystatus}</if>
+		<if test="payamount!=null"> and payamount = #{payamount}</if>
+		<if test="createtime!=null"> and createtime = #{createtime}</if>
+		<if test="paymethod!=null and paymethod!=''"> and paymethod = #{paymethod}</if>
+		<if test="confirmdate!=null"> and confirmdate = #{confirmdate}</if>
+		<if test="confirmuser!=null and confirmuser!=''"> and confirmuser = #{confirmuser}</if>
+		<if test="remark!=null and remark!=''"> and remark = #{remark}</if>
+		<if test="tradeNo!=null and tradeNo!=''"> and tradeNo = #{tradeNo}</if>
+		
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Orderpay -->
+	<select id="selectList" parameterType="Orderpay" resultType="Orderpay">
+		select t.* from t_orderpay t where 1 = 1 
+		<if test="orderid!=null and orderid!=''"> and orderid = #{orderid}</if>
+		<if test="paystatus!=null and paystatus!=''"> and paystatus = #{paystatus}</if>
+		<if test="payamount!=null"> and payamount = #{payamount}</if>
+		<if test="createtime!=null"> and createtime = #{createtime}</if>
+		<if test="paymethod!=null and paymethod!=''"> and paymethod = #{paymethod}</if>
+		<if test="confirmdate!=null"> and confirmdate = #{confirmdate}</if>
+		<if test="confirmuser!=null and confirmuser!=''"> and confirmuser = #{confirmuser}</if>
+		<if test="remark!=null and remark!=''"> and remark = #{remark}</if>
+		<if test="tradeNo!=null and tradeNo!=''"> and tradeNo = #{tradeNo}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_orderpay where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Orderpay">
+		select t.* from t_orderpay t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Orderpay -->
+	<select id="selectPageCount" parameterType="Orderpay" resultType="int">
+		select count(1) from t_orderpay t where 1 = 1
+		<if test="orderid!=null and orderid!=''"> and orderid = #{orderid}</if>
+		<if test="paystatus!=null and paystatus!=''"> and paystatus = #{paystatus}</if>
+		<if test="payamount!=null"> and payamount = #{payamount}</if>
+		<if test="createtime!=null"> and createtime = #{createtime}</if>
+		<if test="paymethod!=null and paymethod!=''"> and paymethod = #{paymethod}</if>
+		<if test="confirmdate!=null"> and confirmdate = #{confirmdate}</if>
+		<if test="confirmuser!=null and confirmuser!=''"> and confirmuser = #{confirmuser}</if>
+		<if test="remark!=null and remark!=''"> and remark = #{remark}</if>
+		<if test="tradeNo!=null and tradeNo!=''"> and tradeNo = #{tradeNo}</if>
+		
+	</select>
+
+</mapper>

@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.attribute_link.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.AttributeLink;public interface Attribute_linkDao extends DaoManager<AttributeLink> {	/**	 * @param e	 * @return	 */	int deleteByCondition(AttributeLink e);	/**	 * 根据属性ID删除属性关联表的数据	 * @param id	 */	void deleteByAttributeId(long id);}

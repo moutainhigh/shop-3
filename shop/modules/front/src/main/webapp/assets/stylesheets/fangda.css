@@ -1,0 +1,16 @@
+.fangda{ width:432px; height:auto; margin:0 auto; overflow:hidden;}
+.jqzoom{float:left;border:none;position:relative;padding:0px;cursor:pointer;margin:0px;display:block;width:432px;height: 432px}
+.jqzoom img{ background:url(http://www.lanrenzhijia.com/demo/images/loading.gif) no-repeat center center;width:432px;height: 432px}
+.zoomdiv{z-index:100;position:absolute;top:0px;left:0px;width:600px;height:600px;background:#ffffff;border:1px solid #CCCCCC;display:none;text-align:center;overflow:hidden;}
+.jqZoomPup{z-index:10;visibility:hidden;position:absolute;top:0px;left:0px;width:20px;height:20px;border:1px solid #aaa;background:#ffffff /*url(../images/zoom.png) 50% center no-repeat*/;opacity: 0.5;-moz-opacity: 0.5;-khtml-opacity: 0.5;filter: alpha(Opacity=50);}
+/*图片小图预览列表*/
+.spec-preview{width:432px;height:432px;border:1px solid #DFDFDF;}
+.spec-scroll{clear:both;margin-top:5px;width:432px;}
+.spec-scroll .prev{float:left;margin-right:4px;}
+.spec-scroll .next{float:right;}
+.spec-scroll .prev,.spec-scroll .next{display:block;font-family:"宋体";text-align:center;width:20px;height:70px; line-height:70px;border:1px solid #CCC;background:#EBEBEB;cursor:pointer;text-decoration:none;}
+.spec-scroll .items{float:left;position:relative;width:380px;height:70px;overflow:hidden;}
+.spec-scroll .items ul{position:absolute;width:999999px;height:70px;padding-left:0;margin-bottom:0;}
+.spec-scroll .items ul li{float:left;width:76px;text-align:center;list-style:none;}
+.spec-scroll .items ul li img{border:1px solid #CCC;padding:2px;width:70px;height:70px;}
+.spec-scroll .items ul li img:hover{border:2px solid #FF6600;padding:1px;}

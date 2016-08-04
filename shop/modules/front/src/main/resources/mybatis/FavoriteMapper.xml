@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.FavoriteDao">
+    
+    <sql id="favoriteColumns">
+		t.id,
+       	t.account_id as accountId,
+       	t.product_id as productId,
+       	t.product_name as productName,
+       	t.create_time as createTime,
+       	p.id as 'product.id',
+       	p.name as 'product.name',
+       	p.price as 'product.price',
+       	p.nowPrice as 'product.nowPrice',
+       	p.picture as 'product.picture',
+       	(select count(1) from t_favorite f where f.product_id = p.id) as 'product.favNum',
+       	ps.stock as 'product.stock'
+	</sql>
+	
+    <sql id="favoriteJoins">
+		join t_product p on t.product_id = p.id
+		left join t_product_stock ps on ps.productId = t.product_id
+    </sql>
+
+	<!-- 1. 添加Favorite -->
+	<insert id="insert" parameterType="Favorite" useGeneratedKeys="true" keyProperty="id">
+		insert into t_favorite(account_id, product_id, product_name, create_time)
+		values(#{accountId}, #{productId}, #{productName}, now())
+	</insert>
+
+	<!-- 2. 删除Favorite -->
+	<delete id="delete" parameterType="Favorite">
+		delete from t_favorite where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Favorite -->
+	<update id="update" parameterType="Favorite">
+		update t_favorite
+		set id = #{id}
+		<if test="accountId!=null">,account_id = #{accountId}</if>
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Favorite查询一条记录 -->
+	<select id="selectOne" parameterType="Favorite" resultType="Favorite">
+		select <include refid="favoriteColumns"/>
+		from t_favorite t <include refid="favoriteJoins"/> where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Favorite -->
+	<select id="selectPageList" parameterType="Favorite" resultType="Favorite">
+		select <include refid="favoriteColumns"/> 
+		from t_favorite t <include refid="favoriteJoins"/> where 1 = 1
+		<if test="accountId!=null"> and account_id = #{accountId}</if>
+		<if test="productId!=null"> and product_id = #{productId}</if>
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Favorite -->
+	<select id="selectList" parameterType="Favorite" resultType="Favorite">
+		select <include refid="favoriteColumns"/> 
+		from t_favorite t <include refid="favoriteJoins"/> where 1 = 1 
+		<if test="accountId!=null"> and account_id = #{accountId}</if>
+		<if test="productId!=null"> and product_id = #{productId}</if>
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_favorite where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Favorite">
+		select <include refid="favoriteColumns"/> 
+		from t_favorite t <include refid="favoriteJoins"/> where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Favorite -->
+	<select id="selectPageCount" parameterType="Favorite" resultType="int">
+		select count(1) from t_favorite t <include refid="favoriteJoins"/> where 1 = 1
+		<if test="accountId!=null"> and account_id = #{accountId}</if>
+		<if test="productId!=null"> and product_id = #{productId}</if>
+	</select>
+	
+	<!-- 10. 根据accountId productID统计 -->
+	<select id="selectCount" resultType="int">
+		select count(1) from t_favorite t where account_id = #{accountId} and product_id = #{productId}
+	</select>
+	
+	<!-- 11. 根据productID统计 -->
+	<select id="selectCountByProductId" resultType="int">
+		select count(1) from t_favorite t where product_id = #{productId}
+	</select>
+	
+	<!-- 12. count -->
+	<select id="count" resultType="int">
+		select count(1) from t_favorite t <include refid="favoriteJoins"/> where account_id = #{accountId}
+	</select>
+	
+	<!-- 13. find -->
+	<select id="find" resultType="Favorite">
+		select <include refid="favoriteColumns"/> 
+		from t_favorite t <include refid="favoriteJoins"/> where account_id = #{accountId}
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+	
+</mapper>

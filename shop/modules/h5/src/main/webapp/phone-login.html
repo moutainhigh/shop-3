@@ -1,0 +1,55 @@
+<!doctype html> 
+<html> 
+  <head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>登录</title>
+    <link rel="stylesheet" href="css/amazeui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/phone-login.css">
+  </head>
+  <body>
+    <div class="am-g body-main">
+        <div class="am-u-sm-12 logo am-vertical-align">
+            <img src="imgs/logo.png" class="am-vertical-align-middle">
+        </div>
+        <div class="am-u-sm-12 account am-vertical-align">
+            <div class="am-vertical-align-middle">
+                <input type="text" class="" id="username" placeholder="请输入您的账号">
+                <input type="password" class="" id="password" placeholder="请输入您的密码">
+                <button type="button" class="am-btn am-btn-default am-round login-btn">登录</button>
+                <button type="button" class="am-btn am-btn-default am-round register-btn">注册</button>
+            </div>
+            
+        </div>
+        <div class="am-u-sm-12 foot am-vertical-align">
+            <div class="am-vertical-align-middle">
+                <p class="forgot-password"><a>忘记密码</a></p>
+                <div class="third-login">
+                    <div class="line"></div>
+                    <p>第三方登录</p>
+                </div>
+                <div class="login-link am-cf">
+                    <div class="qq">
+                        <img src="imgs/qq.png">
+                    </div>
+                    <div class="weibo">
+                        <img src="imgs/weibo.png">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="warning am-vertical-align">
+        <p class="am-vertical-align-middle">您输入的信息有误</p>
+        
+    </div>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+
+    <script type="text/javascript">
+        $('html').css("height", $(window).height());
+    </script>
+  </body>
+</html>

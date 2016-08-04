@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.catalog.dao;import java.util.List;import com.tuisitang.modules.shop.entity.Catalog;import net.jeeshop.core.DaoManager;public interface CatalogDao extends DaoManager<Catalog> {	/**	 * @param string	 */	void deletes(List<Long> list);}

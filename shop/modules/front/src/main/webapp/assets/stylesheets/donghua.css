@@ -1,0 +1,142 @@
+.animate {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 99999;
+}
+.animate .animate-main {
+  width: 1090px;
+  margin: 0 auto;
+  position: fixed;
+  height: 600px;
+  overflow: hidden;
+  top: 50%;
+  margin-top: -300px;
+  left: 50%;
+  margin-left: -545px;
+}
+.animate .animate-main .close-btn {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  z-index: 9;
+  cursor: pointer;
+}
+.animate .animate-main .close-btn img {
+  width: 30px;
+  height: auto;
+}
+.animate .animate-main .background1 {
+  width: 100%;
+  position: absolute;
+  top: 54px;
+}
+.animate .animate-main .background1 img {
+  width: 100%;
+  height: auto;
+}
+.animate .animate-main .background2 {
+  width: 100%;
+  position: absolute;
+  z-index: 2;
+  top: -100px;
+}
+.animate .animate-main .background2 img {
+  width: 100%;
+  height: auto;
+}
+.animate .animate-main .background3 {
+  width: 100%;
+  position: absolute;
+  z-index: 3;
+  top: 0px;
+}
+.animate .animate-main .background3 img {
+  width: 100%;
+  height: auto;
+}
+.animate .animate-main .person-left {
+  width: 100px;
+  position: absolute;
+  z-index: 2;
+  bottom: 85px;
+  left: 300px;
+  opacity: 0;
+  height: 214px;
+}
+.animate .animate-main .person-left img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+}
+.animate .animate-main .person-left .left2 {
+  opacity: 0;
+}
+.animate .animate-main .person-left .left3 {
+  opacity: 0;
+}
+.animate .animate-main .person-right {
+  width: 100px;
+  position: absolute;
+  z-index: 2;
+  bottom: 85px;
+  right: 300px;
+  opacity: 0;
+  height: 214px;
+}
+.animate .animate-main .person-right img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+}
+.animate .animate-main .person-right .right2 {
+  opacity: 0;
+}
+.animate .animate-main .person-right .right3 {
+  opacity: 0;
+}
+.animate .animate-main .left-word {
+  width: 120px;
+  position: absolute;
+  z-index: 4;
+  top: 45%;
+  left: 400px;
+  opacity: 0;
+}
+.animate .animate-main .left-word img {
+  width: 100%;
+  height: auto;
+}
+.animate .animate-main .right-word {
+  width: 120px;
+  position: absolute;
+  z-index: 4;
+  top: 45%;
+  right: 400px;
+  opacity: 0;
+}
+.animate .animate-main .right-word img {
+  width: 100%;
+  height: auto;
+}
+.animate .animate-main .together-word {
+  width: 350px;
+  position: absolute;
+  z-index: 4;
+  top: 35%;
+  right: 50%;
+  margin-right: -175px;
+  opacity: 0;
+}
+.animate .animate-main .together-word img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+}
+.animate .animate-main .together-word .together2 {
+  opacity: 0;
+}
+
+/*# sourceMappingURL=../css/donghua.css.map */

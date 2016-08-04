@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.UserDao">
+
+    <sql id="userColumns">
+		a.id,
+		a.username,
+		a.password,
+		a.name,
+		a.mobile,
+		a.email,
+		a.nickname,
+		a.rid,
+		a.createtime as createTime,
+		a.updatetime as updateTime,
+		a.createAccount,
+		a.updateAccount,
+		a.status
+	</sql>
+    
+	<!-- 1. 添加User -->
+	<insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_user(username, password, name, mobile, email, nickname, rid, 
+			createtime, updatetime, createAccount, updateAccount, status) 
+		VALUES (#{username}, #{password}, #{name}, #{mobile}, #{email}, #{nickname}, #{rid},
+			#{createTime}, #{updateTime}, #{createAccount}, #{updateAccount}, #{status})
+	</insert>
+
+	<!-- 2. 删除User -->
+	<delete id="delete" parameterType="User">
+		delete from t_user where id = #{id}
+	</delete>
+
+	<!-- 3. 修改User -->
+	<update id="update" parameterType="User">
+		UPDATE t_user SET 
+			name = #{name}, 
+			mobile = #{mobile}, 
+			email = #{email}, 
+			nickname = #{nickname}, 
+			rid = #{rid}, 
+			updatetime = #{updateTime}, 
+			updateAccount = #{updateAccount}, 
+			status = #{status}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 4. 根据User查询一条记录 -->
+	<select id="selectOne" parameterType="User" resultType="User">
+		SELECT <include refid="userColumns" />
+		FROM t_user a
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询User -->
+	<select id="selectPageList" parameterType="User" resultType="User">
+		SELECT
+		<include refid="userColumns" />
+		FROM t_user a
+		WHERE 1 = 1
+		order by createtime
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询User -->
+	<select id="selectList" parameterType="User" resultType="User">
+		SELECT
+		<include refid="userColumns" />
+		FROM t_user a
+		WHERE 1 = 1
+		order by createtime
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_user where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="User">
+		SELECT <include refid="userColumns" />
+		FROM t_user a 
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询User -->
+	<select id="selectPageCount" parameterType="User" resultType="int">
+		select count(1) from t_user t where 1 = 1
+	</select>
+	
+</mapper>

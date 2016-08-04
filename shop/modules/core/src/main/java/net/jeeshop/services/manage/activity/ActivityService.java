@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.activity;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Activity;public interface ActivityService extends Services<Activity> {}

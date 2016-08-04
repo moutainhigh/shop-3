@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.AccountRankDao">
+
+	<!-- 1. 添加AccountRank -->
+	<insert id="insert" parameterType="AccountRank" useGeneratedKeys="true" keyProperty="id">
+		insert into t_accountrank
+		(id
+        <if test="code!=null and code!=''">,code</if>
+		<if test="name!=null and name!=''">,name</if>
+		<if test="discount!=0">,discount</if>
+		<if test="minScore!=0">,minScore</if>
+		<if test="maxScore!=0">,maxScore</if>
+		<if test="remark!=null and remark!=''">,remark</if>
+		
+		)
+		values
+		(
+		id
+		<if test="code!=null and code!=''">,#{code}</if>
+		<if test="name!=null and name!=''">,#{name}</if>
+		<if test="discount!=0">,#{discount}</if>
+		<if test="minScore!=0">,#{minScore}</if>
+		<if test="maxScore!=0">,#{maxScore}</if>
+		<if test="remark!=null and remark!=''">,#{remark}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除AccountRank -->
+	<delete id="delete" parameterType="AccountRank">
+		delete from t_accountrank where id = #{id}
+	</delete>
+
+	<!-- 3. 修改AccountRank -->
+	<update id="update" parameterType="AccountRank">
+		update t_accountrank
+		set id= #{id}
+		<if test="code!=null and code!=''">,code = #{code}</if>
+		<if test="name!=null and name!=''">,name = #{name}</if>
+		<if test="discount!=0">,discount = #{discount}</if>
+		<if test="minScore!=0">,minScore = #{minScore}</if>
+		<if test="maxScore!=0">,maxScore = #{maxScore}</if>
+		<if test="remark!=null and remark!=''">,remark = #{remark}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据AccountRank查询一条记录 -->
+	<select id="selectOne" parameterType="AccountRank" resultType="AccountRank">
+		select t.* from t_accountrank t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询AccountRank -->
+	<select id="selectPageList" parameterType="AccountRank" resultType="AccountRank">
+		select t.* from t_accountrank t where 1 = 1
+		<if test="code!=null and code!=''"> and code = #{code}</if>
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="discount!=0"> and discount = #{discount}</if>
+		<if test="minScore!=0"> and minScore = #{minScore}</if>
+		<if test="maxScore!=0"> and maxScore = #{maxScore}</if>
+		<if test="remark!=null and remark!=''"> and remark = #{remark}</if>
+		
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询AccountRank -->
+	<select id="selectList" parameterType="AccountRank" resultType="AccountRank">
+		select t.* from t_accountrank t where 1 = 1 
+		<if test="code!=null and code!=''"> and code = #{code}</if>
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="discount!=0"> and discount = #{discount}</if>
+		<if test="minScore!=0"> and minScore = #{minScore}</if>
+		<if test="maxScore!=0"> and maxScore = #{maxScore}</if>
+		<if test="remark!=null and remark!=''"> and remark = #{remark}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_accountrank where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="AccountRank">
+		select t.* from t_accountrank t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询AccountRank -->
+	<select id="selectPageCount" parameterType="AccountRank" resultType="int">
+		select count(1) from t_accountrank t where 1 = 1
+		<if test="code!=null and code!=''"> and code = #{code}</if>
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="discount!=0"> and discount = #{discount}</if>
+		<if test="minScore!=0"> and minScore = #{minScore}</if>
+		<if test="maxScore!=0"> and maxScore = #{maxScore}</if>
+		<if test="remark!=null and remark!=''"> and remark = #{remark}</if>
+		
+	</select>
+	
+	<!-- 10. 根据code查询AccountRank -->
+	<select id="getAccountRankByCode" parameterType="string" resultType="AccountRank">
+		select t.* from t_accountrank t where code = #{code}
+	</select>
+
+</mapper>

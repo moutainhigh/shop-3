@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.activity.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Activity;public interface ActivityDao extends DaoManager<Activity> {}

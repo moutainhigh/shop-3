@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.WechatUserDao">
+
+    <sql id="wechatUserColumns">
+		a.id,
+		a.subscribe,
+		a.openid,
+		a.nickname,
+		a.sex,
+		a.city,
+		a.province,
+		a.country,
+		a.language,
+		a.headimgurl,
+		a.subscribe_time,
+		a.unionid,
+		a.mobile,
+		a.status,
+		a.create_time AS createTime
+	</sql>
+    
+	<!-- 1. 添加WechatUser -->
+	<insert id="insert" parameterType="WechatUser" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_wechat_user(subscribe, openid, nickname, sex, city, province, country, 
+			language, headimgurl, subscribe_time, unionid, mobile, status, create_time) 
+		VALUES (#{subscribe}, #{openid}, #{nickname}, #{sex}, #{city}, #{province}, #{country},
+			#{language}, #{headimgurl}, #{subscribe_time}, #{unionid}, #{mobile}, #{status}, #{createTime})
+	</insert>
+
+	<!-- 2. 删除WechatUser -->
+	<delete id="delete" parameterType="WechatUser">
+		delete from t_wechat_user where id = #{id}
+	</delete>
+
+	<!-- 3. 修改WechatUser -->
+	<update id="update" parameterType="WechatUser">
+		UPDATE t_wechat_user SET 
+			subscribe = #{subscribe}, 
+			openid = #{openid}, 
+			nickname = #{nickname}, 
+			sex = #{sex}, 
+			city = #{city}, 
+			province = #{province}, 
+			country = #{country}, 
+			language = #{language}, 
+			headimgurl = #{headimgurl}, 
+			subscribe_time = #{subscribe_time},
+			mobile = #{mobile}, 
+			status = #{status}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 4. 根据WechatUser查询一条记录 -->
+	<select id="selectOne" parameterType="WechatUser" resultType="WechatUser">
+		SELECT <include refid="wechatUserColumns" />
+		FROM t_wechat_user a
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询WechatUser -->
+	<select id="selectPageList" parameterType="WechatUser" resultType="WechatUser">
+		SELECT
+		<include refid="wechatUserColumns" />
+		FROM t_wechat_user a
+		WHERE 1 = 1
+		order by create_time
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询WechatUser -->
+	<select id="selectList" parameterType="WechatUser" resultType="WechatUser">
+		SELECT
+		<include refid="wechatUserColumns" />
+		FROM t_wechat_user a
+		WHERE 1 = 1
+		order by create_time
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		update t_wechat_user set status = '1', mobile = '' where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="WechatUser">
+		SELECT <include refid="wechatUserColumns" />
+		FROM t_wechat_user a 
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询WechatUser -->
+	<select id="selectPageCount" parameterType="WechatUser" resultType="int">
+		select count(1) from t_wechat_user t where 1 = 1
+	</select>
+	
+	<!-- 10. getByOpenid -->
+	<select id="getByOpenid" parameterType="string" resultType="WechatUser">
+		SELECT <include refid="wechatUserColumns" />
+		FROM t_wechat_user a 
+		WHERE a.openid = #{openid}
+	</select>
+	
+	<!-- 11. deleteByOpenid-->
+	<delete id="deleteByOpenid" parameterType="string">
+		update t_wechat_user set status = '1', mobile = '' where openid = #{openid}
+	</delete>
+</mapper>

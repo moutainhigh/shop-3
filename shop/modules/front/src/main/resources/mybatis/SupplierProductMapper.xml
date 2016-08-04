@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.SupplierProductDao">
+
+    <sql id="supplierProductColumns">
+		a.id,
+    	a.supplier_id as supplierId,
+    	a.supplier_name as supplierName,
+    	a.product_id as productId,
+    	a.product_code as productCode,
+    	a.product_name as productName,
+    	a.product_brand as productBrand,
+    	a.price,
+    	a.summary,
+    	a.color,
+    	a.size,
+    	a.length,
+    	a.width,
+    	a.height,
+    	a.material,
+    	a.spec
+	</sql>
+    
+	<!-- 1. 添加SupplierProduct -->
+	<insert id="insert" parameterType="SupplierProduct" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_supplier_product(supplier_id, supplier_name, product_id, product_code, product_name, product_brand, 
+			price, summary, color, size, length, width, height, material, spec) 
+		VALUES (#{supplierId}, #{supplierName}, #{productId}, #{productCode}, #{productName}, #{productBrand},
+			#{price}, #{summary}, #{color}, #{size}, #{length}, #{width}, #{height}, #{material}, #{spec})
+	</insert>
+
+	<!-- 2. 删除SupplierProduct -->
+	<delete id="delete" parameterType="SupplierProduct">
+		delete from t_supplier_product where id = #{id}
+	</delete>
+
+	<!-- 3. 修改SupplierProduct -->
+	<update id="update" parameterType="SupplierProduct">
+		UPDATE t_supplier_product 
+		SET id= #{id}
+		<if test="supplierId != null">,supplier_id = #{supplierId}</if>
+		<if test="supplierName != null and supplierName != ''">,supplier_name = #{supplierName}</if>
+		<if test="productId != null">,product_id = #{productId}</if>
+		<if test="productCode != null and productCode != ''">,product_code = #{productCode}</if>
+		<if test="productName != null and productName != ''">,product_name = #{productName}</if>
+		<if test="productBrand != null and productBrand != ''">,product_brand = #{productBrand}</if>
+		<if test="price != null">,price = #{price}</if>
+		<if test="summary != null and summary != ''">,summary = #{summary}</if>
+		<if test="color != null and color != ''">,color = #{color}</if>
+		<if test="size != null and size != ''">,size = #{size}</if>
+		<if test="length != null and length != ''">,length = #{length}</if>
+		<if test="width != null and width != ''">,width = #{width}</if>
+		<if test="height != null and height != ''">,height = #{height}</if>
+		<if test="material != null and material != ''">,material = #{material}</if>
+		<if test="spec != null and spec != ''">,spec = #{spec}</if>
+		WHERE id = #{id}
+	</update>
+
+	<!-- 4. 根据SupplierProduct查询一条记录 -->
+	<select id="selectOne" parameterType="SupplierProduct" resultType="SupplierProduct">
+		SELECT <include refid="supplierProductColumns" />
+		FROM t_supplier_product a
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询SupplierProduct -->
+	<select id="selectPageList" parameterType="SupplierProduct" resultType="SupplierProduct">
+		SELECT
+		<include refid="supplierProductColumns" />
+		FROM t_supplier_product a
+		WHERE 1 = 1
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询SupplierProduct -->
+	<select id="selectList" parameterType="SupplierProduct" resultType="SupplierProduct">
+		SELECT
+		<include refid="supplierProductColumns" />
+		FROM t_supplier_product a
+		WHERE 1 = 1
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_supplier_product where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="SupplierProduct">
+		SELECT <include refid="supplierProductColumns" />
+		FROM t_supplier_product a 
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询SupplierProduct -->
+	<select id="selectPageCount" parameterType="SupplierProduct" resultType="int">
+		select count(1) from t_supplier_product t where 1 = 1
+	</select>
+	
+</mapper>

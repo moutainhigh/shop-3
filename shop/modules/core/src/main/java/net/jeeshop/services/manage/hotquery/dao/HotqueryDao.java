@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.hotquery.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Hotquery;public interface HotqueryDao extends DaoManager<Hotquery> {}

@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.gift;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Gift;public interface GiftService extends Services<Gift> {}

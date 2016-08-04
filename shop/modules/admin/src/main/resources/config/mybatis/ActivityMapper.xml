@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.ActivityDao">
+
+	<!-- 1. 添加Activity -->
+	<insert id="insert" parameterType="Activity" useGeneratedKeys="true" keyProperty="id">
+		insert into t_activity
+		(id
+        <if test="name!=null and name!=''">,name</if>
+		<if test="accountRange!=null and accountRange!=''">,accountRange</if>
+		<if test="startDate!=null">,startDate</if>
+		<if test="endDate!=null">,endDate</if>
+		<if test="content!=null and content!=''">,content</if>
+		<if test="status!=null and status!=''">,status</if>
+		<if test="catalogs!=null and catalogs!=''">,catalogs</if>
+		<if test="productID!=null and productID!=''">,productID</if>
+		<if test="discountType!=null and discountType!=''">,discountType</if>
+		<if test="discount!=null">,discount</if>
+		<if test="minprice!=null">,minprice</if>
+		<if test="maxprice!=null">,maxprice</if>
+		<if test="maxSellCount!=0">,maxSellCount</if>
+		<if test="activityType!=null and activityType!=''">,activityType</if>
+		<if test="exchangeScore!=0">,exchangeScore</if>
+		<if test="minGroupCount!=0">,minGroupCount</if>
+		<if test="tuanPrice!=null">,tuanPrice</if>
+		<if test="hasBuyGroupPerson!=0">,hasBuyGroupPerson</if>
+		
+		)
+		values
+		(
+		id
+		<if test="name!=null and name!=''">,#{name}</if>
+		<if test="accountRange!=null and accountRange!=''">,#{accountRange}</if>
+		<if test="startDate!=null">,#{startDate}</if>
+		<if test="endDate!=null">,#{endDate}</if>
+		<if test="content!=null and content!=''">,#{content}</if>
+		<if test="status!=null and status!=''">,#{status}</if>
+		<if test="catalogs!=null and catalogs!=''">,#{catalogs}</if>
+		<if test="productID!=null and productID!=''">,#{productID}</if>
+		<if test="discountType!=null and discountType!=''">,#{discountType}</if>
+		<if test="discount!=null">,#{discount}</if>
+		<if test="minprice!=null">,#{minprice}</if>
+		<if test="maxprice!=null">,#{maxprice}</if>
+		<if test="maxSellCount!=0">,#{maxSellCount}</if>
+		<if test="activityType!=null and activityType!=''">,#{activityType}</if>
+		<if test="exchangeScore!=0">,#{exchangeScore}</if>
+		<if test="minGroupCount!=0">,#{minGroupCount}</if>
+		<if test="tuanPrice!=null">,#{tuanPrice}</if>
+		<if test="hasBuyGroupPerson!=0">,#{hasBuyGroupPerson}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除Activity -->
+	<delete id="delete" parameterType="Activity">
+		delete from t_activity where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Activity -->
+	<update id="update" parameterType="Activity">
+		update t_activity
+		set id= #{id}
+		<if test="name!=null and name!=''">,name = #{name}</if>
+		<if test="accountRange!=null and accountRange!=''">,accountRange = #{accountRange}</if>
+		<if test="startDate!=null">,startDate = #{startDate}</if>
+		<if test="endDate!=null">,endDate = #{endDate}</if>
+		<if test="content!=null and content!=''">,content = #{content}</if>
+		<if test="status!=null and status!=''">,status = #{status}</if>
+		<if test="catalogs!=null and catalogs!=''">,catalogs = #{catalogs}</if>
+		<if test="productID!=null and productID!=''">,productID = #{productID}</if>
+		<if test="discountType!=null and discountType!=''">,discountType = #{discountType}</if>
+		<if test="discount!=null">,discount = #{discount}</if>
+		<if test="minprice!=null">,minprice = #{minprice}</if>
+		<if test="maxprice!=null">,maxprice = #{maxprice}</if>
+		<if test="maxSellCount!=0">,maxSellCount = #{maxSellCount}</if>
+		<if test="activityType!=null and activityType!=''">,activityType = #{activityType}</if>
+		<if test="exchangeScore!=0">,exchangeScore = #{exchangeScore}</if>
+		<if test="minGroupCount!=0">,minGroupCount = #{minGroupCount}</if>
+		<if test="tuanPrice!=null">,tuanPrice = #{tuanPrice}</if>
+		<if test="hasBuyGroupPerson!=0">,hasBuyGroupPerson = #{hasBuyGroupPerson}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Activity查询一条记录 -->
+	<select id="selectOne" parameterType="Activity" resultType="Activity">
+		select t.* from t_activity t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Activity -->
+	<select id="selectPageList" parameterType="Activity" resultType="Activity">
+		select t.* from t_activity t where 1 = 1
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="accountRange!=null and accountRange!=''"> and accountRange = #{accountRange}</if>
+		<if test="startDate!=null"> and startDate = #{startDate}</if>
+		<if test="endDate!=null"> and endDate = #{endDate}</if>
+		<if test="content!=null and content!=''"> and content = #{content}</if>
+		<if test="status!=null and status!=''"> and status = #{status}</if>
+		<if test="catalogs!=null and catalogs!=''"> and catalogs = #{catalogs}</if>
+		<if test="productID!=null and productID!=''"> and productID = #{productID}</if>
+		<if test="discountType!=null and discountType!=''"> and discountType = #{discountType}</if>
+		<if test="discount!=null"> and discount = #{discount}</if>
+		<if test="minprice!=null"> and minprice = #{minprice}</if>
+		<if test="maxprice!=null"> and maxprice = #{maxprice}</if>
+		<if test="maxSellCount!=0"> and maxSellCount = #{maxSellCount}</if>
+		<if test="activityType!=null and activityType!=''"> and activityType = #{activityType}</if>
+		<if test="exchangeScore!=0"> and exchangeScore = #{exchangeScore}</if>
+		<if test="minGroupCount!=0"> and minGroupCount = #{minGroupCount}</if>
+		<if test="tuanPrice!=null"> and tuanPrice = #{tuanPrice}</if>
+		<if test="hasBuyGroupPerson!=0"> and hasBuyGroupPerson = #{hasBuyGroupPerson}</if>
+		
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Activity -->
+	<select id="selectList" parameterType="Activity" resultType="Activity">
+		select t.* from t_activity t where 1 = 1 
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="accountRange!=null and accountRange!=''"> and accountRange = #{accountRange}</if>
+		<if test="startDate!=null"> and startDate = #{startDate}</if>
+		<if test="endDate!=null"> and endDate = #{endDate}</if>
+		<if test="content!=null and content!=''"> and content = #{content}</if>
+		<if test="status!=null and status!=''"> and status = #{status}</if>
+		<if test="catalogs!=null and catalogs!=''"> and catalogs = #{catalogs}</if>
+		<if test="productID!=null and productID!=''"> and productID = #{productID}</if>
+		<if test="discountType!=null and discountType!=''"> and discountType = #{discountType}</if>
+		<if test="discount!=null"> and discount = #{discount}</if>
+		<if test="minprice!=null"> and minprice = #{minprice}</if>
+		<if test="maxprice!=null"> and maxprice = #{maxprice}</if>
+		<if test="maxSellCount!=0"> and maxSellCount = #{maxSellCount}</if>
+		<if test="activityType!=null and activityType!=''"> and activityType = #{activityType}</if>
+		<if test="exchangeScore!=0"> and exchangeScore = #{exchangeScore}</if>
+		<if test="minGroupCount!=0"> and minGroupCount = #{minGroupCount}</if>
+		<if test="tuanPrice!=null"> and tuanPrice = #{tuanPrice}</if>
+		<if test="hasBuyGroupPerson!=0"> and hasBuyGroupPerson = #{hasBuyGroupPerson}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_activity where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Activity">
+		select t.* from t_activity t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Activity -->
+	<select id="selectPageCount" parameterType="Activity" resultType="int">
+		select count(1) from t_activity t where 1 = 1
+		<if test="name!=null and name!=''"> and name = #{name}</if>
+		<if test="accountRange!=null and accountRange!=''"> and accountRange = #{accountRange}</if>
+		<if test="startDate!=null"> and startDate = #{startDate}</if>
+		<if test="endDate!=null"> and endDate = #{endDate}</if>
+		<if test="content!=null and content!=''"> and content = #{content}</if>
+		<if test="status!=null and status!=''"> and status = #{status}</if>
+		<if test="catalogs!=null and catalogs!=''"> and catalogs = #{catalogs}</if>
+		<if test="productID!=null and productID!=''"> and productID = #{productID}</if>
+		<if test="discountType!=null and discountType!=''"> and discountType = #{discountType}</if>
+		<if test="discount!=null"> and discount = #{discount}</if>
+		<if test="minprice!=null"> and minprice = #{minprice}</if>
+		<if test="maxprice!=null"> and maxprice = #{maxprice}</if>
+		<if test="maxSellCount!=0"> and maxSellCount = #{maxSellCount}</if>
+		<if test="activityType!=null and activityType!=''"> and activityType = #{activityType}</if>
+		<if test="exchangeScore!=0"> and exchangeScore = #{exchangeScore}</if>
+		<if test="minGroupCount!=0"> and minGroupCount = #{minGroupCount}</if>
+		<if test="tuanPrice!=null"> and tuanPrice = #{tuanPrice}</if>
+		<if test="hasBuyGroupPerson!=0"> and hasBuyGroupPerson = #{hasBuyGroupPerson}</if>
+		
+	</select>
+
+</mapper>

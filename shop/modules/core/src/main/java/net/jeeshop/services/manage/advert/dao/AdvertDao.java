@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.advert.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Advert;public interface AdvertDao extends DaoManager<Advert> {}

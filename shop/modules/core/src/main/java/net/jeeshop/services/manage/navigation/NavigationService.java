@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.navigation;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Navigation;public interface NavigationService extends Services<Navigation> {}

@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.notifyTemplate;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.NotifyTemplate;public interface NotifyTemplateService extends Services<NotifyTemplate> {}

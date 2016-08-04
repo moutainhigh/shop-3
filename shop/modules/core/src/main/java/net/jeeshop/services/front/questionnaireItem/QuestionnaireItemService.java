@@ -1,0 +1,1 @@
+package net.jeeshop.services.front.questionnaireItem;import java.util.List;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Questionnaire;import com.tuisitang.modules.shop.entity.QuestionnaireItem;public interface QuestionnaireItemService extends Services<QuestionnaireItem> {	void insertList(List<QuestionnaireItem> itemList);}

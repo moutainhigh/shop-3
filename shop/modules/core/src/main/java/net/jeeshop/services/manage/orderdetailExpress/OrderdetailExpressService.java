@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.orderdetailExpress;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.OrderdetailExpress;public interface OrderdetailExpressService extends Services<OrderdetailExpress> {}

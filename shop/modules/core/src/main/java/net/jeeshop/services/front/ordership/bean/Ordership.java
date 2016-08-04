@@ -1,0 +1,1 @@
+package net.jeeshop.services.front.ordership.bean;import java.io.Serializable;public class Ordership extends com.tuisitang.modules.shop.entity.Ordership implements		Serializable {	private static final long serialVersionUID = 1L;	public Ordership() {		super();	}	public Ordership(Long orderid) {		super(orderid);	}	public void clear() {		super.clear();	}}

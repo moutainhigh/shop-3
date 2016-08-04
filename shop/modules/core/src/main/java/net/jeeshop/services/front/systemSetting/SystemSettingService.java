@@ -1,0 +1,1 @@
+package net.jeeshop.services.front.systemSetting;import com.tuisitang.modules.shop.entity.SystemSetting;import net.jeeshop.core.Services;public interface SystemSettingService extends Services<SystemSetting> {}

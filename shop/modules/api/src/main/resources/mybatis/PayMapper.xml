@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.PayDao">
+
+	<!-- 1. 添加Pay -->
+	<insert id="insert" parameterType="Pay" useGeneratedKeys="true" keyProperty="id">
+		insert into t_pay
+		(id
+        <if test="name!=null and name!=''">,name</if>
+        <if test="type!=null and type!=''">,type</if>
+		<if test="code!=null and code!=''">,code</if>
+		<if test="seller!=null and seller!=''">,seller</if>
+		<if test="sort!=null">,sort</if>
+		<if test="status!=null and status!=''">,status</if>
+		<if test="partner!=null and partner!=''">,partner</if>
+		<if test="keyword!=null and keyword!=''">,keyword</if>
+		<if test="icon!=null and icon!=''">,icon</if>
+		<if test="picture!=null and picture!=''">,picture</if>
+		)
+		values
+		(
+		id
+		<if test="name!=null and name!=''">,#{name}</if>
+		<if test="type!=null and type!=''">,#{type}</if>
+		<if test="code!=null and code!=''">,#{code}</if>
+		<if test="seller!=null and seller!=''">,#{seller}</if>
+		<if test="sort!=null">,#{sort}</if>
+		<if test="status!=null and status!=''">,#{status}</if>
+		<if test="partner!=null and partner!=''">,#{partner}</if>
+		<if test="keyword!=null and keyword!=''">,#{keyword}</if>
+		<if test="icon!=null and icon!=''">,#{icon}</if>
+		<if test="picture!=null and picture!=''">,#{picture}</if>
+		)
+	</insert>
+
+	<!-- 2. 删除Pay -->
+	<delete id="delete" parameterType="Pay">
+		delete from t_pay where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Pay -->
+	<update id="update" parameterType="Pay">
+		update t_pay
+		set id= #{id}
+		<if test="name!=null and name!=''">,name = #{name}</if>
+		<if test="type!=null and type!=''">,type = #{type}</if>
+		<if test="code!=null and code!=''">,code = #{code}</if>
+		<if test="seller!=null and seller!=''">,seller = #{seller}</if>
+		<if test="sort!=null">,sort = #{sort}</if>
+		<if test="status!=null and status!=''">,status = #{status}</if>
+		<if test="partner!=null and partner!=''">,partner = #{partner}</if>
+		<if test="keyword!=null and keyword!=''">,keyword = #{keyword}</if>
+		<if test="icon!=null and icon!=''">,icon = #{icon}</if>
+		<if test="picture!=null and picture!=''">,picture = #{picture}</if>
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Pay查询一条记录 -->
+	<select id="selectOne" parameterType="Pay" resultType="Pay">
+		select t.* from t_pay t
+		where 1=1 and status='y'
+		<if test="id!=null and id!=''"> and id=#{id} </if>
+		<if test="code!=null and code!=''"> and code=#{code} </if>
+	</select>
+
+	<!-- 5. 分页查询Pay -->
+	<select id="selectPageList" parameterType="Pay" resultType="Pay">
+		select t.* from t_pay t where 1 = 1
+		<if test="type!=null and type!=''"> and type = #{type}</if>
+		<if test="code!=null and code!=''"> and code = #{code}</if>
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Pay -->
+	<select id="selectList" parameterType="Pay" resultType="Pay">
+		select t.* from t_pay t where 1 = 1 
+		<if test="type!=null and type!=''"> and type = #{type}</if>
+		<if test="code!=null and code!=''"> and code = #{code}</if>
+		order by type, sort
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_pay where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Pay">
+		select t.* from t_pay t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Pay -->
+	<select id="selectPageCount" parameterType="Pay" resultType="int">
+		select count(1) from t_pay t where 1 = 1
+		<if test="type!=null and type!=''"> and type = #{type}</if>
+		<if test="code!=null and code!=''"> and code = #{code}</if>
+	</select>
+	
+	<!-- 10. 根据code获得Pay -->
+	<select id="getByCode" parameterType="string" resultType="Pay">
+		select t.* from t_pay t where t.code = #{code}
+	</select>
+
+</mapper>

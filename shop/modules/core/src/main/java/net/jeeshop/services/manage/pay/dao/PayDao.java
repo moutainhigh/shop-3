@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.pay.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Pay;public interface PayDao extends DaoManager<Pay> {}

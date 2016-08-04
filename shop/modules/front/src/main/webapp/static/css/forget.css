@@ -1,0 +1,169 @@
+a.submit {
+    border: 1px solid #F9477A;
+    display: inline-block;
+    font-family: inherit;
+    word-break: keep-all;
+    background: #F8296D;
+    white-space: nowrap;
+    font-weight: 400;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    height: 40px;
+    color: #fff;
+    border: 0;
+    text-decoration: none;
+}
+a.submit:hover {
+    border-color: #c81f52;
+    background: #e5406f;
+}
+
+.sign_main .main {padding:0;margin:0 auto;}
+.sign_main .content_head {padding:23px 0 0px 67px;_height:120px;}
+.sign_main .content_head h1 {line-height:24px;margin-left:2px;}
+.sign_main .help_message {text-align:right;padding:12px 14px;}
+.sign_main .help_message span {color:#ed145b;}
+.sign_main p {font-size:14px;}
+.sign_main .forget_prep_btn {background:#e5e5e5;color:#666;width:136px;height:42px;display:block;text-align:center;line-height:42px;font-size:14px;margin-right:22px;}
+.sign_main .forget_prep_btn:hover {text-decoration: none;background:#d5d5d5;}
+.sign_main .forget_mail_btn {background:#e5e5e5;color:#666;width:136px;height:42px;display:block;text-align:center;line-height:42px;font-size:14px;margin-right:22px;}
+.sign_main .forget_mail_btn:hover {text-decoration: none;background:#d5d5d5;}
+
+.forget_step {list-style:none;margin:26px 0 0 10px;padding:0;height:30px;}
+.forget_step .step_item {float:left;width:214px;height:32px;}
+.forget_step .step_item.first {width:32px;}
+.forget_step .step_item .step_number {margin:0;padding:0;background-image:url(../images/forget_step.jpg);display:block;width:32px;height:32px;float:left;}
+.number_1 {background-position:0 0;}
+.number_2 {background-position:-32px 0;}
+.number_3 {background-position:-64px 0;}
+.number_4 {background-position:-96px 0;}
+.done .number_1 {background-position:0 -35px;}
+.done .number_2 {background-position:-32px -35px;}
+.done .number_3 {background-position:-64px -35px;}
+.done .number_4 {background-position:-96px -35px;}
+.step_line {float:left;display:block;background-image:url(../images/step_line.jpg);width:182px;height:32px;margin:0 !important;padding:0;}
+.done .step_line {background-position:0 -32px;}
+
+.step_text {margin:11px 0 0 0;}
+.step_text li {float:left;width:56px;color:#999;line-height:14px;*line-height:16px;margin-bottom:15px;height:14px;}
+.step_text li.done {color:#ed145b;}
+.step_text .text_2 {margin-left:156px;_margin-left:101px;}
+.step_text .text_3 {margin-left:159px;}
+.step_text .text_4 {margin-left:172px;}
+
+.ret_wrapper  {margin: 0 auto;}
+.ret_wrapper .forget_btn {width:136px;height:42px;_background:#e5406f;_border:1px solid #c81f52;_color:#fff;_font-weight:bold;_cursor:pointer;}
+.ret_wrapper .forget_btn.disabled {background:#aaa;_background:#aaa;_border:1px solid #aaa;_color:#fff;_font-weight:bold;_cursor:not-allowed;cursor:not-allowed;}
+
+.step_1 {width:420px;margin-left:223px;}
+.step_1 .act {margin:30px 0 0 52px;}
+.forget_content .line {margin:30px 0 0 0;}
+.forget_content .line.tip {margin-top:40px;color:#999;*margin-left:5px;}
+.forget_content .line.hastip {margin-top:4px;}
+.forget_content .line.msg {margin:18px 0 30px 0px;color:#999;line-height:12px;*line-height:14px;*margin-left:5px;}
+.forget_content .line label {width:52px;margin:0;padding:0;text-align:left;}
+.forget_content input {font-size:14px;}
+
+.verityWrap a {cursor: pointer;}
+
+.step_2 {width:480px;margin-left:246px;}
+.step_2 .line label {width:130px;text-align:right;}
+
+.sign_main .line .form_radio {background:url(../images/forget_radio.jpg) 0px -17px no-repeat;width:80px;height:21px;text-align:left;cursor:pointer;}
+.sign_main .line .form_radio.checked {background-position:0px 3px;}
+.sign_main .line .form_radio i {padding:0 0 0 24px;}
+.sign_main .line .form_radio_hidden {width:0px; opacity: 0; position: relative; left: -99999; display: none;}
+
+.step_2 .phone_verify {width:135px;}
+.step_2 .verify_btn {
+    background: #fcfcfc;
+    background: -webkit-gradient(linear,left top,left bottom,from(#fcfcfc),to(#f2f2f2));
+    background: -webkit-linear-gradient(top,#fcfcfc,#f2f2f2);
+    background: -moz-linear-gradient(top,#fcfcfc,#f2f2f2);
+    background: -o-linear-gradient(top,#fcfcfc,#f2f2f2);
+    background: linear-gradient(to bottom,#fcfcfc,#f2f2f2);
+    border: 1px solid #d9d9d9;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0 8px;
+    display: inline-block;
+    line-height: 41px;
+    height: 41px;
+    font-weight: 700;
+    color: #666;
+    margin-left: 10px;
+    text-align: center;
+}
+.step_2 .verify_btn:hover {
+	background: #fcfcfc;
+    background: -webkit-gradient(linear,left top,left bottom,from(#fcfcfc),to(#f2f2f2));
+    background: -webkit-linear-gradient(top,#fcfcfc,#f2f2f2);
+    background: -moz-linear-gradient(top,#fcfcfc,#f2f2f2);
+    background: -o-linear-gradient(top,#fcfcfc,#f2f2f2);
+    background: linear-gradient(to bottom,#fcfcfc,#f2f2f2);
+    border: 1px solid #d9d9d9;
+    text-decoration: none;
+}
+.forget_content .line_get_verify_code {
+    line-height: 45px;
+}
+.step_2 .disabled {
+    cursor: default;
+}
+.step_2 .phone_content .act {margin-left:0px;}
+.step_2 .email_content .forget_btn {width:212px;}
+.step_2 .email_content .act {margin-left:0px;}
+
+.step_2_mail_success {width:820px;}
+.step_2_mail_success .line {text-align:center;}
+.step_2_mail_success .line.single {margin-top:90px;}
+.step_2_mail_success .line.single span {font-weight:bold;}
+.step_2_mail_success .act {width:180px;margin:14px auto 0;}
+.step_2_mail_success .act .forget_btn {width:180px;}
+.step_2_mail_success .mail_message {width:390px;margin:20px auto;}
+.step_2_mail_success .mail_message p {font-size:12px;color:#999;text-align:left;}
+
+.step_3 {width:420px;margin-left:164px;}
+.step_3 .line label {width:100px;text-align:right;}
+.step_3 .line .textbox_ui {margin-left:12px;}
+.step_3 .line.single {margin-top:57px;}
+.step_3 .act {margin-left:115px;}
+
+.step_3 .pw_level {float:left;border-right:1px solid #fff;width:100px;height:20px;text-align:center;color:#fff;background:#D0CECC;}
+.step_3 .pw_level.pw_weak {background:#EF2B6B;}
+.step_3 .pw_level.pw_normal {background:orange;}
+.step_3 .pw_level.pw_strong {background:green;}
+.step_3 .pw_level.pw_strong {border-right:0px;}
+
+.step_4 {width:350px;}
+.step_4 .line.single {margin-top:90px;}
+.step_4 .line .forget_success_ico {background:url(../images/forget_success.jpg) no-repeat;width:69px;height:69px;margin-right:5px;}
+.forget_success_text { margin-top:-66px; margin-left:76px;}
+
+.fg_hide {display: none !important;}
+.textbox_ui .focus_text_show {display: block;}
+.error_ui .focus_text_show {display: none;}
+.textbox_ui input {line-height:15px;color:#333;font-size:12px;}
+.textbox_ui input.holder {color:#aaa;}
+
+.sign_main {
+    border: 1px solid #f5f5f5;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 20px auto;
+    position: relative;
+    width: 960px;
+}
+.sign .shadow_l, .sign .shadow_r {
+    background: rgba(0, 0, 0, 0) url("../images/shadow.png") no-repeat scroll center center;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 8px;
+}
+.invalid {
+	margin-left:20px;
+}

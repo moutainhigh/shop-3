@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.ordership;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Ordership;public interface OrdershipService extends Services<Ordership> {}

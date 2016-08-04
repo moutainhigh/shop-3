@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.commentType.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.CommentType;public interface CommentTypeDao extends DaoManager<CommentType> {	/**	 * 更新所有的评论插件为未选中	 */	void updateAllN();}

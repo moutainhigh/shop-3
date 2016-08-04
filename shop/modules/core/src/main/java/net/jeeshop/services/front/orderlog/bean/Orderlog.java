@@ -1,0 +1,1 @@
+package net.jeeshop.services.front.orderlog.bean;import java.io.Serializable;public class Orderlog extends com.tuisitang.modules.shop.entity.Orderlog implements Serializable {	private static final long serialVersionUID = 1L;	public Orderlog() {		super();	}	public Orderlog(Long orderid) {		super(orderid);	}	public void clear() {		super.clear();	}}

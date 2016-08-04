@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.AccountDao">
+
+	<!-- 1. 添加Account -->
+	<insert id="insert" parameterType="Account" useGeneratedKeys="true" keyProperty="id">
+		insert into t_account
+		(id
+        <if test="mobile!=null and mobile!=''">,mobile</if>
+		<if test="nickname!=null and nickname!=''">,nickname</if>
+		<if test="account!=null and account!=''">,account</if>
+		<if test="password!=null and password!=''">,password</if>
+		<if test="accountType!=null and accountType!=''">,accountType</if>
+		<if test="trueName!=null and trueName!=''">,trueName</if>
+		<if test="sex!=null and sex!=''">,sex</if>
+		<if test="birthday!=null">,birthday</if>
+		<if test="province!=null and province!=''">,province</if>
+		<if test="city!=null and city!=''">,city</if>
+		<if test="address!=null and address!=''">,address</if>
+		<if test="postcode!=null and postcode!=''">,postcode</if>
+		<if test="cardType!=null and cardType!=''">,cardType</if>
+		<if test="cardNO!=null and cardNO!=''">,cardNO</if>
+		<if test="grade!=0">,grade</if>
+		<if test="amount!=null and amount!=''">,amount</if>
+		<if test="tel!=null and tel!=''">,tel</if>
+		<if test="email!=null and email!=''">,email</if>
+		<if test="emailIsActive!=null and emailIsActive!=''">,emailIsActive</if>
+		<if test="freeze!=null and freeze!=''">,freeze</if>
+		<if test="freezeStartdate!=null">,freezeStartdate</if>
+		<if test="freezeEnddate!=null">,freezeEnddate</if>
+		<if test="lastLoginTime!=null">,lastLoginTime</if>
+		<if test="lastLoginIp!=null and lastLoginIp!=''">,lastLoginIp</if>
+		<if test="lastLoginArea!=null and lastLoginArea!=''">,lastLoginArea</if>
+		<if test="diffAreaLogin!=null and diffAreaLogin!=''">,diffAreaLogin</if>
+		<if test="regeistDate!=null">,regeistDate</if>
+		<if test="openId!=null and openId!=''">,openId</if>
+		<if test="accessToken!=null and accessToken!=''">,accessToken</if>
+		<if test="alipayUseId!=null and alipayUseId!=''">,alipayUseId</if>
+		<if test="sinaWeiboID!=null and sinaWeiboID!=''">,sinaWeiboID</if>
+		<if test="rank!=null and rank!=''">,rank</if>
+		<if test="score!=0">,score</if>
+		
+		)
+		values
+		(
+		id
+		<if test="mobile!=null and mobile!=''">,#{mobile}</if>
+		<if test="nickname!=null and nickname!=''">,#{nickname}</if>
+		<if test="account!=null and account!=''">,#{account}</if>
+		<if test="password!=null and password!=''">,#{password}</if>
+		<if test="accountType!=null and accountType!=''">,#{accountType}</if>
+		<if test="trueName!=null and trueName!=''">,#{trueName}</if>
+		<if test="sex!=null and sex!=''">,#{sex}</if>
+		<if test="birthday!=null">,${birthday}</if>
+		<if test="province!=null and province!=''">,#{province}</if>
+		<if test="city!=null and city!=''">,#{city}</if>
+		<if test="address!=null and address!=''">,#{address}</if>
+		<if test="postcode!=null and postcode!=''">,#{postcode}</if>
+		<if test="cardType!=null and cardType!=''">,#{cardType}</if>
+		<if test="cardNO!=null and cardNO!=''">,#{cardNO}</if>
+		<if test="grade!=0">,${grade}</if>
+		<if test="amount!=null and amount!=''">,#{amount}</if>
+		<if test="tel!=null and tel!=''">,#{tel}</if>
+		<if test="email!=null and email!=''">,#{email}</if>
+		<if test="emailIsActive!=null and emailIsActive!=''">,#{emailIsActive}</if>
+		<if test="freeze!=null and freeze!=''">,#{freeze}</if>
+		<if test="freezeStartdate!=null">,${freezeStartdate}</if>
+		<if test="freezeEnddate!=null">,${freezeEnddate}</if>
+		<if test="lastLoginTime!=null">,${lastLoginTime}</if>
+		<if test="lastLoginIp!=null and lastLoginIp!=''">,#{lastLoginIp}</if>
+		<if test="lastLoginArea!=null and lastLoginArea!=''">,#{lastLoginArea}</if>
+		<if test="diffAreaLogin!=null and diffAreaLogin!=''">,#{diffAreaLogin}</if>
+		<if test="regeistDate!=null">,${regeistDate}</if>
+		<if test="openId!=null and openId!=''">,#{openId}</if>
+		<if test="accessToken!=null and accessToken!=''">,#{accessToken}</if>
+		<if test="alipayUseId!=null and alipayUseId!=''">,#{alipayUseId}</if>
+		<if test="sinaWeiboID!=null and sinaWeiboID!=''">,#{sinaWeiboID}</if>
+		<if test="rank!=null and rank!=''">,#{rank}</if>
+		<if test="score!=0">,${score}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除Account -->
+	<delete id="delete" parameterType="Account">
+		delete from t_account where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Account -->
+	<update id="update" parameterType="Account">
+		update t_account
+		set id= #{id}
+		<if test="mobile!=null and mobile!=''">,mobile = #{mobile}</if>
+		<if test="nickname!=null and nickname!=''">,nickname = #{nickname}</if>
+		<if test="account!=null and account!=''">,account = #{account}</if>
+		<if test="password!=null and password!=''">,password = #{password}</if>
+		<if test="accountType!=null and accountType!=''">,accountType = #{accountType}</if>
+		<if test="trueName!=null and trueName!=''">,trueName = #{trueName}</if>
+		<if test="sex!=null and sex!=''">,sex = #{sex}</if>
+		<if test="birthday!=null">,birthday = #{birthday}</if>
+		<if test="province!=null and province!=''">,province = #{province}</if>
+		<if test="city!=null and city!=''">,city = #{city}</if>
+		<if test="address!=null and address!=''">,address = #{address}</if>
+		<if test="postcode!=null and postcode!=''">,postcode = #{postcode}</if>
+		<if test="cardType!=null and cardType!=''">,cardType = #{cardType}</if>
+		<if test="cardNO!=null and cardNO!=''">,cardNO = #{cardNO}</if>
+		<if test="grade!=0">,grade = #{grade}</if>
+		<if test="amount!=null and amount!=''">,amount = #{amount}</if>
+		<if test="tel!=null and tel!=''">,tel = #{tel}</if>
+		<if test="email!=null and email!=''">,email = #{email}</if>
+		<if test="emailIsActive!=null and emailIsActive!=''">,emailIsActive = #{emailIsActive}</if>
+		<if test="freeze!=null and freeze!=''">,freeze = #{freeze}</if>
+		<if test="freezeStartdate!=null">,freezeStartdate = #{freezeStartdate}</if>
+		<if test="freezeEnddate!=null">,freezeEnddate = #{freezeEnddate}</if>
+		<if test="lastLoginTime!=null">,lastLoginTime = #{lastLoginTime}</if>
+		<if test="lastLoginIp!=null and lastLoginIp!=''">,lastLoginIp = #{lastLoginIp}</if>
+		<if test="lastLoginArea!=null and lastLoginArea!=''">,lastLoginArea = #{lastLoginArea}</if>
+		<if test="diffAreaLogin!=null and diffAreaLogin!=''">,diffAreaLogin = #{diffAreaLogin}</if>
+		<if test="regeistDate!=null">,regeistDate = #{regeistDate}</if>
+		<if test="openId!=null and openId!=''">,openId = #{openId}</if>
+		<if test="accessToken!=null and accessToken!=''">,accessToken = #{accessToken}</if>
+		<if test="alipayUseId!=null and alipayUseId!=''">,alipayUseId = #{alipayUseId}</if>
+		<if test="sinaWeiboID!=null and sinaWeiboID!=''">,sinaWeiboID = #{sinaWeiboID}</if>
+		<if test="rank!=null and rank!=''">,rank = #{rank}</if>
+		<if test="score!=0">,score = #{score}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Account查询一条记录 -->
+	<select id="selectOne" parameterType="Account" resultType="Account">
+		select t.* from t_account t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Account -->
+	<select id="selectPageList" parameterType="Account" resultType="Account">
+		select t.* from t_account t where 1 = 1
+		<if test="mobile!=null and mobile!=''"> and mobile = #{mobile}</if>
+		<if test="nickname!=null and nickname!=''"> and nickname = #{nickname}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="password!=null and password!=''"> and password = #{password}</if>
+		<if test="accountType!=null and accountType!=''"> and accountType = #{accountType}</if>
+		<if test="trueName!=null and trueName!=''"> and trueName = #{trueName}</if>
+		<if test="sex!=null and sex!=''"> and sex = #{sex}</if>
+		<if test="birthday!=null"> and birthday = #{birthday}</if>
+		<if test="province!=null and province!=''"> and province = #{province}</if>
+		<if test="city!=null and city!=''"> and city = #{city}</if>
+		<if test="address!=null and address!=''"> and address = #{address}</if>
+		<if test="postcode!=null and postcode!=''"> and postcode = #{postcode}</if>
+		<if test="cardType!=null and cardType!=''"> and cardType = #{cardType}</if>
+		<if test="cardNO!=null and cardNO!=''"> and cardNO = #{cardNO}</if>
+		<if test="grade!=0"> and grade = #{grade}</if>
+		<if test="amount!=null and amount!=''"> and amount = #{amount}</if>
+		<if test="tel!=null and tel!=''"> and tel = #{tel}</if>
+		<if test="email!=null and email!=''"> and email = #{email}</if>
+		<if test="emailIsActive!=null and emailIsActive!=''"> and emailIsActive = #{emailIsActive}</if>
+		<if test="freeze!=null and freeze!=''"> and freeze = #{freeze}</if>
+		<if test="freezeStartdate!=null"> and freezeStartdate = #{freezeStartdate}</if>
+		<if test="freezeEnddate!=null"> and freezeEnddate = #{freezeEnddate}</if>
+		<if test="lastLoginTime!=null"> and lastLoginTime = #{lastLoginTime}</if>
+		<if test="lastLoginIp!=null and lastLoginIp!=''"> and lastLoginIp = #{lastLoginIp}</if>
+		<if test="lastLoginArea!=null and lastLoginArea!=''"> and lastLoginArea = #{lastLoginArea}</if>
+		<if test="diffAreaLogin!=null and diffAreaLogin!=''"> and diffAreaLogin = #{diffAreaLogin}</if>
+		<if test="regeistDate!=null"> and regeistDate = #{regeistDate}</if>
+		<if test="openId!=null and openId!=''"> and openId = #{openId}</if>
+		<if test="accessToken!=null and accessToken!=''"> and accessToken = #{accessToken}</if>
+		<if test="alipayUseId!=null and alipayUseId!=''"> and alipayUseId = #{alipayUseId}</if>
+		<if test="sinaWeiboID!=null and sinaWeiboID!=''"> and sinaWeiboID = #{sinaWeiboID}</if>
+		<if test="rank!=null and rank!=''"> and rank = #{rank}</if>
+		<if test="score!=0"> and score = #{score}</if>
+		
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Account -->
+	<select id="selectList" parameterType="Account" resultType="Account">
+		select t.* from t_account t where 1 = 1 
+		<if test="mobile!=null and mobile!=''"> and mobile = #{mobile}</if>
+		<if test="nickname!=null and nickname!=''"> and nickname = #{nickname}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="password!=null and password!=''"> and password = #{password}</if>
+		<if test="accountType!=null and accountType!=''"> and accountType = #{accountType}</if>
+		<if test="trueName!=null and trueName!=''"> and trueName = #{trueName}</if>
+		<if test="sex!=null and sex!=''"> and sex = #{sex}</if>
+		<if test="birthday!=null"> and birthday = #{birthday}</if>
+		<if test="province!=null and province!=''"> and province = #{province}</if>
+		<if test="city!=null and city!=''"> and city = #{city}</if>
+		<if test="address!=null and address!=''"> and address = #{address}</if>
+		<if test="postcode!=null and postcode!=''"> and postcode = #{postcode}</if>
+		<if test="cardType!=null and cardType!=''"> and cardType = #{cardType}</if>
+		<if test="cardNO!=null and cardNO!=''"> and cardNO = #{cardNO}</if>
+		<if test="grade!=0"> and grade = #{grade}</if>
+		<if test="amount!=null and amount!=''"> and amount = #{amount}</if>
+		<if test="tel!=null and tel!=''"> and tel = #{tel}</if>
+		<if test="email!=null and email!=''"> and email = #{email}</if>
+		<if test="emailIsActive!=null and emailIsActive!=''"> and emailIsActive = #{emailIsActive}</if>
+		<if test="freeze!=null and freeze!=''"> and freeze = #{freeze}</if>
+		<if test="freezeStartdate!=null"> and freezeStartdate = #{freezeStartdate}</if>
+		<if test="freezeEnddate!=null"> and freezeEnddate = #{freezeEnddate}</if>
+		<if test="lastLoginTime!=null"> and lastLoginTime = #{lastLoginTime}</if>
+		<if test="lastLoginIp!=null and lastLoginIp!=''"> and lastLoginIp = #{lastLoginIp}</if>
+		<if test="lastLoginArea!=null and lastLoginArea!=''"> and lastLoginArea = #{lastLoginArea}</if>
+		<if test="diffAreaLogin!=null and diffAreaLogin!=''"> and diffAreaLogin = #{diffAreaLogin}</if>
+		<if test="regeistDate!=null"> and regeistDate = #{regeistDate}</if>
+		<if test="openId!=null and openId!=''"> and openId = #{openId}</if>
+		<if test="accessToken!=null and accessToken!=''"> and accessToken = #{accessToken}</if>
+		<if test="alipayUseId!=null and alipayUseId!=''"> and alipayUseId = #{alipayUseId}</if>
+		<if test="sinaWeiboID!=null and sinaWeiboID!=''"> and sinaWeiboID = #{sinaWeiboID}</if>
+		<if test="rank!=null and rank!=''"> and rank = #{rank}</if>
+		<if test="score!=0"> and score = #{score}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_account where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Account">
+		select t.* from t_account t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Account -->
+	<select id="selectPageCount" parameterType="Account" resultType="int">
+		select count(1) from t_account t where 1 = 1
+		<if test="mobile!=null and mobile!=''"> and mobile = #{mobile}</if>
+		<if test="nickname!=null and nickname!=''"> and nickname = #{nickname}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="password!=null and password!=''"> and password = #{password}</if>
+		<if test="accountType!=null and accountType!=''"> and accountType = #{accountType}</if>
+		<if test="trueName!=null and trueName!=''"> and trueName = #{trueName}</if>
+		<if test="sex!=null and sex!=''"> and sex = #{sex}</if>
+		<if test="birthday!=null"> and birthday = #{birthday}</if>
+		<if test="province!=null and province!=''"> and province = #{province}</if>
+		<if test="city!=null and city!=''"> and city = #{city}</if>
+		<if test="address!=null and address!=''"> and address = #{address}</if>
+		<if test="postcode!=null and postcode!=''"> and postcode = #{postcode}</if>
+		<if test="cardType!=null and cardType!=''"> and cardType = #{cardType}</if>
+		<if test="cardNO!=null and cardNO!=''"> and cardNO = #{cardNO}</if>
+		<if test="grade!=0"> and grade = #{grade}</if>
+		<if test="amount!=null and amount!=''"> and amount = #{amount}</if>
+		<if test="tel!=null and tel!=''"> and tel = #{tel}</if>
+		<if test="email!=null and email!=''"> and email = #{email}</if>
+		<if test="emailIsActive!=null and emailIsActive!=''"> and emailIsActive = #{emailIsActive}</if>
+		<if test="freeze!=null and freeze!=''"> and freeze = #{freeze}</if>
+		<if test="freezeStartdate!=null"> and freezeStartdate = #{freezeStartdate}</if>
+		<if test="freezeEnddate!=null"> and freezeEnddate = #{freezeEnddate}</if>
+		<if test="lastLoginTime!=null"> and lastLoginTime = #{lastLoginTime}</if>
+		<if test="lastLoginIp!=null and lastLoginIp!=''"> and lastLoginIp = #{lastLoginIp}</if>
+		<if test="lastLoginArea!=null and lastLoginArea!=''"> and lastLoginArea = #{lastLoginArea}</if>
+		<if test="diffAreaLogin!=null and diffAreaLogin!=''"> and diffAreaLogin = #{diffAreaLogin}</if>
+		<if test="regeistDate!=null"> and regeistDate = #{regeistDate}</if>
+		<if test="openId!=null and openId!=''"> and openId = #{openId}</if>
+		<if test="accessToken!=null and accessToken!=''"> and accessToken = #{accessToken}</if>
+		<if test="alipayUseId!=null and alipayUseId!=''"> and alipayUseId = #{alipayUseId}</if>
+		<if test="sinaWeiboID!=null and sinaWeiboID!=''"> and sinaWeiboID = #{sinaWeiboID}</if>
+		<if test="rank!=null and rank!=''"> and rank = #{rank}</if>
+		<if test="score!=0"> and score = #{score}</if>
+		
+	</select>
+
+</mapper>

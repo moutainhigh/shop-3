@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.account;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Account;public interface AccountService extends Services<Account> {}

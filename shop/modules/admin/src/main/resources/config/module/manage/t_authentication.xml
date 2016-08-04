@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manage.auth">
+	<!-- 1. 添加Authentication -->
+	<insert id="manage.auth.insert" parameterType="com.tuisitang.modules.shop.entity.Authentication" useGeneratedKeys="true" keyProperty="id">
+		insert into t_authentication
+		(id
+		<if test="accountId!=null">,accountId</if>
+		<if test="type!=0">,type</if>
+		<if test="cardNo!=null and cardNo!=''">,cardNo</if>
+		<if test="cardName!=null and cardName!=''">,cardName</if>
+		<if test="authPicture!=null and authPicture!=''">,authPicture</if>
+		<if test="authDate!=null">,authDate</if>
+		<if test="requestDate!=null">,requestDate</if>
+		<if test="rejectDate!=null">,rejectDate</if>
+		<if test="rejectReason!=null and rejectReason!=''">,rejectReason</if>
+		<if test="status!=0">,status</if>
+		)
+		values
+		(
+		id
+		<if test="accountId!=null">,#{accountId}</if>
+		<if test="type!=0">,#{type}</if>
+		<if test="cardNo!=null and cardNo!=''">,#{cardNo}</if>
+		<if test="cardName!=null and cardName!=''">,#{cardName}</if>
+		<if test="authPicture!=null and authPicture!=''">,#{authPicture}</if>
+		<if test="authDate!=null">,#{authDate}</if>
+		<if test="requestDate!=null">,#{requestDate}</if>
+		<if test="rejectDate!=null">,#{rejectDate}</if>
+		<if test="rejectReason!=null and rejectReason!=''">,#{rejectReason}</if>
+		<if test="status!=0">,#{status}</if>
+		)
+	</insert>
+
+	<!-- 2. 删除Authentication -->
+	<delete id="manage.auth.delete" parameterType="com.tuisitang.modules.shop.entity.Authentication">
+		delete from t_authentication where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Authentication -->
+	<update id="manage.auth.update" parameterType="com.tuisitang.modules.shop.entity.Authentication">
+		update t_authentication
+		set id= #{id}
+		<if test="id!=null">,id = #{id}</if>
+		<if test="accountId!=null">,accountId = #{accountId}</if>
+		<if test="type!=0">,type = #{type}</if>
+		<if test="cardNo!=null and cardNo!=''">,cardNo = #{cardNo}</if>
+		<if test="cardName!=null and cardName!=''">,cardName = #{cardName}</if>
+		<if test="authPicture!=null and authPicture!=''">,authPicture = #{authPicture}</if>
+		<if test="authDate!=null">,authDate = #{authDate}</if>
+		<if test="requestDate!=null">,requestDate = #{requestDate}</if>
+		<if test="rejectDate!=null">,rejectDate = #{rejectDate}</if>
+		<if test="rejectReason!=null and rejectReason!=''">,rejectReason = #{rejectReason}</if>
+		<if test="status!=0">,status = #{status}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Authentication查询一条记录 -->
+	<select id="manage.auth.selectOne" parameterType="com.tuisitang.modules.shop.entity.Authentication" resultType="com.tuisitang.modules.shop.entity.Authentication">
+		select t.*,
+		      a.id   as  'account.id',
+			  a.mobile as 'account.mobile',
+			  a.account as 'account.account'
+		 from t_authentication t, t_account a  where t.id = #{id} and t.accountId = a.id
+	</select>
+
+	<!-- 5. 分页查询Authentication -->
+	<select id="manage.auth.selectPageList" parameterType="com.tuisitang.modules.shop.entity.Authentication" resultType="com.tuisitang.modules.shop.entity.Authentication">
+		select t.*,
+		      a.id   as  'account.id',
+			  a.mobile as 'account.mobile',
+			  a.account as 'account.account'
+		 from t_authentication t, t_account a where 1 = 1 and t.accountId = a.id
+		<if test="id!=null"> and t.id = #{id}</if>
+		<if test="accountId!=null"> and t.accountId = #{accountId}</if>
+		<if test="type!=0"> and t.type = #{type}</if>
+		<if test="cardNo!=null and cardNo!=''"> and t.cardNo = #{cardNo}</if>
+		<if test="cardName!=null and cardName!=''"> and t.cardName = #{cardName}</if>
+		<if test="authPicture!=null and authPicture!=''"> and t.authPicture = #{authPicture}</if>
+		<if test="authDate!=null"> and t.authDate = #{authDate}</if>
+		<if test="rejectDate!=null"> and t.rejectDate = #{rejectDate}</if>
+		<if test="status!=0"> and t.status = #{status}</if>
+		<if test="startDate!=null and startDate!=''">
+			and t.requestDate &gt;= #{startDate}
+		 </if>
+		 <if test="endDate!=null and endDate!=''">
+			and t.requestDate &lt;= #{endDate}
+		 </if>
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Authentication -->
+	<select id="manage.auth.selectList" parameterType="com.tuisitang.modules.shop.entity.Authentication" resultType="com.tuisitang.modules.shop.entity.Authentication">
+		select t.* from t_authentication t where 1 = 1 
+		<if test="id!=null"> and id = #{id}</if>
+		<if test="accountId!=null"> and accountId = #{accountId}</if>
+		<if test="type!=0"> and type = #{type}</if>
+		<if test="cardNo!=null and cardNo!=''"> and cardNo = #{cardNo}</if>
+		<if test="cardName!=null and cardName!=''"> and cardName = #{cardName}</if>
+		<if test="authPicture!=null and authPicture!=''"> and authPicture = #{authPicture}</if>
+		<if test="authDate!=null"> and authDate = #{authDate}</if>
+		<if test="requestDate!=null"> and requestDate = #{requestDate}</if>
+		<if test="rejectDate!=null"> and rejectDate = #{rejectDate}</if>
+		<if test="status!=0"> and status = #{status}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="manage.auth.deleteById" parameterType="long">
+		delete from t_authentication where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="manage.auth.selectById" parameterType="long" resultType="com.tuisitang.modules.shop.entity.Authentication">
+		select t.* from t_authentication t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Authentication -->
+	<select id="manage.auth.selectPageCount" parameterType="com.tuisitang.modules.shop.entity.Authentication" resultType="int">
+		select count(1) from t_authentication t, t_account a where 1 = 1 and t.accountId = a.id
+		<if test="id!=null"> and t.id = #{id}</if>
+		<if test="accountId!=null"> and t.accountId = #{accountId}</if>
+		<if test="type!=0"> and t.type = #{type}</if>
+		<if test="cardNo!=null and cardNo!=''"> and t.cardNo = #{cardNo}</if>
+		<if test="cardName!=null and cardName!=''"> and t.cardName = #{cardName}</if>
+		<if test="authPicture!=null and authPicture!=''"> and t.authPicture = #{authPicture}</if>
+		<if test="authDate!=null"> and t.authDate = #{authDate}</if>
+		<if test="rejectDate!=null"> and t.rejectDate = #{rejectDate}</if>
+		<if test="status!=0"> and t.status = #{status}</if>
+		<if test="startDate!=null and startDate!=''">
+			and t.requestDate &gt;= #{startDate}
+		 </if>
+		 <if test="endDate!=null and endDate!=''">
+			and t.requestDate &lt;= #{endDate}
+		 </if>
+	</select>
+	
+</mapper>

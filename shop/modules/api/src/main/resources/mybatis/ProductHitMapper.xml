@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.ProductHitDao">
+
+    <sql id="productHitColumns">
+		t.id,
+    	t.productId,
+    	t.hit
+	</sql>
+	
+	<!-- 1. 添加ProductHit -->
+	<insert id="insert" parameterType="ProductHit" useGeneratedKeys="true" keyProperty="id">
+	    insert into t_product_hit(productId, hit)
+ 		values(#{productId}, #{hit})
+	</insert>
+
+	<!-- 2. 删除ProductHit -->
+	<delete id="delete" parameterType="ProductHit">
+		delete from t_product_hit where id = #{id}
+	</delete>
+
+	<!-- 3. 修改ProductHit -->
+	<update id="update" parameterType="ProductHit">
+		update t_product_hit set hit = hit + 1 where id = #{id}
+	</update>
+
+	<!-- 4. 根据ProductHit查询一条记录 -->
+	<select id="selectOne" parameterType="ProductHit" resultType="ProductHit">
+		select <include refid="productHitColumns" /> from t_product_hit t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询ProductHit -->
+	<select id="selectPageList" parameterType="ProductHit" resultType="ProductHit">
+		select <include refid="productHitColumns" /> from t_product_hit t where 1 = 1
+		<if test="productId!=null"> and productId = #{productId}</if>
+		<if test="id!=null"> and id = #{id}</if>
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询ProductHit -->
+	<select id="selectList" parameterType="ProductHit" resultType="ProductHit">
+		select <include refid="productHitColumns" /> from t_product_hit t where 1 = 1 
+		<if test="productId!=null"> and productId = #{productId}</if>
+		<if test="id!=null"> and id = #{id}</if>
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_product_hit where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="ProductHit">
+		select <include refid="productHitColumns" /> from t_product_hit t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询ProductHit -->
+	<select id="selectPageCount" parameterType="ProductHit" resultType="int">
+		select count(1) from t_product_hit t where 1 = 1
+		<if test="productId!=null"> and productId = #{productId}</if>
+		<if test="id!=null"> and id = #{id}</if>
+	</select>
+
+	<!-- 10. countByProductId -->
+	<select id="getHitByProductId" parameterType="long" resultType="java.lang.Integer">
+	    select t.hit from t_product_hit t where productId = #{productId}
+	</select>
+	
+	<!-- 11. 点击数新增 -->
+	<update id="incr" parameterType="long">
+		update t_product_hit set hit = hit + 1 where productId = #{productId}
+	</update>
+</mapper>

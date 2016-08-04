@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.emailNotifyProduct.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.EmailNotifyProduct;public interface EmailNotifyProductDao extends DaoManager<EmailNotifyProduct> {}

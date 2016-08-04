@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.sms.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Sms;public interface SmsDao extends DaoManager<Sms> {}

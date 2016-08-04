@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.orderpay.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Orderpay;public interface OrderpayDao extends DaoManager<Orderpay> {}

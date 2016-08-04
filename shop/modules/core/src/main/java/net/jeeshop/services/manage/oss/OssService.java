@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.oss;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Oss;public interface OssService extends Services<Oss> {}

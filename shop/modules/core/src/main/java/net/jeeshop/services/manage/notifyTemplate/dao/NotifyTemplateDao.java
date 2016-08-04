@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.notifyTemplate.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.NotifyTemplate;public interface NotifyTemplateDao extends DaoManager<NotifyTemplate> {}

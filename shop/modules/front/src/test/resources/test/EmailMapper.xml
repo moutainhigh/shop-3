@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.EmailDao">
+
+	<!-- 1. 添加Email -->
+	<insert id="insert" parameterType="Email" useGeneratedKeys="true" keyProperty="id">
+		insert into t_email
+		(id
+        <if test="sign!=null and sign!=''">,sign</if>
+		<if test="accountId!=0">,accountId</if>
+		<if test="account!=null and account!=''">,account</if>
+		<if test="type!=null and type!=''">,type</if>
+		<if test="url!=null and url!=''">,url</if>
+		<if test="createdate!=null">,createdate</if>
+		<if test="starttime!=null and starttime!=''">,starttime</if>
+		<if test="endtime!=null and endtime!=''">,endtime</if>
+		<if test="newEmail!=null and newEmail!=''">,newEmail</if>
+		<if test="status!=null and status!=''">,status</if>
+		<if test="sendStatus!=null and sendStatus!=''">,sendStatus</if>
+		
+		)
+		values
+		(
+		id
+		<if test="sign!=null and sign!=''">,#{sign}</if>
+		<if test="accountId!=0">,${accountId}</if>
+		<if test="account!=null and account!=''">,#{account}</if>
+		<if test="type!=null and type!=''">,#{type}</if>
+		<if test="url!=null and url!=''">,#{url}</if>
+		<if test="createdate!=null">,${createdate}</if>
+		<if test="starttime!=null and starttime!=''">,#{starttime}</if>
+		<if test="endtime!=null and endtime!=''">,#{endtime}</if>
+		<if test="newEmail!=null and newEmail!=''">,#{newEmail}</if>
+		<if test="status!=null and status!=''">,#{status}</if>
+		<if test="sendStatus!=null and sendStatus!=''">,#{sendStatus}</if>
+		
+		)
+	</insert>
+
+	<!-- 2. 删除Email -->
+	<delete id="delete" parameterType="Email">
+		delete from t_email where id = #{id}
+	</delete>
+
+	<!-- 3. 修改Email -->
+	<update id="update" parameterType="Email">
+		update t_email
+		set id= #{id}
+		<if test="sign!=null and sign!=''">,sign = #{sign}</if>
+		<if test="accountId!=0">,accountId = #{accountId}</if>
+		<if test="account!=null and account!=''">,account = #{account}</if>
+		<if test="type!=null and type!=''">,type = #{type}</if>
+		<if test="url!=null and url!=''">,url = #{url}</if>
+		<if test="createdate!=null">,createdate = #{createdate}</if>
+		<if test="starttime!=null and starttime!=''">,starttime = #{starttime}</if>
+		<if test="endtime!=null and endtime!=''">,endtime = #{endtime}</if>
+		<if test="newEmail!=null and newEmail!=''">,newEmail = #{newEmail}</if>
+		<if test="status!=null and status!=''">,status = #{status}</if>
+		<if test="sendStatus!=null and sendStatus!=''">,sendStatus = #{sendStatus}</if>
+				
+		where id = #{id}
+	</update>
+
+	<!-- 4. 根据Email查询一条记录 -->
+	<select id="selectOne" parameterType="Email" resultType="Email">
+		select t.* from t_email t where t.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询Email -->
+	<select id="selectPageList" parameterType="Email" resultType="Email">
+		select t.* from t_email t where 1 = 1
+		<if test="sign!=null and sign!=''"> and sign = #{sign}</if>
+		<if test="accountId!=0"> and accountId = #{accountId}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="type!=null and type!=''"> and type = #{type}</if>
+		<if test="url!=null and url!=''"> and url = #{url}</if>
+		<if test="createdate!=null"> and createdate = #{createdate}</if>
+		<if test="starttime!=null and starttime!=''"> and starttime = #{starttime}</if>
+		<if test="endtime!=null and endtime!=''"> and endtime = #{endtime}</if>
+		<if test="newEmail!=null and newEmail!=''"> and newEmail = #{newEmail}</if>
+		<if test="status!=null and status!=''"> and status = #{status}</if>
+		<if test="sendStatus!=null and sendStatus!=''"> and sendStatus = #{sendStatus}</if>
+		
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Email -->
+	<select id="selectList" parameterType="Email" resultType="Email">
+		select t.* from t_email t where 1 = 1 
+		<if test="sign!=null and sign!=''"> and sign = #{sign}</if>
+		<if test="accountId!=0"> and accountId = #{accountId}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="type!=null and type!=''"> and type = #{type}</if>
+		<if test="url!=null and url!=''"> and url = #{url}</if>
+		<if test="createdate!=null"> and createdate = #{createdate}</if>
+		<if test="starttime!=null and starttime!=''"> and starttime = #{starttime}</if>
+		<if test="endtime!=null and endtime!=''"> and endtime = #{endtime}</if>
+		<if test="newEmail!=null and newEmail!=''"> and newEmail = #{newEmail}</if>
+		<if test="status!=null and status!=''"> and status = #{status}</if>
+		<if test="sendStatus!=null and sendStatus!=''"> and sendStatus = #{sendStatus}</if>
+		
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_email where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Email">
+		select t.* from t_email t where t.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询Email -->
+	<select id="selectPageCount" parameterType="Email" resultType="int">
+		select count(1) from t_email t where 1 = 1
+		<if test="sign!=null and sign!=''"> and sign = #{sign}</if>
+		<if test="accountId!=0"> and accountId = #{accountId}</if>
+		<if test="account!=null and account!=''"> and account = #{account}</if>
+		<if test="type!=null and type!=''"> and type = #{type}</if>
+		<if test="url!=null and url!=''"> and url = #{url}</if>
+		<if test="createdate!=null"> and createdate = #{createdate}</if>
+		<if test="starttime!=null and starttime!=''"> and starttime = #{starttime}</if>
+		<if test="endtime!=null and endtime!=''"> and endtime = #{endtime}</if>
+		<if test="newEmail!=null and newEmail!=''"> and newEmail = #{newEmail}</if>
+		<if test="status!=null and status!=''"> and status = #{status}</if>
+		<if test="sendStatus!=null and sendStatus!=''"> and sendStatus = #{sendStatus}</if>
+		
+	</select>
+
+</mapper>

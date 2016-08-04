@@ -1,0 +1,1 @@
+package net.jeeshop.services.front.attribute_link.bean;import java.io.Serializable;/** * 属性产品中间类 * @author Administrator * */public class AttributeLink extends com.tuisitang.modules.shop.entity.AttributeLink implements Serializable {	private static final long serialVersionUID = 1L;}

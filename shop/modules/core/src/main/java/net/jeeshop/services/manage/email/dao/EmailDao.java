@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.email.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Email;public interface EmailDao extends DaoManager<Email> {}

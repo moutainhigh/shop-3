@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.OrderDao">
+    
+    <!-- <resultMap type="ProductCatalogRela" id="ProductCatalogRelaMap">
+		<result column="productId" property="productId"/>
+		<result column="catalogId" property="catalogId"/>
+    </resultMap>
+    payCode;// 支付方式
+	private String payName;// 支付方式中文
+	private String deliveryDayCode;// 送货时间
+	private String deliveryDayName
+     -->
+    
+    <resultMap type="Orderdetail" id="OrderdetailMap">
+		<result column="orderdetailId" property="id"/>
+		<result column="orderID" property="orderID"/>
+		<result column="productID" property="productID"/>
+		<result column="picture" property="picture"/>
+		<result column="price" property="price"/>
+		<result column="number" property="number"/>
+		<result column="productName" property="productName"/>
+		<result column="fee" property="fee"/>
+		<result column="total0" property="total0"/>
+		<result column="isComment" property="isComment"/>
+		<result column="lowStocks" property="lowStocks"/>
+		<result column="score" property="score"/>
+		<result column="specId" property="specId"/>
+		<result column="specInfo" property="specInfo"/>
+		<result column="sellerId" property="sellerId"/>
+		<result column="sellerName" property="sellerName"/>
+		<result column="giftID" property="giftID"/>
+    </resultMap>
+    
+	<resultMap type="Order" id="OrderMap">
+		<id column="id" property="id" />
+		<result column="no" property="no" />
+		<result column="accountId" property="accountId" />
+		<result column="account" property="account" />
+		<result column="rebate" property="rebate" />
+		<result column="createdate" property="createdate" />
+		<result column="status" property="status" />
+		<result column="refundStatus" property="refundStatus" />
+		<result column="amount" property="amount" />
+		<result column="fee" property="fee" />
+		<result column="ptotal" property="ptotal" />
+		<result column="quantity" property="quantity" />
+		<result column="paystatus" property="paystatus" />
+		<result column="updateAmount" property="updateAmount" />
+		<result column="expressCode" property="expressCode" />
+		<result column="expressName" property="expressName" />
+		<result column="payCode" property="payCode" />
+		<result column="payName" property="payName" />
+		<result column="payDate" property="payDate" />
+		<result column="deliveryDayCode" property="deliveryDayCode" />
+		<result column="deliveryDayName" property="deliveryDayName" />
+		<result column="deliveryDate" property="deliveryDate" />
+		<result column="otherRequirement" property="otherRequirement" />
+		<result column="remark" property="remark" />
+		<result column="expressNo" property="expressNo" />
+		<result column="expressCompanyName" property="expressCompanyName" />
+		<result column="lowStocks" property="lowStocks" />
+		<result column="confirmSendProductRemark" property="confirmSendProductRemark" />
+		<result column="closedComment" property="closedComment" />
+		<result column="score" property="score" />
+		<result column="orderpayId" property="orderpayId" />
+		
+		<result property="ordership.id" column="ordershipId" />
+		<result property="ordership.orderid" column="ordershipOrderId" />
+		<result property="ordership.addressId" column="addressId" />
+		<result property="ordership.shipname" column="shipname" />
+		<result property="ordership.shipaddress" column="shipaddress" />
+		<result property="ordership.province" column="province" />
+		<result property="ordership.provinceCode" column="provinceCode" />
+		<result property="ordership.city" column="city" />
+		<result property="ordership.cityCode" column="cityCode" />
+		<result property="ordership.area" column="area" />
+		<result property="ordership.areaCode" column="areaCode" />
+		<result property="ordership.phone" column="phone" />
+		<result property="ordership.tel" column="tel" />
+		<result property="ordership.zip" column="zip" />
+		<result property="ordership.sex" column="sex" />
+		<result property="ordership.remark" column="remark" />
+		<collection property="odList" ofType="Orderdetail" resultMap="OrderdetailMap" />
+		<!-- <collection property="osList" ofType="Ordership" resultMap="OrdershipMap" /> -->
+	</resultMap>
+	
+    <!-- 1. 新增Order -->
+    <insert id="insert" parameterType="Order" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into t_order
+		(
+		id,no,createdate,status,paystatus
+		<if test="accountId != null ">
+			,accountId
+		</if>
+		<if test="account != null and account != ''">
+			,account
+		</if>
+		<if test="rebate!=null and rebate!=''">
+			,rebate
+		</if>
+		<if test="remark!=null and remark!=''">
+			,remark
+		</if>
+		<if test="amount!=null">
+			,amount
+		</if>
+		<if test="amountExchangeScore!=0">
+			,amountExchangeScore
+		</if>
+		<if test="ptotal!=null">
+			,ptotal
+		</if>
+		<if test="quantity!=0">
+			,quantity
+		</if>
+		<if test="fee!=null">
+			,fee
+		</if>
+		<if test="expressCode!=null and expressCode!=''">
+			,expressCode
+		</if>
+		<if test="expressName!=null and expressName!=''">
+			,expressName
+		</if>
+		<if test="payCode!=null and payCode!=''">
+			,payCode
+		</if>
+		<if test="payName!=null and payName!=''">
+			,payName
+		</if>
+		<if test="deliveryDayCode!=null and deliveryDayCode!=''">
+			,deliveryDayCode
+		</if>
+		<if test="deliveryDayName!=null and deliveryDayName!=''">
+			,deliveryDayName
+		</if>
+		<if test="otherRequirement!=null and otherRequirement!=''">
+			,otherRequirement
+		</if>
+		<if test="closedComment!=null and closedComment!=''">
+			,closedComment
+		</if>
+		<if test="score!=0">
+			,score
+		</if>
+		<if test="orderpayId != null and orderpayId != '' ">
+			,orderpayId
+		</if>
+		)
+		values
+		(
+		id,#{no},now(),#{status},#{paystatus}
+		<if test="accountId !=null ">
+			,#{accountId}
+		</if>
+		<if test="account !=null and account !=''">
+			,#{account}
+		</if>
+		<if test="rebate !=null and rebate !=''">
+			,#{rebate}
+		</if>
+		<if test="remark !=null and remark !=''">
+			,#{remark}
+		</if>
+		<if test="amount!=null">
+			,#{amount}
+		</if>
+		<if test="amountExchangeScore!=0">
+			,#{amountExchangeScore}
+		</if>
+		<if test="ptotal!=null">
+			,#{ptotal}
+		</if>
+		<if test="quantity!=0">
+			,#{quantity}
+		</if>
+		<if test="fee!=null">
+			,#{fee}
+		</if>
+		<if test="expressCode!=null and expressCode!=''">
+			,#{expressCode}
+		</if>
+		<if test="expressName!=null and expressName!=''">
+			,#{expressName}
+		</if>
+		<if test="payCode!=null and payCode!=''">
+			,#{payCode}
+		</if>
+		<if test="payName!=null and payName!=''">
+			,#{payName}
+		</if>
+		<if test="deliveryDayCode!=null and deliveryDayCode!=''">
+			,#{deliveryDayCode}
+		</if>
+		<if test="deliveryDayName!=null and deliveryDayName!=''">
+			,#{deliveryDayName}
+		</if>
+		<if test="otherRequirement!=null and otherRequirement!=''">
+			,#{otherRequirement}
+		</if>
+		<if test="closedComment!=null and closedComment!=''">
+			,#{closedComment}
+		</if>
+		<if test="score!=0">
+			,#{score}
+		</if>
+		<if test="orderpayId != null and orderpayId != '' ">
+		    ,#{orderpayId}
+		</if>
+		)
+	</insert>
+	
+    <!-- 2. 删除Order -->
+	<delete id="delete" parameterType="Order">
+		delete from t_orderpay where id = #{id}
+	</delete>
+	
+	<!-- 3. 更新Order -->
+	<update id="update" parameterType="Order">
+		update t_order
+		set id=#{id}
+		<if test="status!=null and status!=''">
+			,status=#{status}
+		</if>
+		<if test="refundStatus !=null and refundStatus !=''">
+			,refundStatus=#{refundStatus}
+		</if>
+		<if test="paystatus!=null and paystatus!=''">
+			,paystatus=#{paystatus}
+		</if>
+		<if test="accountId !=null ">
+			,accountId=#{accountId}
+		</if>
+		<if test="account !=null and account !=''">
+			,account=#{account}
+		</if>
+		<if test="rebate !=null and rebate !=''">
+			,rebate=#{rebate}
+		</if>
+		<if test="remark !=null and remark !=''">
+			,remark=#{remark}
+		</if>
+		<if test="amount!=null">
+			,amount=#{amount}
+		</if>
+		<if test="ptotal!=null">
+			,ptotal=#{ptotal}
+		</if>
+		<if test="quantity!=0">
+			,quantity=#{quantity}
+		</if>
+		<if test="expressCode!=null and expressCode!=''">
+			,expressCode=#{expressCode}
+		</if>
+		<if test="expressName!=null and expressName!=''">
+			,expressName=#{expressName}
+		</if>
+		<if test="payCode!=null and payCode!=''">
+			,payCode=#{payCode}
+		</if>
+		<if test="payName!=null and payName!=''">
+			,payName=#{payName}
+		</if>
+		<if test="payDate!=null">
+			,payDate=#{payDate}
+		</if>
+		<if test="deliveryDayCode!=null and deliveryDayCode!=''">
+			,deliveryDayCode=#{deliveryDayCode}
+		</if>
+		<if test="deliveryDayName!=null and deliveryDayName!=''">
+			,deliveryDayName=#{deliveryDayName}
+		</if>
+		<if test="otherRequirement!=null and otherRequirement!=''">
+			,otherRequirement=#{otherRequirement}
+		</if>
+		<if test="deliveryDate!=null">
+			,deliveryDate=#{deliveryDate}
+		</if>
+		<if test="lowStocks!=null and lowStocks!=''">
+			,lowStocks=#{lowStocks}
+		</if>
+		<if test="closedComment!=null and closedComment!=''">
+			,closedComment=#{closedComment}
+		</if>
+		<if test="orderpayId != null and orderpayId != '' ">
+			,orderpayId=#{orderpayId}
+		</if>
+		where 1=1 and id=#{id}
+	</update>
+	
+	<!-- 4. 根据Order查询一条记录 -->
+	<select id="selectOne" parameterType="Order" resultType="Order">
+		select t.*,
+	       od.id as orderdetailId,
+	       od.orderID,
+	       od.productID,
+	       od.picture,
+	       od.price,
+	       od.number,
+	       od.productName,
+	       od.fee,
+	       od.total0,
+	       od.isComment,
+	       od.lowStocks,
+	       od.score,
+	       od.specId,
+	       od.specInfo,
+	       od.sellerId,
+	       od.sellerName,
+	       od.giftID,
+	       os.id as ordershipId,
+	       os.orderid as ordershipOrderId,
+	       os.addressId,
+	       os.shipname,
+	       os.shipaddress,
+	       os.provinceCode,
+	       os.province,
+	       os.cityCode,
+	       os.city,
+	       os.areaCode,
+	       os.area,
+	       os.phone,
+	       os.tel,
+	       os.zip,
+	       os.sex,
+	       os.remark
+	  from t_order t 
+	  	left join t_orderdetail od on t.id= od.orderID 
+	  	left join t_ordership os on t.id= os.orderID 
+	  where t.id = #{id}
+	</select>
+	
+	<!-- 5. 根据Order查询记录 -->
+	<select id="selectPageList" parameterType="Order" resultType="Order">
+		select t.*,
+	       od.id as orderdetailId,
+	       od.orderID,
+	       od.productID,
+	       od.picture,
+	       od.price,
+	       od.number,
+	       od.productName,
+	       od.fee,
+	       od.total0,
+	       od.isComment,
+	       od.lowStocks,
+	       od.score,
+	       od.specId,
+	       od.specInfo,
+	       od.sellerId,
+	       od.sellerName,
+	       od.giftID,
+	       os.id as ordershipId,
+	       os.orderid as ordershipOrderId,
+	       os.addressId,
+	       os.shipname,
+	       os.shipaddress,
+	       os.provinceCode,
+	       os.province,
+	       os.cityCode,
+	       os.city,
+	       os.areaCode,
+	       os.area,
+	       os.phone,
+	       os.tel,
+	       os.zip,
+	       os.sex,
+	       os.remark
+	  from (select a.* from t_order a where a.accountId=#{accountId}  limit #{offset}, #{pageSize}) t 
+	  	left join t_orderdetail od on t.id= od.orderID 
+	  	left join t_ordership os on t.id= os.orderID 
+	  order by t.id desc
+	</select>
+	
+	<!-- <select id="selectList" parameterType="Order" resultType="Order">
+		SELECT o.*,od.price,od.number
+		productNumber,od.productName,od.productID,od.isComment,od.id
+		orderdetailID,
+		(select p.picture from t_product p where p.id=od.productID) picture
+		FROM t_order o,t_orderdetail od
+		where o.id=od.orderid and accountId=#{accountId}
+		<if test="queryOrderIDs!=null and queryOrderIDs.size &gt; 0">
+			and o.id in
+			<foreach item="item" index="index" collection="queryOrderIDs"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		order by o.id desc
+	</select> -->
+	<!-- 6. 根据Order查询记录 -->
+	<select id="selectList" parameterType="Order" resultType="Order">
+		select t.*,
+	       od.id as orderdetailId,
+	       od.orderID,
+	       od.productID,
+	       od.picture,
+	       od.price,
+	       od.number,
+	       od.productName,
+	       od.fee,
+	       od.total0,
+	       od.isComment,
+	       od.lowStocks,
+	       od.score,
+	       od.specId,
+	       od.specInfo,
+	       od.sellerId,
+	       od.sellerName,
+	       od.giftID,
+	       os.id as ordershipId,
+	       os.orderid as ordershipOrderId,
+	       os.addressId,
+	       os.shipname,
+	       os.shipaddress,
+	       os.provinceCode,
+	       os.province,
+	       os.cityCode,
+	       os.city,
+	       os.areaCode,
+	       os.area,
+	       os.phone,
+	       os.tel,
+	       os.zip,
+	       os.sex,
+	       os.remark
+	  from (select a.* from t_order a where a.accountId=#{accountId}  limit #{offset}, #{pageSize}) t 
+	  	left join t_orderdetail od on t.id= od.orderID 
+	  	left join t_ordership os on t.id= os.orderID 
+	  order by t.id desc
+	</select>
+    
+	<!-- 7. deleteById -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_order where id = #{id}
+	</delete>
+	
+	<!-- 8. selectById -->
+	<!-- <select id="selectById" parameterType="long" resultType="Order">
+		select * from t_order t where id = #{id}
+	</select> -->
+	<select id="selectById" parameterType="long" resultMap="OrderMap">
+		select t.*,
+	       od.id as orderdetailId,
+	       od.orderID,
+	       od.productID,
+	       od.picture,
+	       od.price,
+	       od.number,
+	       od.productName,
+	       od.fee,
+	       od.total0,
+	       od.isComment,
+	       od.lowStocks,
+	       od.score,
+	       od.specId,
+	       od.specInfo,
+	       od.sellerId,
+	       od.sellerName,
+	       od.giftID,
+	       os.id as ordershipId,
+	       os.orderid as ordershipOrderId,
+	       os.addressId,
+	       os.shipname,
+	       os.shipaddress,
+	       os.provinceCode,
+	       os.province,
+	       os.cityCode,
+	       os.city,
+	       os.areaCode,
+	       os.area,
+	       os.phone,
+	       os.tel,
+	       os.zip,
+	       os.sex,
+	       os.remark
+	  from t_order t 
+	  	left join t_orderdetail od on t.id= od.orderID 
+	  	left join t_ordership os on t.id= os.orderID 
+	  where t.id = #{id}
+	</select>
+	
+	<!-- 9. selectPageCount -->
+	<select id="selectPageCount" parameterType="Order" resultType="java.lang.Integer">
+		select count(*) from t_order t where 1=1 and accountId = #{accountId}
+	</select>
+	
+	<!-- 10. selectOrderInfo -->
+	<select id="selectOrderInfo" parameterType="Order" resultType="Order">
+		SELECT o.*,od.price,od.number
+		productNumber,od.productName,od.productID,od.isComment,od.id
+		orderdetailID,
+		(select p.picture from t_product p where p.id=od.productID) picture
+		FROM t_order o,t_orderdetail od
+		where o.id=od.orderid and accountId=#{accountId} and o.id=#{id}
+	</select>
+
+	<!-- 11. selectOrdersSimpleReport -->
+	<select id="selectOrdersSimpleReport" parameterType="long" resultType="OrderSimpleReport">
+		SELECT
+		(SELECT count(*) FROM t_order where accountId=#{accountId} and paystatus='n' and status!='cancel') orderWaitPayCount,
+		(SELECT count(*) FROM t_order where accountId=#{accountId} and status='cancel') orderCancelCount,
+		(SELECT count(*) FROM t_order where accountId=#{accountId} and status in ('sign','file')) orderCompleteCount
+		FROM t_systemsetting
+	</select>
+	
+	<!-- 12. countByAccountId -->
+	<select id="countByAccountId" resultType="java.lang.Integer">
+		select count(*) from t_order t where accountId = #{accountId}
+	</select>
+	
+	<!-- <select id="findByAccountId" resultType="Order">
+		select * from t_order where accountId=#{accountId} order by id desc limit #{offset}, #{pageSize}
+	</select> -->
+	<!-- 13. findByAccountId -->
+	<select id="findByAccountId" resultMap="OrderMap">
+		select t.*,
+	       od.id as orderdetailId,
+	       od.orderID,
+	       od.productID,
+	       od.picture,
+	       od.price,
+	       od.number,
+	       od.productName,
+	       od.fee,
+	       od.total0,
+	       od.isComment,
+	       od.lowStocks,
+	       od.score,
+	       od.specId,
+	       od.specInfo,
+	       od.sellerId,
+	       od.sellerName,
+	       od.giftID,
+	       os.id as ordershipId,
+	       os.orderid as ordershipOrderId,
+	       os.addressId,
+	       os.shipname,
+	       os.shipaddress,
+	       os.provinceCode,
+	       os.province,
+	       os.cityCode,
+	       os.city,
+	       os.areaCode,
+	       os.area,
+	       os.phone,
+	       os.tel,
+	       os.zip,
+	       os.sex,
+	       os.remark
+	  from (select a.* from t_order a where a.accountId=#{accountId} order by a.id desc limit #{offset}, #{pageSize}) t 
+	  	left join t_orderdetail od on t.id= od.orderID 
+	  	left join t_ordership os on t.id= os.orderID 
+	</select>
+	
+	<!-- 14. count -->
+	<select id="count" resultType="int">
+		select count(*) from t_order t where accountId = #{accountId} 
+		<if test="type == 1 ">and paystatus='n' and status != 'cancel'</if>
+		<if test="type == 2 ">and status in ('sign','file')</if>
+		<if test="type == 3 ">and status='cancel'</if>
+		<if test="type == 4 ">and status='send'</if>
+	</select>
+	
+	<!-- 15. findPage -->
+	<select id="findPage" resultMap="OrderMap">
+		select t.*,
+	       od.id as orderdetailId,
+	       od.orderID,
+	       od.productID,
+	       od.picture,
+	       od.price,
+	       od.number,
+	       od.productName,
+	       od.fee,
+	       od.total0,
+	       od.isComment,
+	       od.lowStocks,
+	       od.score,
+	       od.specId,
+	       od.specInfo,
+	       od.sellerId,
+	       od.sellerName,
+	       od.giftID,
+	       os.id as ordershipId,
+	       os.orderid as ordershipOrderId,
+	       os.addressId,
+	       os.shipname,
+	       os.shipaddress,
+	       os.provinceCode,
+	       os.province,
+	       os.cityCode,
+	       os.city,
+	       os.areaCode,
+	       os.area,
+	       os.phone,
+	       os.tel,
+	       os.zip,
+	       os.sex,
+	       os.remark
+	  from (select a.* from t_order a where a.accountId=#{accountId} 
+	  	<if test="type == 1 ">and paystatus='n' and status != 'cancel'</if>
+		<if test="type == 2 ">and status in ('sign','file')</if>
+		<if test="type == 3 ">and status='cancel'</if>
+		<if test="type == 4 ">and status='send'</if> order by a.id desc limit #{offset}, #{pageSize}) t 
+	  	left join t_orderdetail od on t.id= od.orderID 
+	  	left join t_ordership os on t.id= os.orderID 
+	</select>
+	
+	<!-- 16. find -->
+	<select id="find" resultMap="OrderMap">
+		select t.*,
+	       od.id as orderdetailId,
+	       od.orderID,
+	       od.productID,
+	       od.picture,
+	       od.price,
+	       od.number,
+	       od.productName,
+	       od.fee,
+	       od.total0,
+	       od.isComment,
+	       od.lowStocks,
+	       od.score,
+	       od.specId,
+	       od.specInfo,
+	       od.sellerId,
+	       od.sellerName,
+	       od.giftID,
+	       os.id as ordershipId,
+	       os.orderid as ordershipOrderId,
+	       os.addressId,
+	       os.shipname,
+	       os.shipaddress,
+	       os.provinceCode,
+	       os.province,
+	       os.cityCode,
+	       os.city,
+	       os.areaCode,
+	       os.area,
+	       os.phone,
+	       os.tel,
+	       os.zip,
+	       os.sex,
+	       os.remark
+	  from t_order t 
+	  	left join t_orderdetail od on t.id= od.orderID 
+	  	left join t_ordership os on t.id= os.orderID 
+	  where t.accountId = #{accountId} 
+		<if test="type == 1 ">and paystatus='n' and status != 'cancel'</if>
+		<if test="type == 2 ">and status in ('sign','file')</if>
+		<if test="type == 3 ">and status='cancel'</if>
+		order by t.id desc
+	</select>
+	
+	<!-- 17. 更新状态 -->
+	<update id="updateStatus">
+		update t_order set status = #{status} where id = #{id}
+	</update>
+	
+</mapper> 

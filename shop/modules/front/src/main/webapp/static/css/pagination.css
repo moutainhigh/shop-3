@@ -1,0 +1,212 @@
+.pagination {
+            font-size: 80%;
+            float:right;
+        }
+        
+.pagination a {
+	text-decoration: none;
+	background-color: #f7f7f7;
+    background-image: -moz-linear-gradient(center top , #f7f7f7, #f2f2f2);
+    background-repeat: repeat-x;
+    border: 1px solid #ddd;
+    color: #333
+}
+
+.pagination a, .pagination span {
+    display: block;
+    float: left;
+    padding: 0.3em 0.5em;
+    margin-right: 5px;
+	margin-bottom: 5px;
+	min-width:1em;
+	text-align:center;
+}
+
+.pagination .current {
+    background: #FD004F;
+    color: #fff;
+	border: solid 1px #AAE;
+}
+
+.pagination .current.prev, .pagination .current.next{
+	color:#999;
+	border-color:#999;
+	background:#fff;
+}
+
+.evaluation-popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    display: none;
+    min-width: 1090px;
+}
+
+.evaluation-popup-main {
+	width: 500px;
+    top: 100px;
+    background-color: white;
+    position: fixed;
+    z-index: 101;
+    left: 50%;
+    margin: 0px 0px 0px -220px;
+    border: 1px solid #949494;
+   display: none;
+}
+
+.evaluation-popup-top {
+	background-color: #e50055;
+	padding:10px 20px;
+}
+
+.evaluation-popup-title {
+	color: white;
+	font-size: 18px;
+	margin-bottom: 0;
+	height:21px;
+	line-height:21px;
+	float: left;	
+}
+.clear {
+	clear: both;
+}
+
+.evaluation-popup-close {
+	float: right;
+	cursor: pointer;
+}
+
+.evaluation-popup-bottom {
+	padding:20px 35px;
+}
+
+.select-div-1 {
+	border: 2px solid #ccc;
+	padding: 8px 50px;
+	font-size: 16px;
+	color: #ccc;
+	float: left;
+	position: relative;
+	cursor: pointer;
+}
+
+.select-div-2 {
+	border: 2px solid #ccc;
+	padding: 8px 50px;
+	font-size: 16px;
+	color: #ccc;
+	float: right;
+	position: relative;
+	cursor: pointer;
+}
+
+.clearfix:after {
+    content: "\00A0";
+    display: block;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    clear: both;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+
+.select-star {
+	margin-top: 20px;
+	width: 100%;
+}
+
+.service-point {
+	float:left;
+	height: 27px;
+	line-height: 27px;
+	font-size: 16px;
+}
+
+.evaluation-word span,
+.select-star span {
+	font-family: verdana,sans-serif;
+	color: #e50055;
+}
+
+.star {
+	float: left;
+	margin-left: 20px;
+}
+
+.select-star-tips {
+	text-align: left;
+    padding: 10px 4px;
+    float: left;
+    width: 100%;
+}
+
+
+.select-star-tips img{
+	margin-top: -2px;
+    margin-right: 4px;
+}
+
+.evaluation-word textarea{
+	
+    float: left;
+    width: 317px;
+    height: 120px;
+    resize: none;
+    overflow-y: auto;
+    font-size: 14px;
+}
+
+.evaluation-text {
+	float:left;
+	width: 317px;
+	margin-left: 20px;
+	margin-top: 7px;
+}
+
+.word-num {
+	float:left;
+	margin-top: 10px;
+}
+
+.evaluation-submit {
+	padding: 8px 25px;
+	background-color: #e50055;
+	color: white;
+	font-size: 16px;
+	float: right;
+	cursor: pointer;
+}
+
+.select-div  img{
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 2;
+	display: none;
+}
+
+.select-div .active img {
+	display: block;
+	
+}
+
+.select-div .active {
+	border: 2px solid #e50055;
+	
+}
+
+.star-img {
+	cursor: pointer;
+	float: left;
+}
+
+#order-list tr td{
+	position: relative;
+}

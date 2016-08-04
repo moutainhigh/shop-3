@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.orderdetailExpress.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.OrderdetailExpress;public interface OrderdetailExpressDao extends DaoManager<OrderdetailExpress> {}

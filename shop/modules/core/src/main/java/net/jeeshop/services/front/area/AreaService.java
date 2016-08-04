@@ -1,0 +1,1 @@
+package net.jeeshop.services.front.area;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.Area;public interface AreaService extends Services<Area> {}

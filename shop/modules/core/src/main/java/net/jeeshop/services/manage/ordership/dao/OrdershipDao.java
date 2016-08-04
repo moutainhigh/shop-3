@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.ordership.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Ordership;public interface OrdershipDao extends DaoManager<Ordership> {}

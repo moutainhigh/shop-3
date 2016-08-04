@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.express.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.Express;public interface ExpressDao extends DaoManager<Express> {}

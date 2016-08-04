@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manage.bookingorderlog">
+
+    <sql id="bookingOrderLogColumns">
+		a.id,
+		a.booking_order_id AS bookingOrderId,
+		a.create_time AS createTime,
+		a.action,
+		a.description,
+		a.operate_id AS operateId,
+		a.operate_name AS operateName,
+		a.operate_type AS operateType
+	</sql>
+    
+	<!-- 1. 添加BookingOrderLog -->
+	<insert id="manage.bookingorderlog.insert" parameterType="com.tuisitang.modules.shop.entity.BookingOrderLog" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_booking_order_log(booking_order_id, create_time, action, description, operate_id, operate_name, operate_type) 
+		VALUES (#{bookingOrderId}, now(), #{action}, #{description}, #{operateId}, #{operateName}, #{operateType})
+	</insert>
+
+	<!-- 2. 删除BookingOrderLog -->
+	<delete id="manage.bookingorderlog.delete" parameterType="com.tuisitang.modules.shop.entity.BookingOrderLog">
+		delete from t_booking_order_log where id = #{id}
+	</delete>
+
+	<!-- 3. 修改BookingOrderLog -->
+	<update id="manage.bookingorderlog.update" parameterType="com.tuisitang.modules.shop.entity.BookingOrderLog">
+		UPDATE t_booking_order_log SET 
+			description = #{description}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 4. 根据BookingOrderLog查询一条记录 -->
+	<select id="manage.bookingorderlog.selectOne" parameterType="com.tuisitang.modules.shop.entity.BookingOrderLog" resultType="com.tuisitang.modules.shop.entity.BookingOrderLog">
+		SELECT <include refid="bookingOrderLogColumns" />
+		FROM t_booking_order_log a 
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询BookingOrderLog -->
+	<select id="manage.bookingorderlog.selectPageList" parameterType="com.tuisitang.modules.shop.entity.BookingOrderLog" resultType="com.tuisitang.modules.shop.entity.BookingOrderLog">
+		SELECT
+		<include refid="bookingOrderLogColumns" />
+		FROM t_booking_order_log a
+		WHERE 1 = 1
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询BookingOrderLog -->
+	<select id="manage.bookingorderlog.selectList" parameterType="com.tuisitang.modules.shop.entity.BookingOrderLog" resultType="com.tuisitang.modules.shop.entity.BookingOrderLog">
+		SELECT
+		<include refid="bookingOrderLogColumns" />
+		FROM t_booking_order_log a
+		WHERE 1 = 1
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="manage.bookingorderlog.deleteById" parameterType="long">
+		delete from t_booking_order_log where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="manage.bookingorderlog.selectById" parameterType="long" resultType="com.tuisitang.modules.shop.entity.BookingOrderLog">
+		SELECT <include refid="bookingOrderLogColumns" />
+		FROM t_booking_order_log a 
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询BookingOrderLog -->
+	<select id="manage.bookingorderlog.selectPageCount" parameterType="com.tuisitang.modules.shop.entity.BookingOrderLog" resultType="int">
+		select count(1) from t_booking_order_log t where 1 = 1
+	</select>
+	
+</mapper>

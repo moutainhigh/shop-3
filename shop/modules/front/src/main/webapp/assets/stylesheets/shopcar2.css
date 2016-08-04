@@ -1,0 +1,233 @@
+.container-n {
+    width: 100%;
+}
+
+.content-n {
+    width: 1090px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.margin-n {
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.clear {
+    clear: both;
+}
+
+.container-n .pay {
+    padding: 35px;
+}
+
+.pay-main {
+    background-color: white;
+    color: black;
+}
+
+.pay-main .cart_notice {
+    background: #fffae6;
+    padding: 30px 40px;
+}
+
+.pay-main .cart_notice h2 {
+    font-size: 26px;
+    font-family: "Microsoft YaHei","黑体";
+    color: #333;
+}
+
+#tomorrow_timer {
+    font-size: 14px;
+    color: #666;
+}
+
+#tomorrow_timer .bold{
+    font-family: Arial;
+    padding:0 5px;
+    font-size: 16px;
+    color:#333;
+    font-weight: 700;
+}
+
+.pay-main .cart_notice p{
+    font-size: 14px;
+    line-height: 16px;
+    color: #ed145b;
+}
+
+.pay-main .border_top{
+    border-top: 1px solid #dcdcdc;
+    width: auto;
+    border: 1px solid #dcdcdc;
+    border-bottom: 0;
+    padding: 25px 40px;
+    font-size: 14px;
+}
+
+.pay-main .option .content{
+    border-bottom:none;
+    padding-bottom: 0;
+}
+
+.pay-main .option p{
+    margin-bottom: 10px;
+}
+
+.pay-main .option {
+    width: auto;
+    border: 1px solid #dcdcdc;
+    border-bottom: 0;
+    border-top: 1px dotted #dcdcdc;
+    padding: 25px 40px;
+    font-size: 14px;
+}
+
+.pay-main .pay_info {
+    float: left;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 385px;
+}
+
+.pay-main .gateway_list ul{
+    padding-left: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.pay-main .gateway_list li{
+    padding-left: 0px;
+    width: auto;
+    overflow: hidden;
+    list-style: none;
+}
+
+.pay-main .gateway_list li .left{
+    margin-top:10px;
+    float: left;
+}
+
+.pay-main .gateway_list li .bg {
+    background: url(../image/gateway_bg_v6.jpg);
+    height: 40px;
+    width: 130px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.pay-main .gateway_list li .Alipay {
+    background-position: 0 -1575px;
+}
+
+.pay-main .option p {
+    margin-bottom: 10px;
+}
+
+.pink {
+    color: #ed145b;
+}
+
+.btn_pink_big {
+    display: block;
+    line-height: 40px;
+    text-align: center;
+    margin-left: 0;
+    width: 160px;
+    height: 40px;
+    background: #ed145b;
+    border: 1px solid #f9477a;
+    float: left;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.btn_pink_big:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #FF568D;
+}
+
+.light-box {
+	left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.5;
+    position: fixed;
+    z-index: 5;
+    top: 0;
+}
+
+body {
+    height: 100%;
+    /*overflow-y: scroll;*/
+}
+
+#lightbox {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background: #ddd;
+    z-index: 6;
+}
+
+#lightbox .container-l {
+    display: block;
+    border: #aeaeae 1px solid;
+    width: 400px;
+    position: relative;
+    background: #fff;
+}
+
+#lightbox .title {
+    background: #f9f9f9;
+    font-size: 14px;
+    line-height: 49px;
+    height: 49px;
+    border-bottom: 1px solid #aeaeae;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+#lightbox .content {
+    padding: 20px;
+}
+
+#lightbox h1.info {
+    background: url(../image/mark_icon.jpg) no-repeat;
+    height: 100px;
+    line-height: 100px;
+    padding-left: 100px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    margin-top: 0;
+}
+
+#lightbox p {
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#lightbox .ctrl {
+    margin-top: 20px;
+}
+
+input.formbutton {
+    padding: 4px 1em;
+    border: 2px solid;
+    border-color: #e186b1 #751b4c #751b4c #e186b1;
+    background: #ed145b;
+    color: #fff;
+    letter-spacing: .1em;
+    cursor: pointer;
+    line-height: 17px;
+}

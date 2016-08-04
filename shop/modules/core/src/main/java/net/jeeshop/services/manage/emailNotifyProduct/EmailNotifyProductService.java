@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.emailNotifyProduct;import net.jeeshop.core.Services;import com.tuisitang.modules.shop.entity.EmailNotifyProduct;public interface EmailNotifyProductService extends Services<EmailNotifyProduct> {	/**	 * 系统自动发送到货通知	 */	void autoNotify();}

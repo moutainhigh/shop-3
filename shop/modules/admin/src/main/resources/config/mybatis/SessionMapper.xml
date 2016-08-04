@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.SessionDao">
+
+    <sql id="sessionColumns">
+		t.session_id as sessionId,
+		t.account_id as accountId,
+		t.ip,
+		t.data,
+		t.expired_time as expiredTime
+	</sql>
+	
+    <sql id="sessionJoins">
+		LEFT JOIN t_account a ON a.id = t.account_id
+    </sql>
+    
+	<!-- 1. 添加Session -->
+	<insert id="insert" parameterType="Session">
+		INSERT INTO t_session(session_id, account_id, ip, data, expired_time) 
+		VALUES (#{sessionId}, #{accountId}, #{ip}, #{data}, #{expiredTime})
+	</insert>
+
+	<!-- 2. 删除Session -->
+	<delete id="delete" parameterType="Session">
+		delete from t_session where session_id = #{sessionId}
+	</delete>
+
+	<!-- 3. 修改Session -->
+	<update id="update" parameterType="Session">
+		UPDATE t_session SET 
+			account_id = #{accountId}, 
+			ip = #{ip}, 
+			data = #{data}, 
+			expired_time = #{expiredTime}
+		WHERE session_id = #{sessionId}
+	</update>
+
+	<!-- 4. 根据Session查询一条记录 -->
+	<select id="selectOne" parameterType="Session" resultType="Session">
+		SELECT <include refid="sessionColumns" />
+		FROM t_session t <include refid="sessionJoins" />
+		WHERE t.session_id = #{sessionId}
+	</select>
+
+	<!-- 5. 分页查询Session -->
+	<select id="selectPageList" parameterType="Session" resultType="Session">
+		SELECT
+		<include refid="sessionColumns" />
+		FROM t_session t
+		<include refid="sessionJoins" />
+		WHERE 1 = 1
+		order by session_id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询Session -->
+	<select id="selectList" parameterType="Session" resultType="Session">
+		SELECT
+		<include refid="sessionColumns" />
+		FROM t_session t
+		<include refid="sessionJoins" />
+		WHERE 1 = 1
+		order by session_id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		delete from t_session where session_id = #{sessionId}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="Session">
+		SELECT <include refid="sessionColumns" />
+		FROM t_session t <include refid="sessionJoins" />
+		WHERE t.session_id = #{sessionId}
+	</select>
+
+	<!-- 9. 分页查询Session -->
+	<select id="selectPageCount" parameterType="Session" resultType="int">
+		select count(1) from t_session t where 1 = 1
+	</select>
+	
+	<!-- 10. 根据sessionId获得Session -->
+	<select id="get" parameterType="string" resultType="Session">
+		SELECT <include refid="sessionColumns" />
+		FROM t_session t <include refid="sessionJoins" />
+		WHERE t.session_id = #{sessionId}
+	</select>
+	
+	<!-- 11. 根据ID来删除一条记录 -->
+	<delete id="remove" parameterType="string">
+		delete from t_session where session_id = #{sessionId}
+	</delete>
+	
+</mapper>

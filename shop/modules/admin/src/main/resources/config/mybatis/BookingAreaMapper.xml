@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuisitang.modules.shop.dao.BookingAreaDao">
+
+    <sql id="bookingAreaColumns">
+		a.id,
+		a.province_id as provinceId,
+		a.province_name as provinceName,
+		a.city_id as cityId,
+		a.city_name as cityName
+	</sql>
+    
+	<!-- 1. 添加BookingArea -->
+	<insert id="insert" parameterType="BookingArea" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_booking_area(province_id, province_name, city_id, city_name) 
+		VALUES (#{provinceId}, #{provinceName}, #{cityId}, #{cityName})
+	</insert>
+
+	<!-- 2. 删除BookingArea -->
+	<delete id="delete" parameterType="BookingArea">
+		delete from t_booking_area where id = #{id}
+	</delete>
+
+	<!-- 3. 修改BookingArea -->
+	<update id="update" parameterType="BookingArea">
+		UPDATE t_booking_area SET 
+			province_id = #{provinceId}, 
+			province_name = #{provinceName}, 
+			city_id = #{cityId}, 
+			city_name = #{cityName}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 4. 根据BookingArea查询一条记录 -->
+	<select id="selectOne" parameterType="BookingArea" resultType="BookingArea">
+		SELECT <include refid="bookingAreaColumns" />
+		FROM t_booking_area a
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 5. 分页查询BookingArea -->
+	<select id="selectPageList" parameterType="BookingArea" resultType="BookingArea">
+		SELECT
+		<include refid="bookingAreaColumns" />
+		FROM t_booking_area a
+		WHERE 1 = 1
+		order by id
+		limit #{offset}, #{pageSize}
+	</select>
+
+	<!-- 6. 根据条件查询BookingArea -->
+	<select id="selectList" parameterType="BookingArea" resultType="BookingArea">
+		SELECT
+		<include refid="bookingAreaColumns" />
+		FROM t_booking_area a
+		WHERE 1 = 1
+		order by id
+	</select>
+
+	<!-- 7. 根据ID来删除一条记录 -->
+	<delete id="deleteById" parameterType="long">
+		update t_booking_area set status = '1', mobile = '' where id = #{id}
+	</delete>
+
+	<!-- 8. 根据ID查询一条记录 -->
+	<select id="selectById" parameterType="long" resultType="BookingArea">
+		SELECT <include refid="bookingAreaColumns" />
+		FROM t_booking_area a 
+		WHERE a.id = #{id}
+	</select>
+
+	<!-- 9. 分页查询BookingArea -->
+	<select id="selectPageCount" parameterType="BookingArea" resultType="int">
+		select count(1) from t_booking_area t where 1 = 1
+	</select>
+	
+</mapper>

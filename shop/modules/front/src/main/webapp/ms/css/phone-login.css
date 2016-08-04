@@ -1,0 +1,158 @@
+html {
+  height: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #f65c8f;
+}
+body .body-main {
+  height: 100%;
+}
+.logo {
+  padding: 0 65px;
+  height: 20%;
+}
+.logo img {
+  width: 100%;
+}
+.account {
+  padding: 0 40px;
+  height: 48%;
+}
+.account input {
+  width: 100%;
+  text-align: center;
+  background-color: transparent;
+  color: white;
+  border-left: medium none;
+  border-right: medium none;
+  border-top: medium none;
+  border-bottom: 1px solid #D0CFCF;
+  outline: medium;
+  padding: 12px 0;
+  line-height: 18px;
+  font-family: microsoft yahei;
+  font-size: 18px;
+}
+.account input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: white;
+  font-size: 18px;
+  opacity: 0.6;
+  letter-spacing: 2px;
+}
+.account input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: white;
+  font-size: 18px;
+  opacity: 0.6;
+  letter-spacing: 2px;
+}
+.account input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: white;
+  font-size: 18px;
+  opacity: 0.6;
+  letter-spacing: 2px;
+}
+.account input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: white;
+  font-size: 18px;
+  opacity: 0.6;
+  letter-spacing: 2px;
+}
+.account .login-btn {
+  width: 100%;
+  margin-top: 17px;
+  background-color: transparent;
+  color: white;
+  font-size: 17px;
+  padding: 12px 0;
+  letter-spacing: 5px;
+}
+.account .register-btn {
+  width: 100%;
+  margin-top: 17px;
+  background-color: white;
+  color: #f65c8f;
+  font-size: 17px;
+  padding: 12px 0;
+  letter-spacing: 5px;
+}
+.foot {
+  padding: 0 40px;
+  height: 32%;
+}
+.foot .am-vertical-align-middle {
+  width: 100%;
+}
+.foot .forgot-password {
+  text-align: center;
+}
+.foot .forgot-password a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+.foot .third-login {
+  position: relative;
+  padding: 6px 0 7px 0;
+  margin-bottom: 1.6rem;
+}
+.foot .third-login .line {
+  border-top: 1px solid white;
+}
+.foot .third-login p {
+  position: absolute;
+  font-size: 14px;
+  color: white;
+  margin: 0;
+  line-height: 14px;
+  top: 0;
+  left: 50%;
+  margin-left: -43px;
+  width: 86px;
+  background-color: #f65c8f;
+  text-align: center;
+}
+.foot .login-link .qq {
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+.foot .login-link .qq img {
+  width: 55px;
+}
+.foot .login-link .weibo {
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+.foot .login-link .weibo img {
+  width: 55px;
+}
+.warning {
+  position: fixed;
+  z-index: 999;
+  width: 110px;
+  height: 100px;
+  background-color: #484848;
+  border-radius: 7px;
+  top: 40%;
+  margin-top: -50px;
+  left: 50%;
+  margin-left: -50px;
+  padding: 10px;
+  text-align: center;
+  display: none;
+}
+.warning p {
+  color: #E6E6E6;
+  font-size: 14px;
+  margin: 0;
+  text-align: center;
+}
+
+/*# sourceMappingURL=../css/phone-login.css.map */

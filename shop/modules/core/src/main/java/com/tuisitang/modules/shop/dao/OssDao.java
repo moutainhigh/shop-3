@@ -1,0 +1,1 @@
+package com.tuisitang.modules.shop.dao;import com.tuisitang.modules.shop.entity.Oss;@MyBatisRepositorypublic interface OssDao extends BaseDao<Oss> {	/**	 * 10. 根据code获得Oss	 * 	 * @param code	 * @return	 */	Oss getByCode(String code);	}

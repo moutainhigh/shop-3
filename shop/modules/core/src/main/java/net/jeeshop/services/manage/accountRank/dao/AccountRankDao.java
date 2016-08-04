@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.accountRank.dao;import net.jeeshop.core.DaoManager;import com.tuisitang.modules.shop.entity.AccountRank;public interface AccountRankDao extends DaoManager<AccountRank> {}
